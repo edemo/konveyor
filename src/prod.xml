@@ -11,6 +11,35 @@
          <value type="net.sourceforge.pmd.lang.Language" value="java"/>
       </property>
       <node class="net.sourceforge.pmd.util.fxdesigner.MetricPaneController"/>
+      <node class="net.sourceforge.pmd.util.fxdesigner.SourceEditorController">
+         <property property-name="auxclasspathFiles">
+            <value type="java.util.List&lt;java.io.File&gt;"/>
+         </property>
+         <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveTestCase">
+            <property property-name="ignored">
+               <value type="boolean" value="false"/>
+            </property>
+            <property property-name="languageVersion">
+               <value type="net.sourceforge.pmd.lang.LanguageVersion" value="java 24"/>
+            </property>
+            <property property-name="description">
+               <value type="java.lang.String" value="New test case"/>
+            </property>
+            <property property-name="source">
+               <value type="java.lang.String" value="@Data&#xA;class SomeDataStructure {&#xA;}"/>
+            </property>
+            <property property-name="persistenceOnlyProps">
+               <value type="java.util.Properties"/>
+            </property>
+            <nodeseq property-name="expectedViolations"/>
+         </node>
+      </node>
+      <node class="net.sourceforge.pmd.util.fxdesigner.NodeDetailPaneController">
+         <property property-name="hideCommonAttributes">
+            <value type="boolean" value="true"/>
+         </property>
+      </node>
+      <node class="net.sourceforge.pmd.util.fxdesigner.ScopesPanelController"/>
       <node class="net.sourceforge.pmd.util.fxdesigner.RuleEditorsController">
          <property property-name="selectedTabIndex">
             <value type="int" value="0"/>
@@ -148,34 +177,5 @@
             </node>
          </nodeseq>
       </node>
-      <node class="net.sourceforge.pmd.util.fxdesigner.NodeDetailPaneController">
-         <property property-name="hideCommonAttributes">
-            <value type="boolean" value="true"/>
-         </property>
-      </node>
-      <node class="net.sourceforge.pmd.util.fxdesigner.SourceEditorController">
-         <property property-name="auxclasspathFiles">
-            <value type="java.util.List&lt;java.io.File&gt;"/>
-         </property>
-         <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveTestCase">
-            <property property-name="ignored">
-               <value type="boolean" value="false"/>
-            </property>
-            <property property-name="languageVersion">
-               <value type="net.sourceforge.pmd.lang.LanguageVersion" value="java 24"/>
-            </property>
-            <property property-name="description">
-               <value type="java.lang.String" value="New test case"/>
-            </property>
-            <property property-name="source">
-               <value type="java.lang.String" value="@Data&#xA;class SomeDataStructure {&#xA;}"/>
-            </property>
-            <property property-name="persistenceOnlyProps">
-               <value type="java.util.Properties"/>
-            </property>
-            <nodeseq property-name="expectedViolations"/>
-         </node>
-      </node>
-      <node class="net.sourceforge.pmd.util.fxdesigner.ScopesPanelController"/>
    </node>
 </designer-settings>

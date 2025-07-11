@@ -4,8 +4,13 @@
 
 	<xsl:output method="xml" version="1.0" encoding="utf-8" indent="yes" omit-xml-declaration="yes"/>
 
+  <xsl:param name="description"/>
+
   <xsl:template match="/">
-		<ruleset>
+		<ruleset name="{$description//@name}">
+    <description>
+			<xsl:value-of select="$description"/>
+    </description>
     <xsl:apply-templates select="//node[@class='net.sourceforge.pmd.util.fxdesigner.RuleEditorsController']"/>
 		</ruleset>
   </xsl:template>

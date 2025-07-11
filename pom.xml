@@ -103,10 +103,6 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>3.5.1</version>
-				<configuration>
-					<executable>python</executable>
-					<workingDirectory>src/test/resources/</workingDirectory>
-				</configuration>
 				<executions>
 					<execution>
 						<id>convertrule</id>
