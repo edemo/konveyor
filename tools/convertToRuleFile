@@ -5,5 +5,5 @@ then
 	echo usage: $0 rulesetname
   exit 1
 fi
-mkdir -p target
-java -jar ~/.m2/repository/net/sourceforge/saxon/saxon/9.1.0.8/saxon-9.1.0.8.jar -s:src/$1.xml -xsl:xslt/workbenchToRules.xslt -o:target/$1.xml
+mkdir -p target/classes
+java -cp $(echo target/dependency/*|sed 's/ /:/g') net.sf.saxon.Transform -s:src/$1.xml -xsl:xslt/workbenchToRules.xslt -o:target/classes/$1.xml

@@ -17,5 +17,5 @@ export JAVAFX_HOME=/usr/share/openjfx
 /opt/pmd-bin-7.15.0/bin/pmd designer
 cp ~/.pmd/rule-designer/appstate.xml src/$1.xml
 ./tools/convertToRuleFile $1
-cat target/$1.xml
+cat target/classes/$1.xml
 
