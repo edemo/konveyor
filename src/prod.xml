@@ -39,7 +39,6 @@
             <value type="boolean" value="true"/>
          </property>
       </node>
-      <node class="net.sourceforge.pmd.util.fxdesigner.ScopesPanelController"/>
       <node class="net.sourceforge.pmd.util.fxdesigner.RuleEditorsController">
          <property property-name="selectedTabIndex">
             <value type="int" value="0"/>
@@ -54,7 +53,7 @@
                </property>
                <property property-name="xpathExpression">
                   <value type="java.lang.String"
-                         value="//ClassDeclaration[&#xA;not(./ModifierList/Annotation[@SimpleName = 'Data']) and&#xA;not(./ModifierList/Annotation[@SimpleName = 'Controller'] and matches(@SimpleName,'^.*Controller$')) and&#xA;not(./ModifierList/Annotation[@SimpleName = 'Service'])&#xA;]"/>
+                         value="//ClassDeclaration[&#xA;not(./ModifierList/Annotation[@SimpleName = 'Data']) and&#xA;not(./ModifierList/Annotation[@SimpleName = 'Controller'] and matches(@SimpleName,'^.*Controller$')) and&#xA;not(./ModifierList/Annotation[@SimpleName = 'Service']) and&#xA;not(./ModifierList/Annotation[@SimpleName = 'Repository'] and&#xA;  matches(@SimpleName,'^.*Repository$') and&#xA;  matches(./ExtendsList/ClassType/@SimpleName,'Repository$') ) and&#xA;not( matches(@SimpleName,'^.*Stub$') ) and&#xA;not( matches(@SimpleName,'^.*TestData$') ) and&#xA;not( matches(@SimpleName,'^.*Test$') )&#xA;]"/>
                </property>
                <property property-name="description">
                   <value type="java.lang.String" value=""/>
@@ -70,7 +69,7 @@
                </property>
                <property property-name="message">
                   <value type="java.lang.String"
-                         value="Classes should be either Data, Service or Controller"/>
+                         value="Classes should be either Data, Service,Controller,Repository"/>
                </property>
                <property property-name="clazz">
                   <value type="java.lang.Class&lt;?&gt;"
@@ -149,6 +148,26 @@
                         </property>
                         <property property-name="description">
                            <value type="java.lang.String"
+                                  value="A repository must have @Repository annotation, end to Repository, and extend a repository"/>
+                        </property>
+                        <property property-name="source">
+                           <value type="java.lang.String"
+                                  value="&#xA;@Repository&#xA;public interface BridiRepository extends CrudRepository&lt;Bridi, String&gt; {&#xA;}"/>
+                        </property>
+                        <property property-name="persistenceOnlyProps">
+                           <value type="java.util.Properties"/>
+                        </property>
+                        <nodeseq property-name="expectedViolations"/>
+                     </node>
+                     <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveTestCase">
+                        <property property-name="ignored">
+                           <value type="boolean" value="false"/>
+                        </property>
+                        <property property-name="languageVersion">
+                           <value type="net.sourceforge.pmd.lang.LanguageVersion" value="java 24"/>
+                        </property>
+                        <property property-name="description">
+                           <value type="java.lang.String"
                                   value="this rule fires if none of the above is true"/>
                         </property>
                         <property property-name="source">
@@ -171,11 +190,67 @@
                            </node>
                         </nodeseq>
                      </node>
+                     <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveTestCase">
+                        <property property-name="ignored">
+                           <value type="boolean" value="false"/>
+                        </property>
+                        <property property-name="languageVersion">
+                           <value type="net.sourceforge.pmd.lang.LanguageVersion" value="java 24"/>
+                        </property>
+                        <property property-name="description">
+                           <value type="java.lang.String" value="A Stub name ends with Stub"/>
+                        </property>
+                        <property property-name="source">
+                           <value type="java.lang.String"
+                                  value="&#xA;class BridiRepositoryStub implements BridiTestData {}"/>
+                        </property>
+                        <property property-name="persistenceOnlyProps">
+                           <value type="java.util.Properties"/>
+                        </property>
+                        <nodeseq property-name="expectedViolations"/>
+                     </node>
+                     <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveTestCase">
+                        <property property-name="ignored">
+                           <value type="boolean" value="false"/>
+                        </property>
+                        <property property-name="languageVersion">
+                           <value type="net.sourceforge.pmd.lang.LanguageVersion" value="java 24"/>
+                        </property>
+                        <property property-name="description">
+                           <value type="java.lang.String" value="A Testdata name ends with TestData"/>
+                        </property>
+                        <property property-name="source">
+                           <value type="java.lang.String" value="&#xA;public interface BridiTestData {}"/>
+                        </property>
+                        <property property-name="persistenceOnlyProps">
+                           <value type="java.util.Properties"/>
+                        </property>
+                        <nodeseq property-name="expectedViolations"/>
+                     </node>
+                     <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveTestCase">
+                        <property property-name="ignored">
+                           <value type="boolean" value="false"/>
+                        </property>
+                        <property property-name="languageVersion">
+                           <value type="net.sourceforge.pmd.lang.LanguageVersion" value="java 24"/>
+                        </property>
+                        <property property-name="description">
+                           <value type="java.lang.String" value="A Test name ends with Test"/>
+                        </property>
+                        <property property-name="source">
+                           <value type="java.lang.String" value="&#xA;class BridiTest {}"/>
+                        </property>
+                        <property property-name="persistenceOnlyProps">
+                           <value type="java.util.Properties"/>
+                        </property>
+                        <nodeseq property-name="expectedViolations"/>
+                     </node>
                   </nodeseq>
                </node>
                <nodeseq property-name="ruleProperties"/>
             </node>
          </nodeseq>
       </node>
+      <node class="net.sourceforge.pmd.util.fxdesigner.ScopesPanelController"/>
    </node>
 </designer-settings>

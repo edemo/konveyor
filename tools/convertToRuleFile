@@ -9,4 +9,4 @@ mkdir -p target/classes
 java -cp $(echo target/dependency/*|sed 's/ /:/g') net.sf.saxon.Transform -s:src/$1.xml\
  -xsl:xslt/workbenchToRules.xslt\
  -o:target/classes/$1.xml\
- description=$(realpath src/$(basename $1 .xml).description)
+ +description=$(realpath src/$(basename $1 .xml).description)
