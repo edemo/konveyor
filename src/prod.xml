@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<designer-settings revision="4">
+   <node class="net.sourceforge.pmd.util.fxdesigner.MainDesignerController">
+      <property property-name="recentFiles">
+         <value type="java.util.List&lt;java.io.File&gt;"/>
+      </property>
+      <property property-name="maximized">
+         <value type="boolean" value="false"/>
+      </property>
+      <property property-name="globalLanguage">
+         <value type="net.sourceforge.pmd.lang.Language" value="java"/>
+      </property>
+      <node class="net.sourceforge.pmd.util.fxdesigner.MetricPaneController"/>
+      <node class="net.sourceforge.pmd.util.fxdesigner.RuleEditorsController">
+         <property property-name="selectedTabIndex">
+            <value type="int" value="0"/>
+         </property>
+         <nodeseq property-name="ruleSpecs">
+            <node class="net.sourceforge.pmd.util.fxdesigner.model.ObservableXPathRuleBuilder">
+               <property property-name="persistedXpathVersion">
+                  <value type="java.lang.String" value="3.1"/>
+               </property>
+               <property property-name="name">
+                  <value type="java.lang.String" value="ClassesShouldBeKnown"/>
+               </property>
+               <property property-name="xpathExpression">
+                  <value type="java.lang.String"
+                         value="//ClassDeclaration[&#xA;not(./ModifierList/Annotation[@SimpleName = 'Data']) and&#xA;not(./ModifierList/Annotation[@SimpleName = 'Controller'] and matches(@SimpleName,'^.*Controller$')) and&#xA;not(./ModifierList/Annotation[@SimpleName = 'Service'])&#xA;]"/>
+               </property>
+               <property property-name="description">
+                  <value type="java.lang.String" value=""/>
+               </property>
+               <property property-name="language">
+                  <value type="net.sourceforge.pmd.lang.Language" value="java"/>
+               </property>
+               <property property-name="externalInfoUrl">
+                  <value type="java.lang.String" value=""/>
+               </property>
+               <property property-name="priority">
+                  <value type="net.sourceforge.pmd.lang.rule.RulePriority" value="3"/>
+               </property>
+               <property property-name="message">
+                  <value type="java.lang.String"
+                         value="Classes should be either Data, Service or Controller"/>
+               </property>
+               <property property-name="clazz">
+                  <value type="java.lang.Class&lt;?&gt;"
+                         value="net.sourceforge.pmd.lang.rule.xpath.XPathRule"/>
+               </property>
+               <property property-name="since">
+                  <value type="java.lang.String" value=""/>
+               </property>
+               <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.TestCollection">
+                  <property property-name="origin">
+                     <value null="true" type="java.io.File"/>
+                  </property>
+                  <nodeseq property-name="stash">
+                     <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveTestCase">
+                        <property property-name="ignored">
+                           <value type="boolean" value="false"/>
+                        </property>
+                        <property property-name="languageVersion">
+                           <value type="net.sourceforge.pmd.lang.LanguageVersion" value="java 24"/>
+                        </property>
+                        <property property-name="description">
+                           <value type="java.lang.String"
+                                  value="Data Structures must have @Data annotation"/>
+                        </property>
+                        <property property-name="source">
+                           <value type="java.lang.String" value="@Data&#xA;class SomeDataStructure {&#xA;}"/>
+                        </property>
+                        <property property-name="persistenceOnlyProps">
+                           <value type="java.util.Properties"/>
+                        </property>
+                        <nodeseq property-name="expectedViolations"/>
+                     </node>
+                     <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveTestCase">
+                        <property property-name="ignored">
+                           <value type="boolean" value="false"/>
+                        </property>
+                        <property property-name="languageVersion">
+                           <value type="net.sourceforge.pmd.lang.LanguageVersion" value="java 24"/>
+                        </property>
+                        <property property-name="description">
+                           <value type="java.lang.String" value="Services must have @Service annotation"/>
+                        </property>
+                        <property property-name="source">
+                           <value type="java.lang.String" value="@Service&#xA;class SomeDataStructure {&#xA;}"/>
+                        </property>
+                        <property property-name="persistenceOnlyProps">
+                           <value type="java.util.Properties"/>
+                        </property>
+                        <nodeseq property-name="expectedViolations"/>
+                     </node>
+                     <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveTestCase">
+                        <property property-name="ignored">
+                           <value type="boolean" value="false"/>
+                        </property>
+                        <property property-name="languageVersion">
+                           <value type="net.sourceforge.pmd.lang.LanguageVersion" value="java 24"/>
+                        </property>
+                        <property property-name="description">
+                           <value type="java.lang.String"
+                                  value="Controllers must have @Controller annotation and their name end to Controller"/>
+                        </property>
+                        <property property-name="source">
+                           <value type="java.lang.String" value="@Controller&#xA;class SomeController {&#xA;}"/>
+                        </property>
+                        <property property-name="persistenceOnlyProps">
+                           <value type="java.util.Properties"/>
+                        </property>
+                        <nodeseq property-name="expectedViolations"/>
+                     </node>
+                     <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveTestCase">
+                        <property property-name="ignored">
+                           <value type="boolean" value="false"/>
+                        </property>
+                        <property property-name="languageVersion">
+                           <value type="net.sourceforge.pmd.lang.LanguageVersion" value="java 24"/>
+                        </property>
+                        <property property-name="description">
+                           <value type="java.lang.String"
+                                  value="this rule fires if none of the above is true"/>
+                        </property>
+                        <property property-name="source">
+                           <value type="java.lang.String" value="&#xA;class SomeDataStructure {&#xA;}"/>
+                        </property>
+                        <property property-name="persistenceOnlyProps">
+                           <value type="java.util.Properties"/>
+                        </property>
+                        <nodeseq property-name="expectedViolations">
+                           <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveViolationRecord">
+                              <property property-name="line">
+                                 <value type="int" value="-1"/>
+                              </property>
+                              <property property-name="region">
+                                 <value type="net.sourceforge.pmd.lang.document.TextRegion" value="1-28"/>
+                              </property>
+                              <property property-name="message">
+                                 <value null="true" type="java.lang.String"/>
+                              </property>
+                           </node>
+                        </nodeseq>
+                     </node>
+                  </nodeseq>
+               </node>
+               <nodeseq property-name="ruleProperties"/>
+            </node>
+         </nodeseq>
+      </node>
+      <node class="net.sourceforge.pmd.util.fxdesigner.NodeDetailPaneController">
+         <property property-name="hideCommonAttributes">
+            <value type="boolean" value="true"/>
+         </property>
+      </node>
+      <node class="net.sourceforge.pmd.util.fxdesigner.SourceEditorController">
+         <property property-name="auxclasspathFiles">
+            <value type="java.util.List&lt;java.io.File&gt;"/>
+         </property>
+         <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveTestCase">
+            <property property-name="ignored">
+               <value type="boolean" value="false"/>
+            </property>
+            <property property-name="languageVersion">
+               <value type="net.sourceforge.pmd.lang.LanguageVersion" value="java 24"/>
+            </property>
+            <property property-name="description">
+               <value type="java.lang.String" value="New test case"/>
+            </property>
+            <property property-name="source">
+               <value type="java.lang.String" value="@Data&#xA;class SomeDataStructure {&#xA;}"/>
+            </property>
+            <property property-name="persistenceOnlyProps">
+               <value type="java.util.Properties"/>
+            </property>
+            <nodeseq property-name="expectedViolations"/>
+         </node>
+      </node>
+      <node class="net.sourceforge.pmd.util.fxdesigner.ScopesPanelController"/>
+   </node>
+</designer-settings>

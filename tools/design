@@ -1,0 +1,21 @@
+#!/bin/bash
+set -xe
+if [ $# != 1 ]
+then
+	echo usage: $0 rulesetname
+  exit 1
+fi
+if [ ! -f src/$1.xml ]
+then
+  echo rule file src/$1.xml does not exist
+  exit 1
+fi
+cp src/$1.xml ~/.pmd/rule-designer/appstate.xml
+echo "do not forget to save the workbench before exit! (press enter when read)"
+read
+export JAVAFX_HOME=/usr/share/openjfx
+/opt/pmd-bin-7.15.0/bin/pmd designer
+cp ~/.pmd/rule-designer/appstate.xml src/$1.xml
+./tools/convertToRuleFile $1
+cat target/$1.xml
+
