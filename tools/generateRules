@@ -1,5 +1,5 @@
 #!/bin/bash
-for i in src/*
+for i in src/main/resources/*.xml
 do
 	tools/convertToRuleFile $(basename $i .xml)
 done

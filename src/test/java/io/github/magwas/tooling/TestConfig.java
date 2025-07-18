@@ -1,0 +1,14 @@
+package io.github.magwas.tooling;
+
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@SpringBootApplication
+@Configuration
+@EnableAutoConfiguration
+@ComponentScan("io.github.magwas")
+public class TestConfig {
+
+}

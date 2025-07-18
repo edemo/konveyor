@@ -5,40 +5,11 @@
          <value type="java.util.List&lt;java.io.File&gt;"/>
       </property>
       <property property-name="maximized">
-         <value type="boolean" value="false"/>
+         <value type="boolean" value="true"/>
       </property>
       <property property-name="globalLanguage">
          <value type="net.sourceforge.pmd.lang.Language" value="java"/>
       </property>
-      <node class="net.sourceforge.pmd.util.fxdesigner.MetricPaneController"/>
-      <node class="net.sourceforge.pmd.util.fxdesigner.SourceEditorController">
-         <property property-name="auxclasspathFiles">
-            <value type="java.util.List&lt;java.io.File&gt;"/>
-         </property>
-         <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveTestCase">
-            <property property-name="ignored">
-               <value type="boolean" value="false"/>
-            </property>
-            <property property-name="languageVersion">
-               <value type="net.sourceforge.pmd.lang.LanguageVersion" value="java 24"/>
-            </property>
-            <property property-name="description">
-               <value type="java.lang.String" value="New test case"/>
-            </property>
-            <property property-name="source">
-               <value type="java.lang.String" value="@Data&#xA;class SomeDataStructure {&#xA;}"/>
-            </property>
-            <property property-name="persistenceOnlyProps">
-               <value type="java.util.Properties"/>
-            </property>
-            <nodeseq property-name="expectedViolations"/>
-         </node>
-      </node>
-      <node class="net.sourceforge.pmd.util.fxdesigner.NodeDetailPaneController">
-         <property property-name="hideCommonAttributes">
-            <value type="boolean" value="true"/>
-         </property>
-      </node>
       <node class="net.sourceforge.pmd.util.fxdesigner.RuleEditorsController">
          <property property-name="selectedTabIndex">
             <value type="int" value="0"/>
@@ -53,7 +24,7 @@
                </property>
                <property property-name="xpathExpression">
                   <value type="java.lang.String"
-                         value="//ClassDeclaration[&#xA;not(./ModifierList/Annotation[@SimpleName = 'Data']) and&#xA;not(./ModifierList/Annotation[@SimpleName = 'Controller'] and matches(@SimpleName,'^.*Controller$')) and&#xA;not(./ModifierList/Annotation[@SimpleName = 'Service']) and&#xA;not(./ModifierList/Annotation[@SimpleName = 'Repository'] and&#xA;  matches(@SimpleName,'^.*Repository$') and&#xA;  matches(./ExtendsList/ClassType/@SimpleName,'Repository$') ) and&#xA;not( matches(@SimpleName,'^.*Stub$') ) and&#xA;not( matches(@SimpleName,'^.*TestData$') ) and&#xA;not( matches(@SimpleName,'^.*Test$') )&#xA;]"/>
+                         value="//ClassDeclaration[&#xA;not(./ModifierList/Annotation[@SimpleName = 'Glue']) and&#xA;not(./ModifierList/Annotation[@SimpleName = 'Data']) and&#xA;not(./ModifierList/Annotation[@SimpleName = 'Controller'] and matches(@SimpleName,'^.*Controller$')) and&#xA;not(./ModifierList/Annotation[@SimpleName = 'Service']) and&#xA;not(./ModifierList/Annotation[@SimpleName = 'Repository'] and&#xA;  matches(@SimpleName,'^.*Repository$') and&#xA;  matches(./ExtendsList/ClassType/@SimpleName,'Repository$') ) and&#xA;not( matches(@SimpleName,'^.*Stub$') ) and&#xA;not( matches(@SimpleName,'^.*TestData$') ) and&#xA;not( matches(@SimpleName,'^.*Test$') )&#xA;]"/>
                </property>
                <property property-name="description">
                   <value type="java.lang.String" value=""/>
@@ -245,11 +216,59 @@
                         </property>
                         <nodeseq property-name="expectedViolations"/>
                      </node>
+                     <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveTestCase">
+                        <property property-name="ignored">
+                           <value type="boolean" value="false"/>
+                        </property>
+                        <property property-name="languageVersion">
+                           <value type="net.sourceforge.pmd.lang.LanguageVersion" value="java 24"/>
+                        </property>
+                        <property property-name="description">
+                           <value type="java.lang.String"
+                                  value="Glue classes are marked with @Glue annotation"/>
+                        </property>
+                        <property property-name="source">
+                           <value type="java.lang.String" value="@Glue&#xA;class SomeGlue {}"/>
+                        </property>
+                        <property property-name="persistenceOnlyProps">
+                           <value type="java.util.Properties"/>
+                        </property>
+                        <nodeseq property-name="expectedViolations"/>
+                     </node>
                   </nodeseq>
                </node>
                <nodeseq property-name="ruleProperties"/>
             </node>
          </nodeseq>
+      </node>
+      <node class="net.sourceforge.pmd.util.fxdesigner.MetricPaneController"/>
+      <node class="net.sourceforge.pmd.util.fxdesigner.NodeDetailPaneController">
+         <property property-name="hideCommonAttributes">
+            <value type="boolean" value="true"/>
+         </property>
+      </node>
+      <node class="net.sourceforge.pmd.util.fxdesigner.SourceEditorController">
+         <property property-name="auxclasspathFiles">
+            <value type="java.util.List&lt;java.io.File&gt;"/>
+         </property>
+         <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveTestCase">
+            <property property-name="ignored">
+               <value type="boolean" value="false"/>
+            </property>
+            <property property-name="languageVersion">
+               <value type="net.sourceforge.pmd.lang.LanguageVersion" value="java 24"/>
+            </property>
+            <property property-name="description">
+               <value type="java.lang.String" value="New test case"/>
+            </property>
+            <property property-name="source">
+               <value type="java.lang.String" value="@Data&#xA;class SomeDataStructure {&#xA;}"/>
+            </property>
+            <property property-name="persistenceOnlyProps">
+               <value type="java.util.Properties"/>
+            </property>
+            <nodeseq property-name="expectedViolations"/>
+         </node>
       </node>
       <node class="net.sourceforge.pmd.util.fxdesigner.ScopesPanelController"/>
    </node>
