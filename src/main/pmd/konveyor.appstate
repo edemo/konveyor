@@ -10,10 +10,34 @@
       <property property-name="globalLanguage">
          <value type="net.sourceforge.pmd.lang.Language" value="java"/>
       </property>
-      <node class="net.sourceforge.pmd.util.fxdesigner.MetricPaneController"/>
+      <node class="net.sourceforge.pmd.util.fxdesigner.ScopesPanelController"/>
+      <node class="net.sourceforge.pmd.util.fxdesigner.SourceEditorController">
+         <property property-name="auxclasspathFiles">
+            <value type="java.util.List&lt;java.io.File&gt;"/>
+         </property>
+         <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveTestCase">
+            <property property-name="ignored">
+               <value type="boolean" value="false"/>
+            </property>
+            <property property-name="languageVersion">
+               <value type="net.sourceforge.pmd.lang.LanguageVersion" value="java 24"/>
+            </property>
+            <property property-name="description">
+               <value type="java.lang.String" value="New test case"/>
+            </property>
+            <property property-name="source">
+               <value type="java.lang.String"
+                      value="@Delegate&#xA;class DoSomethingService {&#xA;&#xA;    @Autowired&#xA;    DoTheOtherThingService doTheOtherThing;&#xA;&#xA;    @Autowired&#xA;    DoTheThirdThingService third;&#xA;&#xA;    String foo;&#xA;&#xA;    String bar;&#xA;    &#xA;&#xA;    public Bridi apply(Bridi bridi) {&#xA;         return doTheOtherThing.apply(bridi);&#xA;    }&#xA;&#xA;    private Bridi notApply(Bridi bridi) {&#xA;        return third(bridi);&#xA;    }&#xA;    private Bridi notApply(Bridi bridi) {&#xA;        return bridi;&#xA;    }&#xA;&#xA;}"/>
+            </property>
+            <property property-name="persistenceOnlyProps">
+               <value type="java.util.Properties"/>
+            </property>
+            <nodeseq property-name="expectedViolations"/>
+         </node>
+      </node>
       <node class="net.sourceforge.pmd.util.fxdesigner.RuleEditorsController">
          <property property-name="selectedTabIndex">
-            <value type="int" value="2"/>
+            <value type="int" value="3"/>
          </property>
          <nodeseq property-name="ruleSpecs">
             <node class="net.sourceforge.pmd.util.fxdesigner.model.ObservableXPathRuleBuilder">
@@ -25,7 +49,7 @@
                </property>
                <property property-name="xpathExpression">
                   <value type="java.lang.String"
-                         value="//ClassDeclaration[&#xA;  not(./ModifierList/Annotation[@SimpleName = 'Glue']) and&#xA;  not(./ModifierList/Annotation[@SimpleName = 'Controller'] and&#xA;    matches(@SimpleName,'^.*Controller$')) and&#xA;  not(./ModifierList/Annotation[@SimpleName = 'Service']) and&#xA;  not(./ModifierList/Annotation[@SimpleName = 'Repository'] and&#xA;    matches(@SimpleName,'^.*Repository$') and&#xA;    matches(./ExtendsList/ClassType/@SimpleName,'^.*Repository$') ) and&#xA;  not( matches(@SimpleName,'^.*Stub$') ) and&#xA;  not( matches(@SimpleName,'^.*TestData$') ) and&#xA;  not( matches(@SimpleName,'^.*Util$') ) and&#xA;  not( matches(@SimpleName,'^.*Test$') )&#xA;]|&#xA;//RecordDeclaration[RecordBody/*]"/>
+                         value="//ClassDeclaration[&#xA;  not(./ModifierList/Annotation[@SimpleName = 'Glue']) and&#xA;  not(./ModifierList/Annotation[@SimpleName = 'Controller'] and&#xA;    matches(@SimpleName,'^.*Controller$')) and&#xA;  not(./ModifierList/Annotation[@SimpleName = 'Service']) and&#xA;  not(./ModifierList/Annotation[@SimpleName = 'Delegate']) and&#xA;  not(./ModifierList/Annotation[@SimpleName = 'Repository'] and&#xA;    matches(@SimpleName,'^.*Repository$') and&#xA;    matches(./ExtendsList/ClassType/@SimpleName,'^.*Repository$') ) and&#xA;  not( matches(@SimpleName,'^.*Stub$') ) and&#xA;  not( matches(@SimpleName,'^.*TestData$') ) and&#xA;  not( matches(@SimpleName,'^.*Util$') ) and&#xA;  not( matches(@SimpleName,'^.*Test$') )&#xA;]|&#xA;//RecordDeclaration[RecordBody/*]"/>
                </property>
                <property property-name="description">
                   <value type="java.lang.String" value=""/>
@@ -261,6 +285,24 @@
                         </property>
                         <nodeseq property-name="expectedViolations"/>
                      </node>
+                     <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveTestCase">
+                        <property property-name="ignored">
+                           <value type="boolean" value="false"/>
+                        </property>
+                        <property property-name="languageVersion">
+                           <value type="net.sourceforge.pmd.lang.LanguageVersion" value="java 24"/>
+                        </property>
+                        <property property-name="description">
+                           <value type="java.lang.String" value="A Delegate have @Delegate annotation"/>
+                        </property>
+                        <property property-name="source">
+                           <value type="java.lang.String" value="&#xA;@Delegate&#xA;class SomeClass {}"/>
+                        </property>
+                        <property property-name="persistenceOnlyProps">
+                           <value type="java.util.Properties"/>
+                        </property>
+                        <nodeseq property-name="expectedViolations"/>
+                     </node>
                   </nodeseq>
                </node>
                <nodeseq property-name="ruleProperties"/>
@@ -299,7 +341,6 @@
                <property property-name="since">
                   <value type="java.lang.String" value=""/>
                </property>
-               <nodeseq property-name="ruleProperties"/>
                <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.TestCollection">
                   <property property-name="origin">
                      <value null="true" type="java.io.File"/>
@@ -419,6 +460,7 @@
                      </node>
                   </nodeseq>
                </node>
+               <nodeseq property-name="ruleProperties"/>
             </node>
             <node class="net.sourceforge.pmd.util.fxdesigner.model.ObservableXPathRuleBuilder">
                <property property-name="persistedXpathVersion">
@@ -663,37 +705,277 @@
                </node>
                <nodeseq property-name="ruleProperties"/>
             </node>
+            <node class="net.sourceforge.pmd.util.fxdesigner.model.ObservableXPathRuleBuilder">
+               <property property-name="persistedXpathVersion">
+                  <value type="java.lang.String" value="3.1"/>
+               </property>
+               <property property-name="name">
+                  <value type="java.lang.String" value="Delegate"/>
+               </property>
+               <property property-name="xpathExpression">
+                  <value type="java.lang.String"
+                         value="//ClassDeclaration[./ModifierList/Annotation[@SimpleName=&#34;Delegate&#34;]]//&#xA; FieldDeclaration[&#xA;    ./ModifierList/Annotation/@SimpleName = &#34;Autowired&#34;and &#xA;    not(&#xA;     (&#xA;        ./VariableDeclarator/VariableId/@Name =&#xA;            lower-case(substring(./ClassType/@SimpleName,1,1))||&#xA;            substring-before(substring(./ClassType/@SimpleName,2),&#34;Service&#34;) or&#xA;        ./VariableDeclarator/VariableId/@Name =&#xA;            lower-case(substring(./ClassType/@SimpleName,1,1))||&#xA;            substring-before(substring(./ClassType/@SimpleName,2),&#34;Repository&#34;)||&#34;Repository&#34;&#xA;     ) and &#xA;        &#xA;    @EffectiveVisibility = &#34;package&#34;&#xA;    )&#xA; ]|&#xA;//ClassDeclaration[&#xA;    ./ModifierList/Annotation[@SimpleName=&#34;Delegate&#34;] and&#xA;           count(&#xA;            //FieldDeclaration[not(./ModifierList/Annotation/@SimpleName = &#34;Autowired&#34;)])&#xA;            &gt;1&#xA;]|&#xA;//ClassDeclaration[./ModifierList/Annotation[@SimpleName=&#34;Delegate&#34;]]//MethodDeclaration[&#xA;    count(.//ExpressionStatement|.//ReturnStatement) &gt;1 or&#xA;    .//MethodCall[&#xA;            not(./VariableAccess/@Name = //FieldDeclaration/VariableDeclarator/VariableId/@Name) or&#xA;            .//MethodCall &#xA;        ]or&#xA;    .//AssignmentExpression//*[1]//VariableAccess[@Name != //FieldDeclaration/VariableDeclarator/VariableId/@Name] or&#xA;    .//LocalVariableDeclaration&#xA;]&#xA;&#xA;&#xA;"/>
+               </property>
+               <property property-name="description">
+                  <value type="java.lang.String"
+                         value="Delegates can have one non-@Autovired field.&#xA;&#xA;All methods should contain either&#xA;- a call to a dependency, using only the field and/or the method parameters&#xA;- setting the field or one of its properties&#xA;- returning the field or one of its properties&#xA;"/>
+               </property>
+               <property property-name="language">
+                  <value type="net.sourceforge.pmd.lang.Language" value="java"/>
+               </property>
+               <property property-name="externalInfoUrl">
+                  <value type="java.lang.String" value=""/>
+               </property>
+               <property property-name="priority">
+                  <value type="net.sourceforge.pmd.lang.rule.RulePriority" value="3"/>
+               </property>
+               <property property-name="message">
+                  <value type="java.lang.String" value="Delegates should only delegate"/>
+               </property>
+               <property property-name="clazz">
+                  <value type="java.lang.Class&lt;?&gt;"
+                         value="net.sourceforge.pmd.lang.rule.xpath.XPathRule"/>
+               </property>
+               <property property-name="since">
+                  <value type="java.lang.String" value=""/>
+               </property>
+               <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.TestCollection">
+                  <property property-name="origin">
+                     <value null="true" type="java.io.File"/>
+                  </property>
+                  <nodeseq property-name="stash">
+                     <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveTestCase">
+                        <property property-name="ignored">
+                           <value type="boolean" value="false"/>
+                        </property>
+                        <property property-name="languageVersion">
+                           <value type="net.sourceforge.pmd.lang.LanguageVersion" value="java 24"/>
+                        </property>
+                        <property property-name="description">
+                           <value type="java.lang.String"
+                                  value="The @Autowired fields have the same naming convention as the Service"/>
+                        </property>
+                        <property property-name="source">
+                           <value type="java.lang.String"
+                                  value="@Delegate&#xA;class DoSomethingService {&#xA;&#xA;    @Autowired&#xA;    DoTheOtherThingService doTheOtherThing;&#xA;&#xA;    @Autowired&#xA;    DoTheThirdThingService third;&#xA;&#xA;    String field1;&#xA;&#xA;}"/>
+                        </property>
+                        <property property-name="persistenceOnlyProps">
+                           <value type="java.util.Properties"/>
+                        </property>
+                        <nodeseq property-name="expectedViolations">
+                           <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveViolationRecord">
+                              <property property-name="line">
+                                 <value type="int" value="-1"/>
+                              </property>
+                              <property property-name="region">
+                                 <value type="net.sourceforge.pmd.lang.document.TextRegion" value="102-146"/>
+                              </property>
+                              <property property-name="message">
+                                 <value null="true" type="java.lang.String"/>
+                              </property>
+                           </node>
+                        </nodeseq>
+                     </node>
+                     <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveTestCase">
+                        <property property-name="ignored">
+                           <value type="boolean" value="false"/>
+                        </property>
+                        <property property-name="languageVersion">
+                           <value type="net.sourceforge.pmd.lang.LanguageVersion" value="java 24"/>
+                        </property>
+                        <property property-name="description">
+                           <value type="java.lang.String" value="Only one not-autowired field"/>
+                        </property>
+                        <property property-name="source">
+                           <value type="java.lang.String"
+                                  value="@Delegate&#xA;class DoSomethingService {&#xA;&#xA;    @Autowired&#xA;    DoTheOtherThingService doTheOtherThing;&#xA;&#xA;    String field1;&#xA;&#xA;    String field2;&#xA;&#xA;}"/>
+                        </property>
+                        <property property-name="persistenceOnlyProps">
+                           <value type="java.util.Properties"/>
+                        </property>
+                        <nodeseq property-name="expectedViolations">
+                           <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveViolationRecord">
+                              <property property-name="line">
+                                 <value type="int" value="-1"/>
+                              </property>
+                              <property property-name="region">
+                                 <value type="net.sourceforge.pmd.lang.document.TextRegion" value="0-139"/>
+                              </property>
+                              <property property-name="message">
+                                 <value null="true" type="java.lang.String"/>
+                              </property>
+                           </node>
+                        </nodeseq>
+                     </node>
+                     <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveTestCase">
+                        <property property-name="ignored">
+                           <value type="boolean" value="false"/>
+                        </property>
+                        <property property-name="languageVersion">
+                           <value type="net.sourceforge.pmd.lang.LanguageVersion" value="java 24"/>
+                        </property>
+                        <property property-name="description">
+                           <value type="java.lang.String" value="Assignment only to field"/>
+                        </property>
+                        <property property-name="source">
+                           <value type="java.lang.String"
+                                  value="@Delegate&#xA;class DoSomethingService {&#xA;&#xA;    @Autowired&#xA;    DoTheOtherThingService doTheOtherThing;&#xA;&#xA;    Bridi field1;&#xA;&#xA;    void setField(Bridi value) {&#xA;        field1 = value.foo;&#xA;    }&#xA;&#xA;    String getFieldField() {&#xA;        return field1.sumti;&#xA;    }&#xA;&#xA;&#xA;    void useService(String value) {&#xA;        doTheOtherThing.apply(value,field1,&#xA;            field1.sumti, field1.foo);&#xA;    }&#xA;&#xA;    void assignParameter(String sumti) {&#xA;        sumti.foo = field;;&#xA;    }&#xA;&#xA;&#xA;}"/>
+                        </property>
+                        <property property-name="persistenceOnlyProps">
+                           <value type="java.util.Properties"/>
+                        </property>
+                        <nodeseq property-name="expectedViolations">
+                           <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveViolationRecord">
+                              <property property-name="line">
+                                 <value type="int" value="-1"/>
+                              </property>
+                              <property property-name="region">
+                                 <value type="net.sourceforge.pmd.lang.document.TextRegion" value="381-451"/>
+                              </property>
+                              <property property-name="message">
+                                 <value null="true" type="java.lang.String"/>
+                              </property>
+                           </node>
+                        </nodeseq>
+                     </node>
+                     <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveTestCase">
+                        <property property-name="ignored">
+                           <value type="boolean" value="false"/>
+                        </property>
+                        <property property-name="languageVersion">
+                           <value type="net.sourceforge.pmd.lang.LanguageVersion" value="java 24"/>
+                        </property>
+                        <property property-name="description">
+                           <value type="java.lang.String"
+                                  value="no call on anything not an @Autowired field"/>
+                        </property>
+                        <property property-name="source">
+                           <value type="java.lang.String"
+                                  value="@Delegate&#xA;class DoSomethingService {&#xA;    Bridi field1;&#xA;&#xA;    void useServiceButCallMethod(String value) {&#xA;        doTheOtherThing.apply(value,field1,&#xA;            field1.sumti, field1.foo());&#xA;    }&#xA;&#xA;    void notUseService(String value) {&#xA;        return String.concat(field1,value);&#xA;    }&#xA;&#xA;}"/>
+                        </property>
+                        <property property-name="persistenceOnlyProps">
+                           <value type="java.util.Properties"/>
+                        </property>
+                        <nodeseq property-name="expectedViolations">
+                           <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveViolationRecord">
+                              <property property-name="line">
+                                 <value type="int" value="-1"/>
+                              </property>
+                              <property property-name="region">
+                                 <value type="net.sourceforge.pmd.lang.document.TextRegion" value="60-195"/>
+                              </property>
+                              <property property-name="message">
+                                 <value null="true" type="java.lang.String"/>
+                              </property>
+                           </node>
+                           <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveViolationRecord">
+                              <property property-name="line">
+                                 <value type="int" value="-1"/>
+                              </property>
+                              <property property-name="region">
+                                 <value type="net.sourceforge.pmd.lang.document.TextRegion" value="201-285"/>
+                              </property>
+                              <property property-name="message">
+                                 <value null="true" type="java.lang.String"/>
+                              </property>
+                           </node>
+                        </nodeseq>
+                     </node>
+                     <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveTestCase">
+                        <property property-name="ignored">
+                           <value type="boolean" value="false"/>
+                        </property>
+                        <property property-name="languageVersion">
+                           <value type="net.sourceforge.pmd.lang.LanguageVersion" value="java 24"/>
+                        </property>
+                        <property property-name="description">
+                           <value type="java.lang.String" value="No multiple statements"/>
+                        </property>
+                        <property property-name="source">
+                           <value type="java.lang.String"
+                                  value="@Delegate&#xA;class DoSomethingService {&#xA;    Bridi field1;&#xA;&#xA;&#xA;    String getFieldField1() {&#xA;        field1.sumti = sumti;&#xA;        return field1.sumti;&#xA;    }&#xA;&#xA;    String setFieldField1(String sumti) {&#xA;        field1.sumti = sumti;&#xA;        field1.selbri = sumti;&#xA;    }&#xA;&#xA;    String setFieldField2(String sumti, boolean foo) {&#xA;        if(foo)&#xA;          field1.sumti = sumti;&#xA;        else&#xA;          field1.selbri = sumti;&#xA;    }&#xA;&#xA;}"/>
+                        </property>
+                        <property property-name="persistenceOnlyProps">
+                           <value type="java.util.Properties"/>
+                        </property>
+                        <nodeseq property-name="expectedViolations">
+                           <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveViolationRecord">
+                              <property property-name="line">
+                                 <value type="int" value="-1"/>
+                              </property>
+                              <property property-name="region">
+                                 <value type="net.sourceforge.pmd.lang.document.TextRegion" value="61-151"/>
+                              </property>
+                              <property property-name="message">
+                                 <value null="true" type="java.lang.String"/>
+                              </property>
+                           </node>
+                           <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveViolationRecord">
+                              <property property-name="line">
+                                 <value type="int" value="-1"/>
+                              </property>
+                              <property property-name="region">
+                                 <value type="net.sourceforge.pmd.lang.document.TextRegion" value="157-261"/>
+                              </property>
+                              <property property-name="message">
+                                 <value null="true" type="java.lang.String"/>
+                              </property>
+                           </node>
+                           <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveViolationRecord">
+                              <property property-name="line">
+                                 <value type="int" value="-1"/>
+                              </property>
+                              <property property-name="region">
+                                 <value type="net.sourceforge.pmd.lang.document.TextRegion" value="267-417"/>
+                              </property>
+                              <property property-name="message">
+                                 <value null="true" type="java.lang.String"/>
+                              </property>
+                           </node>
+                        </nodeseq>
+                     </node>
+                     <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveTestCase">
+                        <property property-name="ignored">
+                           <value type="boolean" value="false"/>
+                        </property>
+                        <property property-name="languageVersion">
+                           <value type="net.sourceforge.pmd.lang.LanguageVersion" value="java 24"/>
+                        </property>
+                        <property property-name="description">
+                           <value type="java.lang.String" value="No local variable declaration"/>
+                        </property>
+                        <property property-name="source">
+                           <value type="java.lang.String"
+                                  value="@Delegate&#xA;class Foo {&#xA;&#xA;&#x9;@Autowired&#xA;&#x9;QueryProcessorService queryProcessor;&#xA;&#x9;@Autowired&#xA;&#x9;ParseTextService parseText;&#xA;&#xA;&#x9;public Set&lt;Bridi&gt; query(String query) {&#xA;&#x9;&#x9;ParserOutput parserOutput = parseText.apply(query);&#xA;&#x9;&#x9;Set&lt;Bridi&gt; bridiSet = queryProcessor.apply(parserOutput);&#xA;&#x9;&#x9;return bridiSet;&#xA;&#x9;}&#xA;}"/>
+                        </property>
+                        <property property-name="persistenceOnlyProps">
+                           <value type="java.util.Properties"/>
+                        </property>
+                        <nodeseq property-name="expectedViolations">
+                           <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveViolationRecord">
+                              <property property-name="line">
+                                 <value type="int" value="-1"/>
+                              </property>
+                              <property property-name="region">
+                                 <value type="net.sourceforge.pmd.lang.document.TextRegion" value="117-292"/>
+                              </property>
+                              <property property-name="message">
+                                 <value null="true" type="java.lang.String"/>
+                              </property>
+                           </node>
+                        </nodeseq>
+                     </node>
+                  </nodeseq>
+               </node>
+               <nodeseq property-name="ruleProperties"/>
+            </node>
          </nodeseq>
-      </node>
-      <node class="net.sourceforge.pmd.util.fxdesigner.SourceEditorController">
-         <property property-name="auxclasspathFiles">
-            <value type="java.util.List&lt;java.io.File&gt;"/>
-         </property>
-         <node class="net.sourceforge.pmd.util.fxdesigner.model.testing.LiveTestCase">
-            <property property-name="ignored">
-               <value type="boolean" value="false"/>
-            </property>
-            <property property-name="languageVersion">
-               <value type="net.sourceforge.pmd.lang.LanguageVersion" value="java 24"/>
-            </property>
-            <property property-name="description">
-               <value type="java.lang.String" value="New test case"/>
-            </property>
-            <property property-name="source">
-               <value type="java.lang.String"
-                      value="@Service&#xA;class DoSomethingService {&#xA;&#xA;    @Autowired&#xA;    DoTheOtherThingService doTheOtherThing;&#xA;&#xA;    @Autowired&#xA;    DoTheThirdThingService third;&#xA;&#xA;    DoTheFourthThingService doTheFourthThing;&#xA;&#xA;    &#xA;&#xA;    public Bridi apply(Bridi bridi) {&#xA;         return doTheOtherThing.apply(bridi);&#xA;    }&#xA;&#xA;    private Bridi notApply(Bridi bridi) {&#xA;        return third(bridi);&#xA;    }&#xA;    private Bridi notApply(Bridi bridi) {&#xA;        return bridi;&#xA;    }&#xA;&#xA;}"/>
-            </property>
-            <property property-name="persistenceOnlyProps">
-               <value type="java.util.Properties"/>
-            </property>
-            <nodeseq property-name="expectedViolations"/>
-         </node>
       </node>
       <node class="net.sourceforge.pmd.util.fxdesigner.NodeDetailPaneController">
          <property property-name="hideCommonAttributes">
             <value type="boolean" value="true"/>
          </property>
       </node>
-      <node class="net.sourceforge.pmd.util.fxdesigner.ScopesPanelController"/>
+      <node class="net.sourceforge.pmd.util.fxdesigner.MetricPaneController"/>
    </node>
 </designer-settings>
