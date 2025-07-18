@@ -11,11 +11,11 @@
     <description>
 			<xsl:value-of select="$description"/>
     </description>
-    <xsl:apply-templates select="//node[@class='net.sourceforge.pmd.util.fxdesigner.RuleEditorsController']"/>
+    <xsl:apply-templates select="//node[@class='net.sourceforge.pmd.util.fxdesigner.model.ObservableXPathRuleBuilder']"/>
 		</ruleset>
   </xsl:template>
 
-  <xsl:template match="node[@class='net.sourceforge.pmd.util.fxdesigner.RuleEditorsController']">
+  <xsl:template match="node[@class='net.sourceforge.pmd.util.fxdesigner.model.ObservableXPathRuleBuilder']">
     <rule>
 			<xsl:attribute name="name">
 				<xsl:copy-of select=".//property[@property-name='name']/value/@value"/>

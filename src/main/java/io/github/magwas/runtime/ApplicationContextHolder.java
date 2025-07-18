@@ -1,19 +1,20 @@
 package io.github.magwas.runtime;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 
+import io.github.magwas.kodekonveyorannotations.Glue;
+
 @Component
-public class ApplicationContextHolder implements ApplicationContextAware {
+@Glue
+public class ApplicationContextHolder {
 	private static ApplicationContext _appCtx;
 
-	@Override
-	public void setApplicationContext(ApplicationContext ctx) {
-		_appCtx = ctx;
-	}
-
 	public static <T> T getBean(Class<T> klass) {
+		if (_appCtx == null)
+			_appCtx = new AnnotationConfigApplicationContext(Config.class);
+
 		return _appCtx.getBean(klass);
 	}
 }

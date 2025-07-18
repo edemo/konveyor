@@ -5,7 +5,7 @@ then
 	echo usage: $0 rulesetname
   exit 1
 fi
-xmlname=src/main/resources/$1.xml
+xmlname=src/main/pmd/$1.appstate
 if [ ! -f $xmlname ]
 then
   echo rule file $xmlname does not exist

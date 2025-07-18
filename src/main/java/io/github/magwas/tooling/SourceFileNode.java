@@ -1,7 +1,9 @@
 package io.github.magwas.tooling;
 
+import io.github.magwas.kodekonveyorannotations.Glue;
 import net.sourceforge.pmd.lang.ast.Node;
 
+@Glue
 public class SourceFileNode extends AbstractHackNode implements Node {
 
 	Node child;

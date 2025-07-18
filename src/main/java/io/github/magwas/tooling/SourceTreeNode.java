@@ -3,10 +3,12 @@ package io.github.magwas.tooling;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.github.magwas.kodekonveyorannotations.Glue;
 import net.sourceforge.pmd.lang.ast.AstInfo;
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.ast.RootNode;
 
+@Glue
 public class SourceTreeNode extends AbstractHackNode implements RootNode {
 
 	List<SourceFileNode> children = new ArrayList<>();

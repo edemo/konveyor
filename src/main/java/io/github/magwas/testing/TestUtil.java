@@ -27,6 +27,6 @@ public class TestUtil {
 		} catch (IOException e) {
 			return null;
 		}
-	};
+	}
 
 }

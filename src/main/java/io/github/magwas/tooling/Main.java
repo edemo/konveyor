@@ -4,14 +4,13 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import io.github.magwas.kodekonveyorannotations.Glue;
 import io.github.magwas.runtime.Config;
 
+@Glue
 public class Main {
-
-	@Autowired
 
 	public static void main(String[] args) throws IOException {
 		Class<GetASTofSourceTree> requiredType = GetASTofSourceTree.class;
