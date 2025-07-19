@@ -21,7 +21,7 @@ import io.github.magwas.runtime.Config;
 public class ExtractASTTest implements TestData {
 
 	@Autowired
-	WalkTree walkTree;
+	WalkTreeService walkTree;
 	@Autowired
 	GetASTofSourceTree getASTofSourceTree;
 

@@ -4,14 +4,14 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>io.github.magwas</groupId>
-	<version>0.1</version>
 	<artifactId>konveyor-pmdrules</artifactId>
+	<version>0.1.3</version>
 	<packaging>jar</packaging>
 	<name>konveyor-pmdrules</name>
 	<description>
 		PMD rules for Kode Konveyor coding style
 	</description>
-	<url>https://github.com/magwas/pmdrules.git</url>
+	<url>https://repo.kodekonveyor.com/${project.artifactId}</url>
 	<issueManagement>
 		<system>github</system>
 		<url>https://github.com/magwas/pmdrules.git</url>
@@ -34,6 +34,13 @@
 			<comments>GNU Affero General Public License</comments>
 		</license>
 	</licenses>
+	<distributionManagement>
+		<site>
+			<id>gh-pages</id>
+			<name>Project site</name>
+			<url>https://github.com/magwas/pmdrules.git</url>
+		</site>
+	</distributionManagement>
 
 	<properties>
 		<maven.compiler.source>17</maven.compiler.source>
@@ -41,6 +48,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junit-version>5.12.1</junit-version>
 		<spring-version>6.2.8</spring-version>
+		<maven.site.deploy.skip>true</maven.site.deploy.skip>
 	</properties>
 
 	<dependencies>
@@ -96,6 +104,34 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.10.0</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.4.2</version>
+				<executions>
+					<execution>
+						<id>fake-javadoc</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<classifier>javadoc</classifier>
+							<classesDirectory>${project.build.directory}/site</classesDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>3.0.0</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-gpg-plugin</artifactId>
 				<version>3.2.8</version>
 				<executions>
@@ -104,6 +140,20 @@
 						<phase>verify</phase>
 						<goals>
 							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.3.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
 						</goals>
 					</execution>
 				</executions>
@@ -149,19 +199,6 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.11.2</version>
-				<executions>
-					<execution>
-						<id>attach-javadocs</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>3.5.1</version>
@@ -175,6 +212,20 @@
 						<configuration>
 							<workingDirectory>${basedir}</workingDirectory>
 							<executable>tools/generateRules</executable>
+						</configuration>
+					</execution>
+					<execution>
+						<id>siteDeploy</id>
+						<phase>site-deploy</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<workingDirectory>${basedir}</workingDirectory>
+							<executable>tools/deploySite</executable>
+							<arguments>
+								<argument>${project.artifactId}</argument>
+							</arguments>
 						</configuration>
 					</execution>
 				</executions>
@@ -205,4 +256,25 @@
 			</plugin>
 		</plugins>
 	</build>
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>3.27.0</version>
+				<configuration>
+					<includeXmlInReports />
+					<includeTests>true</includeTests>
+					<rulesets>
+						<ruleset>${project.build.outputDirectory}/konveyor.xml</ruleset>
+						<ruleset>${project.build.outputDirectory}/upstream.xml</ruleset>
+					</rulesets>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</reporting>
 </project>

@@ -16,8 +16,9 @@ import net.sourceforge.pmd.lang.document.TextFile;
 import net.sourceforge.pmd.util.treeexport.XmlTreeRenderer;
 
 @Service
-public class GenerateAst {
+public class GenerateAstService {
 	@Autowired
+	@SuppressWarnings("PMD.AutowiredFields")
 	PmdParsingTools pmdParsingTools;
 
 	public void apply(Path path, Appendable appendable) throws IOException {

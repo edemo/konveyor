@@ -16,9 +16,9 @@ import net.sourceforge.pmd.util.treeexport.XmlTreeRenderer;
 @Service
 public class GetASTofSourceTree {
 	@Autowired
-	WalkTree walkTree;
+	WalkTreeService walkTree;
 	@Autowired
-	GenerateAst generateAst;
+	GenerateAstService generateAst;
 
 	public StringBuilder apply(Path rootPath) throws IOException {
 		List<SourceFileNode> children = Stream.of(rootPath.toFile())

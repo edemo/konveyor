@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 import org.springframework.stereotype.Service;
 
 @Service
-public class WalkTree {
+public class WalkTreeService {
 	public void apply(File root, Consumer<File> consumer) {
 		File[] files = root.listFiles();
 		for (File file : files) {
