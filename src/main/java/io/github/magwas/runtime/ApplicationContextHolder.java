@@ -9,7 +9,8 @@ import io.github.magwas.kodekonveyorannotations.Glue;
 @Component
 @Glue
 public class ApplicationContextHolder {
-	private static ApplicationContext _appCtx;
+	private static ApplicationContext _appCtx = new AnnotationConfigApplicationContext(
+			Config.class);
 
 	public static <T> T getBean(Class<T> klass) {
 		if (_appCtx == null)

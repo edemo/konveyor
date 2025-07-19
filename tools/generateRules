@@ -1,10 +1,15 @@
 #!/bin/bash
+TOOLDIR=$(dirname $0)
 for i in src/main/pmd/*.appstate
 do
-	tools/convertToRuleFile $(basename $i .appstate)
+	$TOOLDIR/convertToRuleFile $(basename $i .appstate)
 done
 for i in src/main/pmd/*.xml
 do
 	cp $i target/classes
 done
+
+mkdir -p target/classes/xslt target/classes/tools
+cp -r xslt/* target/classes/xslt
+cp tools/* target/classes/tools
 

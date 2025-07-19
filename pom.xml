@@ -36,9 +36,9 @@
 	</licenses>
 	<distributionManagement>
 		<site>
-			<id>gh-pages</id>
+			<id>website</id>
 			<name>Project site</name>
-			<url>https://github.com/magwas/pmdrules.git</url>
+			<url>https://repo.kodekonveyor.com/${project.artifactId}</url>
 		</site>
 	</distributionManagement>
 
@@ -114,7 +114,7 @@
 				<executions>
 					<execution>
 						<id>fake-javadoc</id>
-						<phase>package</phase>
+						<phase>post-integration-test</phase>
 						<goals>
 							<goal>jar</goal>
 						</goals>
@@ -148,15 +148,6 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
 				<version>3.3.1</version>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<phase>compile</phase>
-						<goals>
-							<goal>jar-no-fork</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -171,6 +162,7 @@
 						</goals>
 						<configuration>
 							<includeScope>runtime</includeScope>
+							<outputDirectory>${project.build.directory}/lib</outputDirectory>
 						</configuration>
 					</execution>
 					<execution>
@@ -215,6 +207,18 @@
 						</configuration>
 					</execution>
 					<execution>
+						<id>generate-apidoc</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<workingDirectory>${basedir}</workingDirectory>
+							<executable>tools/makeSourceDoc</executable>
+						</configuration>
+					</execution>
+
+					<execution>
 						<id>siteDeploy</id>
 						<phase>site-deploy</phase>
 						<goals>
@@ -242,6 +246,7 @@
 							<goal>single</goal>
 						</goals>
 						<configuration>
+							<attach>true</attach>
 							<archive>
 								<manifest>
 									<mainClass>io.github.magwas.tooling.Main</mainClass>
