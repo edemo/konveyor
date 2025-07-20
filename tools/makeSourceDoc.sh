@@ -2,7 +2,7 @@
 set -xe
 TOOLDIR=$(dirname $0)
 mkdir -p target/site target/generated-site/markdown
-java -cp $($TOOLDIR/mkClassPath) io.github.magwas.tooling.Main . >target/AST.xml
-$TOOLDIR/makeSourceDocbook . > target/site/apidoc.docbook
+java -cp $($TOOLDIR/mkClassPath.sh) io.github.magwas.tooling.Main . >target/AST.xml
+$TOOLDIR/makeSourceDocbook.sh . > target/site/apidoc.docbook
 pandoc -s -o target/generated-site/markdown/apidoc.md -f docbook target/site/apidoc.docbook
 pandoc -s --toc -o target/generated-site/apidoc.pdf -f docbook target/site/apidoc.docbook

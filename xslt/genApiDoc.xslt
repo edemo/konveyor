@@ -19,47 +19,35 @@
 			</title>
 			<section>
 				<title id="Data_Structures">Data Structures</title>
-				<section>
 					<xsl:apply-templates
 						select="//RecordDeclaration" />
-				</section>
 			</section>
 			<section>
 				<title>Delegates</title>
-				<section>
 					<xsl:apply-templates
 						select="//ClassDeclaration[./ModifierList/Annotation[@SimpleName = 'Delegate']]" />
-				</section>
 			</section>
 			<section>
 				<title id="Services">Services</title>
-				<section>
 					<xsl:apply-templates
 						select="//ClassDeclaration[./ModifierList/Annotation[@SimpleName = 'Service']]" />
-				</section>
 			</section>
 			<section>
 				<title>Repositories</title>
-				<section>
 					<xsl:apply-templates
 						select="//ClassDeclaration[./ModifierList/Annotation[@SimpleName = 'Repository']]" />
-				</section>
 			</section>
 			<section>
 				<title>Utilities</title>
-				<section>
 					<xsl:apply-templates
 						select="//ClassDeclaration[matches(@SimpleName,'^.*Util$')]" />
-				</section>
 			</section>
 			<section>
 				<title>Glue</title>
-				<section>
 					<xsl:apply-templates
 						select="//ClassDeclaration[
 						./ModifierList/Annotation[@SimpleName = 'Glue']
 						]" />
-				</section>
 			</section>
 		</article>
 	</xsl:template>

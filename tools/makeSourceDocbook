@@ -1,5 +1,0 @@
-#!/bin/bash
-set -xe
-TOOLDIR=$(dirname $0)
-java -cp $($TOOLDIR/mkClassPath) net.sf.saxon.Transform -s:target/AST.xml\
- -xsl:xslt/genApiDoc.xslt

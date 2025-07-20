@@ -18,6 +18,6 @@ read
 export JAVAFX_HOME=/usr/share/openjfx
 /opt/pmd-bin-7.15.0/bin/pmd designer
 cp ~/.pmd/rule-designer/appstate.xml $xmlname
-$TOOLDIR/convertToRuleFile $1
+$TOOLDIR/convertToRuleFile.sh $1
 cat target/classes/$1.xml
 

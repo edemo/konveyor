@@ -49,6 +49,7 @@
 		<junit-version>5.12.1</junit-version>
 		<spring-version>6.2.8</spring-version>
 		<maven.site.deploy.skip>true</maven.site.deploy.skip>
+		<konveyor.uploadRsyncURI>server:/var/www/repository/${project.artifactId}</konveyor.uploadRsyncURI>
 	</properties>
 
 	<dependencies>
@@ -203,7 +204,7 @@
 						</goals>
 						<configuration>
 							<workingDirectory>${basedir}</workingDirectory>
-							<executable>tools/generateRules</executable>
+							<executable>tools/generateRules.sh</executable>
 						</configuration>
 					</execution>
 					<execution>
@@ -214,7 +215,7 @@
 						</goals>
 						<configuration>
 							<workingDirectory>${basedir}</workingDirectory>
-							<executable>tools/makeSourceDoc</executable>
+							<executable>tools/makeSourceDoc.sh</executable>
 						</configuration>
 					</execution>
 
@@ -226,9 +227,9 @@
 						</goals>
 						<configuration>
 							<workingDirectory>${basedir}</workingDirectory>
-							<executable>tools/deploySite</executable>
+							<executable>tools/deploySite.sh</executable>
 							<arguments>
-								<argument>${project.artifactId}</argument>
+								<argument>${konveyor.uploadRsyncURI}</argument>
 							</arguments>
 						</configuration>
 					</execution>

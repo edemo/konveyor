@@ -1,0 +1,10 @@
+Helpers for Kode Konveyor coding style:
+
+- pmd rules
+
+- functionality to
+ - deploy a site using rsync
+ - generate source documentation
+
+Until I make this project to function as a parent pom, see how it can be used in io.github.magwas:inez-model
+

@@ -7,7 +7,7 @@ then
   exit 1
 fi
 mkdir -p target/classes
-java -cp $($TOOLDIR/mkClassPath) net.sf.saxon.Transform -s:src/main/pmd/$1.appstate\
+java -cp $($TOOLDIR/mkClassPath.sh) net.sf.saxon.Transform -s:src/main/pmd/$1.appstate\
  -xsl:xslt/workbenchToRules.xslt\
  -o:target/classes/$1.xml\
  +description=$(realpath src/main/pmd/$(basename $1 .xml).description)

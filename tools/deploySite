@@ -1,2 +1,0 @@
-#!/bin/bash
-rsync -rv target/site/ server:/var/www/repository/$1
