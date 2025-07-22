@@ -1,0 +1,10 @@
+#!/bin/bash
+set -xe
+chmod a+x target/hooks/*
+chmod a+x target/tools/*
+hookPath=hooks/$(basename $0)
+if [ -x hooks/$(basename $0) ]
+then
+        exec hooks/$(basename $0)
+fi
+

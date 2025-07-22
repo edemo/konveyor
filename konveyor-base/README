@@ -1,0 +1,116 @@
+Helpers for Kode Konveyor coding style:
+
+- pmd rules
+- annotations java package
+- runtime java package
+- default hooks for each phases
+- TODO: Eclipse settings
+
+# How to use?
+
+Define the parent in your pom.xml:
+
+```
+  <parent>
+    <groupId>io.github.magwas</groupId>
+    <artifactId>konveyor-parent</artifactId>
+    <version>${konveyor-version}</version>
+  </parent>
+
+```
+
+Declare `konveyor-version` in properties. You probably want to overwrite `konveyor.uploadRsyncURI` as well.
+
+```
+  <properties>
+    <pmdrules-version>0.1.8</pmdrules-version>
+    <konveyor.uploadRsyncURI>
+      your.server:/path/to/repository/${project.artifactId}/${project.version}</konveyor.uploadRsyncURI>
+  </properties>
+```
+
+If you want to deploy to central.sonatype.com, set the name, description, url, scm developers, and licences tags
+in your main project:
+
+```
+	<name>${project.artifactId}-${project.version}</name>
+	<description>
+		 The description of your project
+	</description>
+	<url>https://repo.kodekonveyor.com/${project.artifactId}/${project.version}</url>
+	<scm>
+		<url>the public git url of your project</url>
+	</scm>
+	<developers>
+		<developer>
+			<name>Your Name</name>
+			<email>your@email.address</email>
+		</developer>
+	</developers>
+	<licenses>
+		<license><!-- the licence you choose -->
+			<name>GPL affero</name>
+			<url>https://www.gnu.org/licenses/agpl-3.0.en.html</url>
+			<comments>GNU Affero General Public License</comments>
+		</license>
+	</licenses>
+```
+
+Put each plugin you want to use into build/plugins.
+Remember, only plugins declared there will actually run.
+
+This is a full build with no tweaking at all:
+```
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>exec-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-dependency-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-source-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-gpg-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.sonatype.central</groupId>
+				<artifactId>central-publishing-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-site-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+```
+
+
+FIXME: unpack Eclipse project settings.
+
+FIXME: site.xml
+
+You can tweak your project build either by tweaking pom.xml, or adding a shell script for any phase as
+`hooks/<phase name>`. 
+
+FIXME: put pom.xml to the site, and refer to some actual project's pom.
+
+# What is delivered?
+
+## pmd rules
+
+The pmd rules are checking the code stype, which is documented at FIXME I need to write an extractor for that.
+
+## annotations java package
+

@@ -1,0 +1,17 @@
+#!/bin/bash
+set -xe
+mkdir -p target/classes/xslt target/classes/hooks target/xslt target/classes/tools target/hooks target/tools
+cp -r xslt/* target/classes/xslt
+cp -r xslt/* target/xslt
+EMPTYHOOKS="initialize generate-sources process-sources generate-resources process-resources compile process-classes generate-test-sources process-test-sources generate-test-resources process-test-resources test-compile process-test-classes test prepare-package package pre-integration-test integration-test post-integration-test verify install deploy pre-clean clean post-clean site post-site site-deploy"
+
+for i in $EMPTYHOOKS
+do
+	cp src/hooks/template target/classes/hooks/$i
+	cp src/hooks/template target/hooks/$i
+done
+cp src/hooks/* target/classes/hooks
+cp src/hooks/* target/hooks
+cp src/tools/* target/classes/tools
+cp src/tools/* target/tools
+
