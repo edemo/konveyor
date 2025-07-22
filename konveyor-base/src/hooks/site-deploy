@@ -2,6 +2,6 @@
 set -xe
 if [ -x hooks/$(basename $0) ]
 then
-        exec hooks/$(basename $0)
+        exec hooks/$(basename $0) $1
 fi
 .konveyor/tools/deploySite.sh $1
