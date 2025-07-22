@@ -166,7 +166,7 @@
 									</artifactItem>
 								</artifactItems>
 								<outputDirectory>
-									${project.build.directory}</outputDirectory>
+									${project.basedir}/.konveyor</outputDirectory>
 								<includes>tools/*.sh,hooks/*,*.xml,xslt/*.xslt</includes>
 							</configuration>
 						</execution>
@@ -331,7 +331,7 @@
 							<configuration>
 								<workingDirectory>${basedir}</workingDirectory>
 								<executable>/bin/sh</executable>
-								<arguments><argument>${basedir}/target/hooks/validate</argument></arguments>
+								<arguments><argument>${basedir}/.konveyor/hooks/validate</argument></arguments>
 							</configuration>
 						</execution>
 						<execution>
@@ -342,7 +342,7 @@
 							</goals>
 							<configuration>
 								<workingDirectory>${basedir}</workingDirectory>
-								<executable>${basedir}/target/hooks/initialize</executable>
+								<executable>${basedir}/.konveyor/hooks/initialize</executable>
 							</configuration>
 						</execution>
 						<execution>
@@ -354,7 +354,7 @@
 							<configuration>
 								<workingDirectory>${basedir}</workingDirectory>
 								<executable>
-									${basedir}/target/hooks/generate-sources</executable>
+									${basedir}/.konveyor/hooks/generate-sources</executable>
 							</configuration>
 						</execution>
 						<execution>
@@ -366,7 +366,7 @@
 							<configuration>
 								<workingDirectory>${basedir}</workingDirectory>
 								<executable>
-									${basedir}/target/hooks/process-sources</executable>
+									${basedir}/.konveyor/hooks/process-sources</executable>
 							</configuration>
 						</execution>
 						<execution>
@@ -378,7 +378,7 @@
 							<configuration>
 								<workingDirectory>${basedir}</workingDirectory>
 								<executable>
-									${basedir}/target/hooks/generate-resources</executable>
+									${basedir}/.konveyor/hooks/generate-resources</executable>
 							</configuration>
 						</execution>
 						<execution>
@@ -390,7 +390,7 @@
 							<configuration>
 								<workingDirectory>${basedir}</workingDirectory>
 								<executable>
-									${basedir}/target/hooks/process-resources</executable>
+									${basedir}/.konveyor/hooks/process-resources</executable>
 							</configuration>
 						</execution>
 						<execution>
@@ -401,7 +401,7 @@
 							</goals>
 							<configuration>
 								<workingDirectory>${basedir}</workingDirectory>
-								<executable>${basedir}/target/hooks/compile</executable>
+								<executable>${basedir}/.konveyor/hooks/compile</executable>
 							</configuration>
 						</execution>
 						<execution>
@@ -413,7 +413,7 @@
 							<configuration>
 								<workingDirectory>${basedir}</workingDirectory>
 								<executable>
-									${basedir}/target/hooks/process-classes</executable>
+									${basedir}/.konveyor/hooks/process-classes</executable>
 							</configuration>
 						</execution>
 						<execution>
@@ -425,7 +425,7 @@
 							<configuration>
 								<workingDirectory>${basedir}</workingDirectory>
 								<executable>
-									${basedir}/target/hooks/generate-test-sources</executable>
+									${basedir}/.konveyor/hooks/generate-test-sources</executable>
 							</configuration>
 						</execution>
 						<execution>
@@ -437,7 +437,7 @@
 							<configuration>
 								<workingDirectory>${basedir}</workingDirectory>
 								<executable>
-									${basedir}/target/hooks/process-test-sources</executable>
+									${basedir}/.konveyor/hooks/process-test-sources</executable>
 							</configuration>
 						</execution>
 						<execution>
@@ -449,7 +449,7 @@
 							<configuration>
 								<workingDirectory>${basedir}</workingDirectory>
 								<executable>
-									${basedir}/target/hooks/generate-test-resources</executable>
+									${basedir}/.konveyor/hooks/generate-test-resources</executable>
 							</configuration>
 						</execution>
 						<execution>
@@ -461,7 +461,7 @@
 							<configuration>
 								<workingDirectory>${basedir}</workingDirectory>
 								<executable>
-									${basedir}/target/hooks/process-test-resources</executable>
+									${basedir}/.konveyor/hooks/process-test-resources</executable>
 							</configuration>
 						</execution>
 						<execution>
@@ -472,7 +472,7 @@
 							</goals>
 							<configuration>
 								<workingDirectory>${basedir}</workingDirectory>
-								<executable>${basedir}/target/hooks/test-compile</executable>
+								<executable>${basedir}/.konveyor/hooks/test-compile</executable>
 							</configuration>
 						</execution>
 						<execution>
@@ -484,7 +484,7 @@
 							<configuration>
 								<workingDirectory>${basedir}</workingDirectory>
 								<executable>
-									${basedir}/target/hooks/process-test-classes</executable>
+									${basedir}/.konveyor/hooks/process-test-classes</executable>
 							</configuration>
 						</execution>
 						<execution>
@@ -495,7 +495,7 @@
 							</goals>
 							<configuration>
 								<workingDirectory>${basedir}</workingDirectory>
-								<executable>${basedir}/target/hooks/test</executable>
+								<executable>${basedir}/.konveyor/hooks/test</executable>
 							</configuration>
 						</execution>
 						<execution>
@@ -507,7 +507,7 @@
 							<configuration>
 								<workingDirectory>${basedir}</workingDirectory>
 								<executable>
-									${basedir}/target/hooks/prepare-package</executable>
+									${basedir}/.konveyor/hooks/prepare-package</executable>
 							</configuration>
 						</execution>
 						<execution>
@@ -518,7 +518,7 @@
 							</goals>
 							<configuration>
 								<workingDirectory>${basedir}</workingDirectory>
-								<executable>${basedir}/target/hooks/package</executable>
+								<executable>${basedir}/.konveyor/hooks/package</executable>
 							</configuration>
 						</execution>
 						<execution>
@@ -530,7 +530,7 @@
 							<configuration>
 								<workingDirectory>${basedir}</workingDirectory>
 								<executable>
-									${basedir}/target/hooks/pre-integration-test</executable>
+									${basedir}/.konveyor/hooks/pre-integration-test</executable>
 							</configuration>
 						</execution>
 						<execution>
@@ -542,7 +542,7 @@
 							<configuration>
 								<workingDirectory>${basedir}</workingDirectory>
 								<executable>
-									${basedir}/target/hooks/integration-test</executable>
+									${basedir}/.konveyor/hooks/integration-test</executable>
 							</configuration>
 						</execution>
 						<execution>
@@ -554,7 +554,7 @@
 							<configuration>
 								<workingDirectory>${basedir}</workingDirectory>
 								<executable>
-									${basedir}/target/hooks/post-integration-test</executable>
+									${basedir}/.konveyor/hooks/post-integration-test</executable>
 							</configuration>
 						</execution>
 						<execution>
@@ -565,7 +565,7 @@
 							</goals>
 							<configuration>
 								<workingDirectory>${basedir}</workingDirectory>
-								<executable>${basedir}/target/hooks/verify</executable>
+								<executable>${basedir}/.konveyor/hooks/verify</executable>
 							</configuration>
 						</execution>
 						<execution>
@@ -576,7 +576,7 @@
 							</goals>
 							<configuration>
 								<workingDirectory>${basedir}</workingDirectory>
-								<executable>${basedir}/target/hooks/install</executable>
+								<executable>${basedir}/.konveyor/hooks/install</executable>
 							</configuration>
 						</execution>
 						<execution>
@@ -587,7 +587,7 @@
 							</goals>
 							<configuration>
 								<workingDirectory>${basedir}</workingDirectory>
-								<executable>${basedir}/target/hooks/deploy</executable>
+								<executable>${basedir}/.konveyor/hooks/deploy</executable>
 							</configuration>
 						</execution>
 						<execution>
@@ -598,7 +598,7 @@
 							</goals>
 							<configuration>
 								<workingDirectory>${basedir}</workingDirectory>
-								<executable>${basedir}/target/hooks/pre-site</executable>
+								<executable>${basedir}/.konveyor/hooks/pre-site</executable>
 							</configuration>
 						</execution>
 						<execution>
@@ -609,7 +609,7 @@
 							</goals>
 							<configuration>
 								<workingDirectory>${basedir}</workingDirectory>
-								<executable>${basedir}/target/hooks/site</executable>
+								<executable>${basedir}/.konveyor/hooks/site</executable>
 							</configuration>
 						</execution>
 						<execution>
@@ -620,7 +620,7 @@
 							</goals>
 							<configuration>
 								<workingDirectory>${basedir}</workingDirectory>
-								<executable>${basedir}/target/hooks/post-site</executable>
+								<executable>${basedir}/.konveyor/hooks/post-site</executable>
 							</configuration>
 						</execution>
 						<execution>
@@ -631,7 +631,7 @@
 							</goals>
 							<configuration>
 								<workingDirectory>${basedir}</workingDirectory>
-								<executable>${basedir}/target/hooks/site-deploy</executable>
+								<executable>${basedir}/.konveyor/hooks/site-deploy</executable>
 								<arguments><argument>${konveyor.uploadRsyncURI}</argument></arguments>
 							</configuration>
 						</execution>
@@ -650,8 +650,8 @@
 					<includeXmlInReports />
 					<includeTests>true</includeTests>
 					<rulesets>
-						<ruleset>${project.build.directory}/konveyor.xml</ruleset>
-						<ruleset>${project.build.directory}/upstream.xml</ruleset>
+						<ruleset>${project.basedir}/.konveyor/konveyor.xml</ruleset>
+						<ruleset>${project.basedir}/.konveyor/upstream.xml</ruleset>
 					</rulesets>
 				</configuration>
 			</plugin>

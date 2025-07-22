@@ -110,6 +110,19 @@
 							</includes>
 						</configuration>
 					</execution>
+					<execution>
+						<id>testing</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<classifier>testing</classifier>
+							<includes>
+								<include>io/github/magwas/testing/**</include>
+							</includes>
+						</configuration>
+					</execution>
 				</executions>
 			</plugin>
 			<plugin>

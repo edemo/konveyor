@@ -9,7 +9,7 @@ if [ -x tools/mkClassPath.sh ]
 then
   CLASSPATH=$(tools/mkClassPath.sh)
 else
-  CLASSPATH=$(target/tools/mkClassPath.sh)
+  CLASSPATH=$(.konveyor/tools/mkClassPath.sh)
 fi
 mkdir -p target/classes
 java -cp $CLASSPATH net.sf.saxon.Transform -s:src/main/pmd/$1.appstate\

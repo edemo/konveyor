@@ -4,7 +4,7 @@ if [ -x tools/mkClassPath.sh ]
 then
   CLASSPATH=$(tools/mkClassPath.sh)
 else
-  CLASSPATH=$(target/tools/mkClassPath.sh)
+  CLASSPATH=$(.konveyor/tools/mkClassPath.sh)
 fi
 java -cp $CLASSPATH net.sf.saxon.Transform -s:target/AST.xml\
- -xsl:target/xslt/genApiDoc.xslt
+ -xsl:.konveyor/xslt/genApiDoc.xslt
