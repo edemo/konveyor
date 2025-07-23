@@ -1,29 +1,34 @@
 package io.github.magwas.runtime;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class LogUtil {
-	static Set<String> debuggedFiles = null;
+	static Set<String> debuggedClasses = new HashSet<>();
 
-	public static void setDebuggedFiles(Set<String> debuggedFiles) {
-		LogUtil.debuggedFiles = debuggedFiles;
+	public static void addDebuggedClass(Class<?> debuggedClass) {
+		debuggedClasses.add(debuggedClass.getName());
+	}
+
+	public static void clearDebuggedClasses() {
+		debuggedClasses.removeIf(x -> true);
 	}
 
 	public static void debug(Object... args) {
-		if (debuggedFiles == null)
+		if (debuggedClasses == null)
 			return;
 		StackTraceElement stackTraceElement = Thread.currentThread()
 				.getStackTrace()[2];
-		String fileName = stackTraceElement.getFileName();
-		if (!debuggedFiles.contains(fileName))
+		String name = stackTraceElement.getClassName();
+		if (!debuggedClasses.contains(name))
 			return;
 		List<String> params = List.of(args).stream().map(x -> x.toString())
 				.collect(Collectors.toList());
 		StringBuilder builder = new StringBuilder();
 		builder.append("DEBUG ");
-		builder.append(fileName);
+		builder.append(name);
 		builder.append(":");
 		builder.append(stackTraceElement.getLineNumber());
 		builder.append(" ");
