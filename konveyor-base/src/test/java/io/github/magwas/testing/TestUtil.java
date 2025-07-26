@@ -33,8 +33,7 @@ public class TestUtil {
 		}
 	}
 
-	public static void assertStreamEquals(Set<Object> expected,
-			Stream<?> actual) {
+	public static void assertStreamEquals(Set<?> expected, Stream<?> actual) {
 		assertEquals(expected, actual.collect(Collectors.toSet()));
 	}
 

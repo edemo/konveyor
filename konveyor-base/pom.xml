@@ -35,6 +35,13 @@
 		<konveyor-version>${project.version}</konveyor-version>
 	</properties>
 
+	<dependencies>
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+	</dependencies>
 	<build>
 		<plugins>
 			<plugin>
@@ -117,7 +124,8 @@
 							<goal>jar</goal>
 						</goals>
 						<configuration>
-							<classesDirectory>${project.basedir}/target/test-classes</classesDirectory>
+							<classesDirectory>
+								${project.basedir}/target/test-classes</classesDirectory>
 							<classifier>testing</classifier>
 							<includes>
 								<include>io/github/magwas/testing/**</include>
