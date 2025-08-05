@@ -60,11 +60,10 @@
 		<maven.compiler.debug>true</maven.compiler.debug>
 		<maven.dependency.plugin.version>2.10</maven.dependency.plugin.version>
 		<junit-version>5.12.1</junit-version>
-		<spring-version>6.2.8</spring-version>
-		<spring-data-version>3.5.2</spring-data-version>
 		<tycho-version>3.0.5</tycho-version>
-		<spring-version>6.2.8</spring-version>
+		<spring-version>6.0.23</spring-version>
 		<spring-boot-version>3.5.3</spring-boot-version>
+		<spring-data-version>3.5.2</spring-data-version>
 		<konveyor-version>${project.version}</konveyor-version>
 		<maven.site.deploy.skip>true</maven.site.deploy.skip>
 	</properties>
