@@ -24,10 +24,31 @@ public class LogUtil {
 		String name = stackTraceElement.getClassName();
 		if (!debuggedClasses.contains(name))
 			return;
+		String qualifier = "DEBUG ";
+		doLog(stackTraceElement, qualifier, args);
+	}
+
+	public static void warning(Object... args) {
+		StackTraceElement stackTraceElement = Thread.currentThread()
+				.getStackTrace()[2];
+		String qualifier = "WARNING ";
+		doLog(stackTraceElement, qualifier, args);
+	}
+
+	public static void info(Object... args) {
+		StackTraceElement stackTraceElement = Thread.currentThread()
+				.getStackTrace()[2];
+		String qualifier = "INFO ";
+		doLog(stackTraceElement, qualifier, args);
+	}
+
+	private static void doLog(StackTraceElement stackTraceElement,
+			String qualifier, Object... args) {
+		String name = stackTraceElement.getClassName();
 		List<String> params = List.of(args).stream().map(x -> x.toString())
 				.collect(Collectors.toList());
 		StringBuilder builder = new StringBuilder();
-		builder.append("DEBUG ");
+		builder.append(qualifier);
 		builder.append(name);
 		builder.append(":");
 		builder.append(stackTraceElement.getLineNumber());

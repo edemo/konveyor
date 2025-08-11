@@ -42,9 +42,10 @@ public class TestBase {
 				}
 			}
 		} catch (NoSuchMethodException | SecurityException | InstantiationException
-				| IllegalAccessException | InvocationTargetException e) {
+				| IllegalAccessException | InvocationTargetException
+				| NullPointerException e) {
 			e.printStackTrace();
-			throw new TestInstantiationException("stubUp", e);
+			throw new TestInstantiationException("stubUp " + test, e);
 		}
 	}
 
@@ -69,7 +70,7 @@ public class TestBase {
 					value = method.invoke(null);
 				} catch (ClassNotFoundException | NoSuchMethodException
 						| SecurityException | IllegalAccessException
-						| InvocationTargetException e) {
+						| InvocationTargetException | NullPointerException e) {
 					e.printStackTrace();
 					throw new TestInstantiationException("problem with stub " + stubName,
 							e);
