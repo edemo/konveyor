@@ -54,8 +54,6 @@
 		<maven.compiler.source>${jdk.version}</maven.compiler.source>
 		<maven.compiler.target>${jdk.version}</maven.compiler.target>
 		<maven.compiler.fork>true</maven.compiler.fork>
-		<maven.compiler.verbose>true</maven.compiler.verbose>
-		<maven.compiler.debug>true</maven.compiler.debug>
 		<maven.dependency.plugin.version>2.10</maven.dependency.plugin.version>
 		<junit-version>5.12.1</junit-version>
 		<tycho-version>4.0.12</tycho-version>

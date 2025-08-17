@@ -115,14 +115,14 @@
 						</configuration>
 					</execution>
 					<execution>
-						<id>compile-hook</id>
-						<phase>compile</phase>
+						<id>process-resources-hook</id>
+						<phase>process-resources</phase>
 						<goals>
 							<goal>exec</goal>
 						</goals>
 						<configuration>
 							<workingDirectory>${basedir}</workingDirectory>
-							<executable>${basedir}/hooks/compile</executable>
+							<executable>${basedir}/hooks/process-resources</executable>
 						</configuration>
 					</execution>
 					<execution>
@@ -183,6 +183,36 @@
 								<argument>${konveyor.uploadRsyncURI}</argument>
 							</arguments>
 						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>3.26.0</version>
+				<configuration>
+					<includeXmlInReports />
+					<includeTests>true</includeTests>
+					<rulesets>
+						<ruleset>konveyor.xml</ruleset>
+						<ruleset>upstream.xml</ruleset>
+					</rulesets>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>io.github.magwas</groupId>
+						<artifactId>konveyor-base</artifactId>
+						<version>${konveyor-version}</version>
+						<classifier>tooling</classifier>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<id>pmd</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>pmd</goal>
+						</goals>
 					</execution>
 				</executions>
 			</plugin>
@@ -300,36 +330,6 @@
 						<phase>verify</phase>
 						<goals>
 							<goal>sign</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-pmd-plugin</artifactId>
-				<version>3.26.0</version>
-				<configuration>
-					<includeXmlInReports />
-					<includeTests>true</includeTests>
-					<rulesets>
-						<ruleset>konveyor.xml</ruleset>
-						<ruleset>upstream.xml</ruleset>
-					</rulesets>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>io.github.magwas</groupId>
-						<artifactId>konveyor-base</artifactId>
-						<version>${konveyor-version}</version>
-						<classifier>tooling</classifier>
-					</dependency>
-				</dependencies>
-				<executions>
-					<execution>
-						<id>pmd</id>
-						<phase>compile</phase>
-						<goals>
-							<goal>pmd</goal>
 						</goals>
 					</execution>
 				</executions>
