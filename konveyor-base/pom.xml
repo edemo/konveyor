@@ -136,6 +136,54 @@
 							<executable>${basedir}/hooks/install</executable>
 						</configuration>
 					</execution>
+					<execution>
+						<id>pre-site-hook</id>
+						<phase>pre-site</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<workingDirectory>${basedir}</workingDirectory>
+							<executable>${basedir}/.konveyor/hooks/pre-site</executable>
+						</configuration>
+					</execution>
+					<execution>
+						<id>site-hook</id>
+						<phase>site</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<workingDirectory>${basedir}</workingDirectory>
+							<executable>${basedir}/.konveyor/hooks/site</executable>
+						</configuration>
+					</execution>
+					<execution>
+						<id>post-site-hook</id>
+						<phase>post-site</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<workingDirectory>${basedir}</workingDirectory>
+							<executable>${basedir}/.konveyor/hooks/post-site</executable>
+						</configuration>
+					</execution>
+					<execution>
+						<id>site-deploy-hook</id>
+						<phase>site-deploy</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<workingDirectory>${basedir}</workingDirectory>
+							<executable>
+								${basedir}/.konveyor/hooks/site-deploy</executable>
+							<arguments>
+								<argument>${konveyor.uploadRsyncURI}</argument>
+							</arguments>
+						</configuration>
+					</execution>
 				</executions>
 			</plugin>
 			<plugin>
@@ -316,12 +364,12 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
-				<version>${maven-version}</version>
+				<version>3.21.0</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
-				<version>${maven-version}</version>
+				<version>3.9.0</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
