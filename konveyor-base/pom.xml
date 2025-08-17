@@ -217,21 +217,6 @@
 							</includes>
 						</configuration>
 					</execution>
-					<execution>
-						<id>testing</id>
-						<phase>package</phase>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-						<configuration>
-							<classesDirectory>
-								${project.basedir}/target/test-classes</classesDirectory>
-							<classifier>testing</classifier>
-							<includes>
-								<include>io/github/magwas/testing/**</include>
-							</includes>
-						</configuration>
-					</execution>
 				</executions>
 			</plugin>
 			<plugin>

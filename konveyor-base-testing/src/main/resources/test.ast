@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<SourceTree BeginColumn='' BeginLine='' EndColumn='' EndLine='' Image=''>
+    <SourceFile BeginColumn='' BeginLine='' EndColumn='' EndLine='' Image='' Path='test.java'>
+        <CompilationUnit BeginColumn='1' BeginLine='1' EndColumn='2' EndLine='4' Image='' PackageName=''>
+            <ClassDeclaration Abstract='false' Annotation='false' Anonymous='false' BeginColumn='1' BeginLine='2' BinaryName='foo' CanonicalName='foo' EffectiveVisibility='package' EndColumn='6' EndLine='2' Enum='false' Final='false' Image='' Interface='false' Local='false' Nested='false' PackageName='' Record='false' RegularClass='true' RegularInterface='false' SimpleName='foo' Static='false' TopLevel='true' UnnamedToplevelClass='false' Visibility='package'>
+                <ModifierList BeginColumn='1' BeginLine='1' EffectiveModifiers='[]' EndColumn='6' EndLine='1' ExplicitModifiers='[]' Image=''>
+                    <Annotation BeginColumn='1' BeginLine='1' EndColumn='6' EndLine='1' Image='' SimpleName='Glue'>
+                        <ClassType BeginColumn='2' BeginLine='1' EndColumn='6' EndLine='1' FullyQualified='false' Image='' PackageQualifier='' SimpleName='Glue' />
+                    </Annotation>
+                </ModifierList>
+                <ClassBody BeginColumn='11' BeginLine='2' Empty='false' EndColumn='2' EndLine='4' Image='' Size='1'>
+                    <FieldDeclaration BeginColumn='6' BeginLine='3' EffectiveVisibility='package' EndColumn='9' EndLine='3' Image='' Static='false' VariableName='bar' Visibility='package'>
+                        <ModifierList BeginColumn='2' BeginLine='3' EffectiveModifiers='[]' EndColumn='2' EndLine='3' ExplicitModifiers='[]' Image='' />
+                        <PrimitiveType BeginColumn='2' BeginLine='3' EndColumn='5' EndLine='3' Image='' Kind='int' />
+                        <VariableDeclarator BeginColumn='6' BeginLine='3' EndColumn='9' EndLine='3' Image='' Initializer='false' Name='bar'>
+                            <VariableId ArrayType='false' BeginColumn='6' BeginLine='3' EffectiveVisibility='package' EndColumn='9' EndLine='3' EnumConstant='false' ExceptionBlockParameter='false' Field='true' Final='false' ForLoopVariable='false' ForeachVariable='false' FormalParameter='false' Image='' LambdaParameter='false' LocalVariable='false' Name='bar' PatternBinding='false' RecordComponent='false' ResourceDeclaration='false' Static='false' TypeInferred='false' Unnamed='false' Visibility='package' />
+                        </VariableDeclarator>
+                    </FieldDeclaration>
+                </ClassBody>
+            </ClassDeclaration>
+        </CompilationUnit>
+    </SourceFile>
+</SourceTree>

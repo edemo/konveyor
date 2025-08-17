@@ -1,4 +1,0 @@
-#!/bin/bash
-set -xe
-mkdir -p target/javadoc
-cp README target/javadoc
