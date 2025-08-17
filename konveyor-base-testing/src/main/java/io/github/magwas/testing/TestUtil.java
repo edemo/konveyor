@@ -1,10 +1,14 @@
 package io.github.magwas.testing;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class TestUtil {
 	public static <T> void diffCollections(Set<T> expected, Set<T> actual) {
@@ -27,6 +31,10 @@ public class TestUtil {
 		} catch (IOException e) {
 			return null;
 		}
+	}
+
+	public static void assertStreamEquals(Set<?> expected, Stream<?> actual) {
+		assertEquals(expected, actual.collect(Collectors.toSet()));
 	}
 
 }

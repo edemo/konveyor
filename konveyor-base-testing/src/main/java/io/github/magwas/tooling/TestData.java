@@ -7,7 +7,7 @@ import io.github.magwas.testing.TestUtil;
 
 public interface TestData {
 	Path RESOURCE_PATH = Path.of(System.getProperty("user.dir"),
-			"src/test/resources");
+			"src/main/resources");
 	List<String> RESOURCE_FILES = List.of("test.java", "test.ast",
 			"some_directory/some_file.txt");
 	Path JAVA_PATH = Path.of(RESOURCE_PATH.toString(), "test.java");

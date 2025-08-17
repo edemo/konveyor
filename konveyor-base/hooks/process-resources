@@ -9,3 +9,4 @@ do
 	cp $i target/classes
 done
 cp target/classes/*.xml target
+cp target/classes/*.xml .konveyor
