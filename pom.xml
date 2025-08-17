@@ -53,10 +53,8 @@
 		<jdk.full.version>JavaSE-${jdk.version}</jdk.full.version>
 		<maven.compiler.source>${jdk.version}</maven.compiler.source>
 		<maven.compiler.target>${jdk.version}</maven.compiler.target>
-		<maven.compiler.compilerVersion>${jdk.version}</maven.compiler.compilerVersion>
 		<maven.compiler.fork>true</maven.compiler.fork>
 		<maven.compiler.verbose>true</maven.compiler.verbose>
-		<maven.compiler.optimize>true</maven.compiler.optimize>
 		<maven.compiler.debug>true</maven.compiler.debug>
 		<maven.dependency.plugin.version>2.10</maven.dependency.plugin.version>
 		<junit-version>5.12.1</junit-version>
