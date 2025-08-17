@@ -37,12 +37,6 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>io.github.magwas</groupId>
-			<artifactId>konveyor-base</artifactId>
-			<version>${konveyor-version}</version>
-			<classifier>annotations</classifier>
-		</dependency>
-		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
 			<version>${junit-version}</version>
