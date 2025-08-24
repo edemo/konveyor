@@ -540,6 +540,60 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>maven-test-in-eclipse-test-plugin</id>
+			<activation>
+				<property>
+					<name>packaging</name>
+					<value>eclipse-test-plugin</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>3.5.3</version>
+						<dependencies>
+							<dependency>
+								<groupId>org.apache.maven.surefire</groupId>
+								<artifactId>surefire-junit-platform</artifactId>
+								<version>3.0.0</version>
+							</dependency>
+						</dependencies>
+						<executions>
+							<execution>
+								<id>default-test</id>
+								<phase>test</phase>
+								<goals>
+									<goal>test</goal>
+								</goals>
+								<configuration>
+									<failIfNoTests>true</failIfNoTests>
+									<testClassesDirectory>
+										${project.build.directory}/classes</testClassesDirectory>
+									<testSourceDirectory>
+										${project.basedir}/src/main/java</testSourceDirectory>
+									<excludes>
+										<exclude>**/*PluginTest.java</exclude>
+									</excludes>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.eclipse.tycho</groupId>
+						<artifactId>tycho-surefire-plugin</artifactId>
+						<version>${tycho-version}</version>
+						<configuration>
+							<includes>**/*PluginTest.java</includes>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 	<reporting>
 		<plugins>
 			<plugin>
