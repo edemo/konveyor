@@ -36,6 +36,10 @@ jobs:
         name: id_rsa
         known_hosts: ${{ secrets.KNOWN_HOSTS }}
         config: ${{ secrets.SSH_CONFIG }}
+    - name: Install package
+      run: |
+        sudo apt-get update
+        sudo apt-get -y install pandoc
     - name: Build with Maven
       run: mvn -B deploy site-deploy --file pom.xml
       env:
