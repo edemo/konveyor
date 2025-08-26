@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <SourceTree BeginColumn='' BeginLine='' EndColumn='' EndLine='' Image=''>
     <SourceFile BeginColumn='' BeginLine='' EndColumn='' EndLine='' Image='' Path='test.java'>
-        <CompilationUnit BeginColumn='1' BeginLine='1' EndColumn='2' EndLine='4' Image='' PackageName=''>
+        <CompilationUnit BeginColumn='1' BeginLine='1' Compact='false' EndColumn='2' EndLine='4' Image='' PackageName=''>
             <ClassDeclaration Abstract='false' Annotation='false' Anonymous='false' BeginColumn='1' BeginLine='2' BinaryName='foo' CanonicalName='foo' EffectiveVisibility='package' EndColumn='6' EndLine='2' Enum='false' Final='false' Image='' Interface='false' Local='false' Nested='false' PackageName='' Record='false' RegularClass='true' RegularInterface='false' SimpleName='foo' Static='false' TopLevel='true' UnnamedToplevelClass='false' Visibility='package'>
                 <ModifierList BeginColumn='1' BeginLine='1' EffectiveModifiers='[]' EndColumn='6' EndLine='1' ExplicitModifiers='[]' Image=''>
                     <Annotation BeginColumn='1' BeginLine='1' EndColumn='6' EndLine='1' Image='' SimpleName='Glue'>
