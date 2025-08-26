@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>io.github.magwas</groupId>
 		<artifactId>konveyor-parent-base</artifactId>
-		<version>0.1.3</version>
+		<version>0.0.1</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>konveyor-parent</artifactId>
@@ -49,7 +49,7 @@
 							</artifactItems>
 							<outputDirectory>
 								${project.basedir}/.konveyor</outputDirectory>
-							<includes>tools/*.sh,hooks/*,*.xml,xslt/*.xslt</includes>
+							<includes>tools/*.sh,hooks/*,*.xml,xslt/*.xslt,settings/*</includes>
 						</configuration>
 					</execution>
 					<execution>
