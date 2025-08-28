@@ -67,7 +67,7 @@ How to adapt:
       - do not require status checks to pass
       - block force pushes
   - in Actions/general
-    - Allow <owner>, and select non-<owner>, actions and reusable workflows 
+    - Allow `<owner>`, and select non-`<owner>`, actions and reusable workflows 
 		 - Allow actions created by github
      - Add `advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6, shimataro/ssh-key-action@d4fffb50872869abe2d9a9098a6d9c5aa7d16be4` to Allow or block specified actions and reusable workflows FIXME: in the generated documentation use the actual workflows for this
     - Require actions to be pinned to a full-length commit SHA 
