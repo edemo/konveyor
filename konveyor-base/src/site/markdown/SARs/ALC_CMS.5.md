@@ -18,7 +18,7 @@ The site contains all the evaluation evidence required by the SARs, including:
   - eclipse products published to the maven site, along with the version number TODO
 - the parts that comprise the TOE beyond the implementation representation, aka the dependencies:
   - output of `mvn dependency:tree` containing the exact version number TODO
-  - list of dependencies defined in MANIFEST.MF. It is an informal list containing dependency version restrictions TODO
+  - list of dependencies defined in MANIFEST.MF TODO
   - list of actually packaged dependencies of the eclipse products, with exact version number TODO
 - reference to the github repository containing the implementation representation, with the commit identifier of the built version TODO check it
 - reference to the issue list on github containing the issues marked as security, where their status and resolution documented TODO
