@@ -1,8 +1,8 @@
-name: Java CI with Maven
+name: Deploy
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: develop
 
 jobs:
   build:
