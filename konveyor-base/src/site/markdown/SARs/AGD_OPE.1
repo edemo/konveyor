@@ -1,0 +1,165 @@
+# AGD_OPE.1 Operational user guidance
+## Developer action elements
+
+### AGD_OPE.1.1D
+The developer shall provide operational user guidance.
+
+implementation status: not implemented
+
+the build :
+
+- generates and runs the end-to-end tests based on the processes in the model TODO
+- for a TOE with GUI the end-to-end tests create screenshots of all the process steps involving the GUI TODO
+- generates a list of procedures for each roles, containing TODO
+  - all the process steps involving the given role TODO
+  - the process steps performed by the TOE in response to the steps performed by the role TODO
+  - the objectives and behaviours associated with the process steps TODO
+  - the screenshot of the UI at that step if exist TODO
+  - the business objects with TODO
+    - their value set
+    - the security notes associated with them 
+    - security labels where accociated
+
+The metamodel constraints amke sure that:
+
+If there are operational modes defined (beyond normal operation), then:
+
+- the operational modes are the values of a system parameter
+- the system parameter for operational modes is persisted and initialized on startup
+- there are behaviours defined for each of the operational modes
+
+The metamodel constraints ensure the above rules, and the build generates documentation which for each operational modes TODO
+- lists the behaviours associated with them
+- lists the process steps associated with the behaviours
+- as with other behaviours, these behaviours are shown in the generated user documentation.
+
+
+## Content and presentation elements
+
+### AGD_OPE.1.1C
+The operational user guidance shall describe, for each user role, the user-accessible
+functions and privileges that should be controlled in a secure processing environment,
+including appropriate warnings.
+
+The procedure description for each role, especially the UI and the business objects
+
+How to adapt:
+
+- model according to the metamodel
+- associate security notes to the business objects representing security parameters
+
+What to check:
+
+- security notes are associated and have appropriate content
+- the generated procedure documentation
+
+### AGD_OPE.1.2C
+The operational user guidance shall describe, for each user role, how to use the available
+interfaces provided by the TOE in a secure manner.
+
+How to adapt:
+
+- model according to the metamodel
+- make sure that the behaviours associated with the process steps correctly describe the reasons and nuances of each step
+- place security notes where appropriate
+
+What to check:
+
+- the description of UI and their usage in the generated procedure documentation
+
+### AGD_OPE.1.3C
+The operational user guidance shall describe, for each user role, the available functions
+and interfaces, in particular all security parameters under the control of the user,
+indicating secure values as appropriate.
+
+The description of the business objects, the security notes and value sets achieve this.
+
+How to adapt:
+
+- model according to the metamodel
+- include security labels as fields where they are needed
+- place security notes to business objects and their value sets where needed
+
+
+How to check:
+
+- check that appropriate security notes with relevant content are associated to business objects and their value sets where needed
+- check that needed security labels are part of the business entities
+
+
+### AGD_OPE.1.4C
+The operational user guidance shall, for each user role, clearly present each type of
+security-relevant event relative to the user-accessible functions that need to be
+performed, including changing the security characteristics of entities under the control of
+the TSF.
+
+The process initiating events and the steps performed by the TOE in response to the steps performed by the user cover this
+
+How to adapt:
+
+- model according to the metamodel
+- associate security notes with events and process steps where appropriate
+
+How to check:
+
+- check that appropriate security notes with relevant content are associated to events and process steps
+
+### AGD_OPE.1.5C
+The operational user guidance shall identify all possible modes of operation of the TOE
+(including operation following failure or operational error), their consequences and
+implications for maintaining secure operation.
+
+See AGD_OPE.1.1D for operational modes.
+
+How to adapt:
+
+- If there are multiple operational modes
+  - Make sure that a parameter is marked as operational mode
+  - Make sure that the parameter marked as perational mode is persisted upon change
+  - Make sure that the parameter arked as operational mode is read upon startup
+  - Make sure that metamodel constraints are satisfied
+  - Make sure that behaviours associated with operational modes are clearly state the operation mode they are relevant to
+  - Make sure that operational mode behaviours are associated with the appropriate process steps
+
+How to check:
+
+- Check whether operational modes are defined. If so:
+ - make sure that the behaviours associated with operational modes are clear and conscise, and they refer to the relevant operational mode(s)
+ - make sure that the behaviours associated with operational modes are associated to all relevant process steps
+
+### AGD_OPE.1.6C
+The operational user guidance shall, for each user role, describe the security controls to
+be followed in order to fulfil the security objectives for the operational environment as
+described in the ST.
+
+The process initiating events and the steps performed by the TOE in response to the steps performed by the user cover this
+
+How to adapt:
+
+- model according to the metamodel
+- associate security notes with events and process steps where appropriate
+
+How to check:
+
+- check that appropriate security notes with relevant content are associated to events and process steps
+
+
+### AGD_OPE.1.7C
+The operational user guidance shall be clear and reasonable.
+
+How to adapt:
+
+- Make sure that all metamodel constraints are satisfied
+- Make sure that all behaviours are clearly and consisely documented and associated with the appropriate process steps
+
+How to check:
+- Test all user procedures following the user guidance, and make sure that the documentation is clear and reasonable.
+
+## Evaluator action elements
+
+### AGD_OPE.1.1E
+The evaluator shall confirm that the information provided meets all requirements for
+content and presentation of evidence.
+
+See "how to check" sections above.
+
