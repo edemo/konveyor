@@ -16,13 +16,13 @@ import io.github.magwas.kodekonveyorannotations.Glue;
 @Glue
 public class TestBase {
 	@BeforeEach
-	public void setUp() {
+	public void setUp() throws Throwable {
 		stubUp(this);
 
 	}
 
 	@AfterEach
-	public void tearDown() {
+	public void tearDown() throws Throwable {
 	}
 
 	@SuppressWarnings({
