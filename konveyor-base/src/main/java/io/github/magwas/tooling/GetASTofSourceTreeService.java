@@ -14,7 +14,7 @@ import net.sourceforge.pmd.lang.ast.RootNode;
 import net.sourceforge.pmd.util.treeexport.XmlTreeRenderer;
 
 @Service
-public class GetASTofSourceTree {
+public class GetASTofSourceTreeService {
 	@Autowired
 	WalkTreeService walkTree;
 	@Autowired

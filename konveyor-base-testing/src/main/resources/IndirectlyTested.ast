@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<SourceTree BeginColumn='' BeginLine='' EndColumn='' EndLine='' Image=''>
+    <SourceFile BeginColumn='' BeginLine='' EndColumn='' EndLine='' Image='' Path='../../java/io/github/magwas/testing/IndirectlyTested.java'>
+        <CompilationUnit BeginColumn='1' BeginLine='1' Compact='false' EndColumn='3' EndLine='9' Image='' PackageName='io.github.magwas.testing'>
+            <PackageDeclaration BeginColumn='9' BeginLine='1' EndColumn='33' EndLine='1' Image='' Name='io.github.magwas.testing'>
+                <ModifierList BeginColumn='1' BeginLine='1' EffectiveModifiers='[]' EndColumn='1' EndLine='1' ExplicitModifiers='[]' Image='' />
+            </PackageDeclaration>
+            <ImportDeclaration BeginColumn='1' BeginLine='3' EndColumn='39' EndLine='3' Image='' ImportOnDemand='false' ImportedName='java.lang.annotation.Retention' ImportedSimpleName='Retention' ModuleImport='false' PackageName='java.lang.annotation' Static='false' />
+            <ImportDeclaration BeginColumn='1' BeginLine='4' EndColumn='45' EndLine='4' Image='' ImportOnDemand='false' ImportedName='java.lang.annotation.RetentionPolicy' ImportedSimpleName='RetentionPolicy' ModuleImport='false' PackageName='java.lang.annotation' Static='false' />
+            <AnnotationTypeDeclaration Abstract='true' Annotation='true' Anonymous='false' BeginColumn='8' BeginLine='7' BinaryName='io.github.magwas.testing.IndirectlyTested' CanonicalName='io.github.magwas.testing.IndirectlyTested' EffectiveVisibility='public' EndColumn='9' EndLine='7' Enum='false' Final='false' Image='' Interface='true' Local='false' Nested='false' PackageName='io.github.magwas.testing' Record='false' RegularClass='false' RegularInterface='false' SimpleName='IndirectlyTested' Static='false' TopLevel='true' UnnamedToplevelClass='false' Visibility='public'>
+                <ModifierList BeginColumn='1' BeginLine='6' EffectiveModifiers='[public, abstract]' EndColumn='7' EndLine='7' ExplicitModifiers='[public]' Image=''>
+                    <Annotation BeginColumn='1' BeginLine='6' EndColumn='36' EndLine='6' Image='' SimpleName='Retention'>
+                        <ClassType BeginColumn='2' BeginLine='6' EndColumn='11' EndLine='6' FullyQualified='false' Image='' PackageQualifier='' SimpleName='Retention' />
+                        <AnnotationMemberList BeginColumn='11' BeginLine='6' Empty='false' EndColumn='36' EndLine='6' Image='' Size='1'>
+                            <MemberValuePair BeginColumn='12' BeginLine='6' EndColumn='35' EndLine='6' Image='value' Name='value' Shorthand='true'>
+                                <FieldAccess AccessType='READ' BeginColumn='12' BeginLine='6' CompileTimeConstant='false' EndColumn='35' EndLine='6' Expression='true' Image='RUNTIME' Name='RUNTIME' ParenthesisDepth='0' Parenthesized='false'>
+                                    <TypeExpression BeginColumn='12' BeginLine='6' CompileTimeConstant='false' EndColumn='27' EndLine='6' Expression='true' Image='' ParenthesisDepth='0' Parenthesized='false'>
+                                        <ClassType BeginColumn='12' BeginLine='6' EndColumn='27' EndLine='6' FullyQualified='false' Image='' PackageQualifier='' SimpleName='RetentionPolicy' />
+                                    </TypeExpression>
+                                </FieldAccess>
+                            </MemberValuePair>
+                        </AnnotationMemberList>
+                    </Annotation>
+                </ModifierList>
+                <AnnotationTypeBody BeginColumn='36' BeginLine='7' Empty='true' EndColumn='2' EndLine='9' Image='' Size='0' />
+            </AnnotationTypeDeclaration>
+        </CompilationUnit>
+    </SourceFile>
+</SourceTree>

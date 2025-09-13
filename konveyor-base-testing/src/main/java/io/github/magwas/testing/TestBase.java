@@ -61,16 +61,22 @@ public class TestBase {
 				Object value;
 				try {
 					stub = Class.forName(stubName);
-					Method method = stub.getDeclaredMethod("stub");
-					if (null == method) {
-						throw new TestInstantiationException(
-								stubName + " does not have stub");
+					if (null == stub.getAnnotation(IndirectlyTested.class)) {
+						Method method = stub.getDeclaredMethod("stub");
+						if (null == method) {
+							throw new TestInstantiationException(
+									stubName + " does not have stub");
+						}
+						method.setAccessible(true);
+						value = method.invoke(null);
+					} else {
+						value = field.getType().getConstructor().newInstance();
+						stubFill(value);
 					}
-					method.setAccessible(true);
-					value = method.invoke(null);
 				} catch (ClassNotFoundException | NoSuchMethodException
 						| SecurityException | IllegalAccessException
-						| InvocationTargetException | NullPointerException e) {
+						| InvocationTargetException | NullPointerException
+						| InstantiationException | IllegalArgumentException e) {
 					e.printStackTrace();
 					throw new TestInstantiationException("problem with stub " + stubName,
 							e);
