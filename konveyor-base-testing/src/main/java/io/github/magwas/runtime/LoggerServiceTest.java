@@ -35,7 +35,7 @@ public class LoggerServiceTest {
 	}
 
 	@Test
-	@DisplayName("debug correctly logs")
+	@DisplayName("debug logs to stderr, in the form of 'DEBUG <classname> <methodname> <linenumber>:<message>")
 	void test() {
 		PrintStream errMock = mock(PrintStream.class);
 		PrintStream olderr = System.err;
@@ -48,7 +48,7 @@ public class LoggerServiceTest {
 	}
 
 	@Test
-	@DisplayName("warning correctly logs")
+	@DisplayName("warning logs using the logger, using the caller's class and method name, and prepending the message with the line number")
 	void test1() {
 		logger.warning("testlog");
 		verify(loggerMock).logp(Level.WARNING,
@@ -56,7 +56,7 @@ public class LoggerServiceTest {
 	}
 
 	@Test
-	@DisplayName("info correctly logs")
+	@DisplayName("info logs using the logger, using the caller's class and method name, and prepending the message with the line number")
 	void test2() {
 		logger.info("testlog");
 		verify(loggerMock).logp(Level.INFO,

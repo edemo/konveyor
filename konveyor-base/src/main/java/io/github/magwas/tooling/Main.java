@@ -13,10 +13,11 @@ import io.github.magwas.runtime.Config;
 public class Main {
 
 	public static void main(String[] args) throws IOException {
-		Class<GetASTofSourceTree> requiredType = GetASTofSourceTree.class;
+		Class<GetASTofSourceTreeService> requiredType = GetASTofSourceTreeService.class;
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
 				Config.class);
-		GetASTofSourceTree getASTofSourceTree = context.getBean(requiredType);
+		GetASTofSourceTreeService getASTofSourceTree = context
+				.getBean(requiredType);
 		String path = null;
 		if (args.length == 1)
 			path = args[0];

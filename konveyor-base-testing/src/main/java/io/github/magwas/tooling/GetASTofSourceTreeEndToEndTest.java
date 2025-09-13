@@ -18,12 +18,10 @@ import io.github.magwas.runtime.Config;
 @Tag("end-to-end")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = Config.class)
-public class ExtractASTTest implements TestData {
+public class GetASTofSourceTreeEndToEndTest implements TestData {
 
 	@Autowired
-	WalkTreeService walkTree;
-	@Autowired
-	GetASTofSourceTree getASTofSourceTree;
+	GetASTofSourceTreeService getASTofSourceTree;
 
 	@Test
 	@DisplayName("extract AST from a source tree")
