@@ -58,7 +58,7 @@
 		<junit-version>5.12.1</junit-version>
 		<tycho-version>4.0.12</tycho-version>
 		<tycho.localArtifacts>ignore</tycho.localArtifacts>
-		<spring-version>6.2.9</spring-version>
+		<spring-version>6.2.11</spring-version>
 		<spring-boot-version>3.5.3</spring-boot-version>
 		<spring-data-version>3.5.2</spring-data-version>
 		<konveyor-version>${project.version}</konveyor-version>
