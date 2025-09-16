@@ -1,5 +1,7 @@
 package io.github.magwas.testing;
 
+import static org.mockito.Mockito.spy;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -72,6 +74,7 @@ public class TestBase {
 					} else {
 						value = field.getType().getConstructor().newInstance();
 						stubFill(value);
+						value = spy(value);
 					}
 				} catch (ClassNotFoundException | NoSuchMethodException
 						| SecurityException | IllegalAccessException

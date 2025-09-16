@@ -1,22 +1,22 @@
 package io.github.magwas.runtime;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.data.annotation.Id;
 import org.springframework.stereotype.Component;
 
 @Component
 public class TestComponent {
 	@Autowired
-	ApplicationContext context;
-	@Id
-	String id;
+	public LoggerService logger;
 
-	TestComponent() {
-
+	public void testDebug() {
+		logger.debug("debug");
 	}
 
-	TestComponent(String id) {
-		this.id = id;
+	public void testWarning() {
+		logger.warning("warning");
+	}
+
+	public void testInfo() {
+		logger.info("info");
 	}
 }
