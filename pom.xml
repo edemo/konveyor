@@ -64,7 +64,6 @@
 		<spring-data-version>3.5.2</spring-data-version>
 		<konveyor-version>${project.version}</konveyor-version>
 		<maven.site.deploy.skip>true</maven.site.deploy.skip>
-		<maven-version>3.9.11</maven-version>
 	</properties>
 
 
