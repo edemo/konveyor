@@ -377,7 +377,6 @@
 				<version>${tycho-version}</version>
 				<extensions>true</extensions>
 			</plugin>
-
 		</plugins>
 	</build>
 </project>
