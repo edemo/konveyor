@@ -19,5 +19,4 @@ public class LoggerService {
 	public void info(Object... args) {
 		LogUtil.info(3, args);
 	}
-
 }

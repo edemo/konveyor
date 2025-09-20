@@ -32,5 +32,4 @@ public class SourceFileNode extends AbstractHackNode implements Node {
 	public int getNumChildren() {
 		return 1;
 	}
-
 }

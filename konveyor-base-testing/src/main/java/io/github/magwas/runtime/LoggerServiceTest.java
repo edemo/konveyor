@@ -42,25 +42,23 @@ public class LoggerServiceTest {
 		System.setErr(errMock);
 		LogUtil.addDebuggedClass(getClass());
 		logger.debug("testlog");
-		verify(errMock).println(
-				"DEBUG io.github.magwas.runtime.LoggerServiceTest test 44:testlog");
+		verify(errMock).println("DEBUG io.github.magwas.runtime.LoggerServiceTest test 44:testlog");
 		System.setErr(olderr);
 	}
 
 	@Test
-	@DisplayName("warning logs using the logger, using the caller's class and method name, and prepending the message with the line number")
+	@DisplayName(
+			"warning logs using the logger, using the caller's class and method name, and prepending the message with the line number")
 	void test1() {
 		logger.warning("testlog");
-		verify(loggerMock).logp(Level.WARNING,
-				"io.github.magwas.runtime.LoggerServiceTest", "test1", "53:testlog");
+		verify(loggerMock).logp(Level.WARNING, "io.github.magwas.runtime.LoggerServiceTest", "test1", "53:testlog");
 	}
 
 	@Test
-	@DisplayName("info logs using the logger, using the caller's class and method name, and prepending the message with the line number")
+	@DisplayName(
+			"info logs using the logger, using the caller's class and method name, and prepending the message with the line number")
 	void test2() {
 		logger.info("testlog");
-		verify(loggerMock).logp(Level.INFO,
-				"io.github.magwas.runtime.LoggerServiceTest", "test2", "61:testlog");
+		verify(loggerMock).logp(Level.INFO, "io.github.magwas.runtime.LoggerServiceTest", "test2", "61:testlog");
 	}
-
 }

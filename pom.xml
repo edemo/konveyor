@@ -124,6 +124,49 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>com.diffplug.spotless</groupId>
+				<artifactId>spotless-maven-plugin</artifactId>
+				<version>2.46.1</version>
+				<configuration>
+					<java>
+						<palantirJavaFormat>
+							<version>2.74.0</version>
+						</palantirJavaFormat>
+						<importOrder>
+							<order>\#,java,javax,org,com,,</order>
+						</importOrder>
+						<indent>
+							<tabs>true</tabs>
+							<spacesPerTab>4</spacesPerTab>
+						</indent>
+						<formatAnnotations/>
+						<removeUnusedImports/>
+						<cleanthat>
+							<version>2.24</version>
+							<sourceJdk>${jdk.version}</sourceJdk>
+							<includeDraft>true</includeDraft>
+							<mutators>
+								<mutator>ImportQualifiedTokens</mutator>
+								<mutator>OptionalMapIdentity</mutator>
+								<mutator>PMDMutators</mutator>
+								<mutator>SafeAndConsensual</mutator>
+								<mutator>SafeButNotConsensual</mutator>
+								<mutator>SimplifyBooleanInitialization</mutator>
+								<mutator>SonarMutators</mutator>
+								<mutator>StreamMapIdentity</mutator>
+							</mutators>
+							<excludedMutators>
+								<mutator>AvoidInlineConditionals</mutator>
+								<mutator>CastMathOperandBeforeAssignement</mutator>
+								<mutator>LocalVariableTypeInference</mutator>
+								<mutator>SimplifyStartsWith</mutator>
+								<mutator>UseTextBlocks</mutator>
+							</excludedMutators>
+						</cleanthat>
+					</java>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.sonatype.central</groupId>
 				<artifactId>central-publishing-maven-plugin</artifactId>
 				<version>0.8.0</version>
@@ -148,4 +191,46 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>format</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.diffplug.spotless</groupId>
+						<artifactId>spotless-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<goals>
+									<goal>apply</goal>
+								</goals>
+								<phase>process-sources</phase>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>verify-format</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.diffplug.spotless</groupId>
+						<artifactId>spotless-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<goals>
+									<goal>check</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>

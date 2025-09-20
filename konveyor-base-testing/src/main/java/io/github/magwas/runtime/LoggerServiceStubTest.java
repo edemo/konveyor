@@ -1,4 +1,5 @@
 package io.github.magwas.runtime;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -8,8 +9,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
-import io.github.magwas.runtime.LogUtil;
-import io.github.magwas.runtime.TestComponent;
 import io.github.magwas.testing.TestBase;
 
 public class LoggerServiceStubTest extends TestBase {
@@ -25,8 +24,7 @@ public class LoggerServiceStubTest extends TestBase {
 		System.setErr(fakeErr);
 		LogUtil.addDebuggedClass(TestComponent.class);
 		testComponent.testDebug();
-		verify(fakeErr).println(
-				"DEBUG io.github.magwas.runtime.TestComponent testDebug 12:debug");
+		verify(fakeErr).println("DEBUG io.github.magwas.runtime.TestComponent testDebug 12:debug");
 		LogUtil.clearDebuggedClasses();
 		System.setErr(oldErr);
 	}
@@ -51,5 +49,4 @@ public class LoggerServiceStubTest extends TestBase {
 		testComponent.testInfo();
 		verify(testComponent.logger).info("info");
 	}
-
 }

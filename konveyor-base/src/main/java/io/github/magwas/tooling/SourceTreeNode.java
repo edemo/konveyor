@@ -40,5 +40,4 @@ public class SourceTreeNode extends AbstractHackNode implements RootNode {
 	public AstInfo<? extends RootNode> getAstInfo() {
 		return null;
 	}
-
 }

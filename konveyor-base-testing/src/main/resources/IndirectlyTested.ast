@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <SourceTree BeginColumn='' BeginLine='' EndColumn='' EndLine='' Image=''>
     <SourceFile BeginColumn='' BeginLine='' EndColumn='' EndLine='' Image='' Path='../../java/io/github/magwas/testing/IndirectlyTested.java'>
-        <CompilationUnit BeginColumn='1' BeginLine='1' Compact='false' EndColumn='3' EndLine='9' Image='' PackageName='io.github.magwas.testing'>
+        <CompilationUnit BeginColumn='1' BeginLine='1' Compact='false' EndColumn='39' EndLine='7' Image='' PackageName='io.github.magwas.testing'>
             <PackageDeclaration BeginColumn='9' BeginLine='1' EndColumn='33' EndLine='1' Image='' Name='io.github.magwas.testing'>
                 <ModifierList BeginColumn='1' BeginLine='1' EffectiveModifiers='[]' EndColumn='1' EndLine='1' ExplicitModifiers='[]' Image='' />
             </PackageDeclaration>
@@ -22,7 +22,7 @@
                         </AnnotationMemberList>
                     </Annotation>
                 </ModifierList>
-                <AnnotationTypeBody BeginColumn='36' BeginLine='7' Empty='true' EndColumn='2' EndLine='9' Image='' Size='0' />
+                <AnnotationTypeBody BeginColumn='36' BeginLine='7' Empty='true' EndColumn='38' EndLine='7' Image='' Size='0' />
             </AnnotationTypeDeclaration>
         </CompilationUnit>
     </SourceFile>

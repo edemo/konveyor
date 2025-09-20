@@ -27,18 +27,15 @@ public class GenerateAstService {
 	}
 
 	public RootNode apply(Path path) {
-		TextFile textfile = TextFile.forPath(path, Charset.defaultCharset(),
-				pmdParsingTools.java.getDefaultVersion());
+		TextFile textfile = TextFile.forPath(path, Charset.defaultCharset(), pmdParsingTools.java.getDefaultVersion());
 		TextDocument textDocument;
 		try {
 			textDocument = TextDocument.create(textfile);
 		} catch (IOException e) {
 			throw new IOError(e);
 		}
-		Parser.ParserTask task = new Parser.ParserTask(textDocument,
-				SemanticErrorReporter.noop(), pmdParsingTools.lpr);
+		Parser.ParserTask task = new Parser.ParserTask(textDocument, SemanticErrorReporter.noop(), pmdParsingTools.lpr);
 		RootNode root = pmdParsingTools.parser.parse(task);
 		return root;
 	}
-
 }

@@ -7,6 +7,5 @@ import io.github.magwas.kodekonveyorannotations.Glue;
 
 @Configuration
 @Glue
-@ComponentScan(basePackages = { "io.github.magwas" })
-public class Config {
-}
+@ComponentScan(basePackages = {"io.github.magwas"})
+public class Config {}

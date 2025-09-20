@@ -28,5 +28,4 @@ public class LogUtilTest {
 		LogUtil.addDebuggedClass(getClass());
 		verify(mockLogger).setLevel(Level.FINEST);
 	}
-
 }
