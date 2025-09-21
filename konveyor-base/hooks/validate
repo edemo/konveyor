@@ -3,7 +3,6 @@ set -xe
 mkdir -p target/classes/xslt target/classes/hooks .konveyor/xslt target/classes/tools .konveyor/hooks .konveyor/tools
 cp -r xslt/* target/classes/xslt
 mkdir -p target/classes/settings
-cp .settings/org.eclipse.jdt.core.prefs .settings/org.eclipse.jdt.ui.prefs target/classes/settings
 cp -r xslt/* .konveyor/xslt
 EMPTYHOOKS="initialize generate-sources process-sources generate-resources process-resources compile process-classes generate-test-sources process-test-sources generate-test-resources process-test-resources test-compile process-test-classes test prepare-package package pre-integration-test integration-test post-integration-test verify install deploy pre-clean clean post-clean site post-site site-deploy"
 
@@ -16,4 +15,3 @@ cp src/hooks/* target/classes/hooks
 cp src/hooks/* .konveyor/hooks
 cp src/tools/* target/classes/tools
 cp src/tools/* .konveyor/tools
-
