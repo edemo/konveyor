@@ -49,7 +49,7 @@
 							</artifactItems>
 							<outputDirectory>
 								${project.basedir}/.konveyor</outputDirectory>
-							<includes>tools/*.sh,hooks/*,*.xml,xslt/*.xslt,settings/*</includes>
+							<includes>tools/*.sh,hooks/*,*.xml,xslt/*.xslt</includes>
 						</configuration>
 					</execution>
 					<execution>
