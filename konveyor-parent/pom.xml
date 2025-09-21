@@ -618,7 +618,7 @@
 					<plugin>
 						<groupId>org.eclipse.tycho</groupId>
 						<artifactId>tycho-packaging-plugin</artifactId>
-						<version>4.0.12</version>
+						<version>${tycho-version}</version>
 						<executions>
 							<execution>
 								<id>default-package-plugin</id>
@@ -631,6 +631,36 @@
 										<fileSet>
 											<directory>
 												${project.build.directory}/test-classes/</directory>
+										</fileSet>
+									</additionalFileSets>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>maven-source-plugin</artifactId>
+						<configuration>
+							<skipSource>true</skipSource>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.eclipse.tycho</groupId>
+						<artifactId>tycho-source-plugin</artifactId>
+						<version>${tycho-version}</version>
+						<executions>
+							<execution>
+								<id>package-sources</id>
+								<phase>prepare-package</phase>
+								<goals>
+									<goal>plugin-source</goal>
+								</goals>
+								<configuration>
+									<additionalFileSets>
+										<fileSet>
+											<directory>
+												${project.basedir}/src/test/java/</directory>
+											<directory>
+												${project.basedir}/target/genraeted-sources/</directory>
 										</fileSet>
 									</additionalFileSets>
 								</configuration>
