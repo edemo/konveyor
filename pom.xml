@@ -51,7 +51,6 @@
         <maven.compiler.source>${jdk.version}</maven.compiler.source>
         <maven.compiler.target>${jdk.version}</maven.compiler.target>
         <maven.site.deploy.skip>true</maven.site.deploy.skip>
-        <maven.version>3.9.11</maven.version>
         <project.build.sourceEncoding>${project.encoding}</project.build.sourceEncoding>
         <project.encoding>UTF-8</project.encoding>
         <project.reporting.outputEncoding>${project.encoding}</project.reporting.outputEncoding>
