@@ -32,7 +32,7 @@
         <dependency>
             <groupId>io.github.magwas</groupId>
             <artifactId>konveyor-base</artifactId>
-            <version>${project.version}</version>
+            <version>${version.konveyor}</version>
         </dependency>
     </dependencies>
 </project>
