@@ -552,6 +552,20 @@
 			<build>
 				<plugins>
 					<plugin>
+						<groupId>org.eclipse.tycho</groupId>
+						<artifactId>tycho-compiler-plugin</artifactId>
+						<version>${tycho-version}</version>
+						<executions>
+							<execution>
+								<id>test-compile</id>
+								<phase>test-compile</phase>
+								<goals>
+									<goal>testCompile</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
 						<version>3.5.3</version>
@@ -572,12 +586,22 @@
 								<configuration>
 									<failIfNoTests>true</failIfNoTests>
 									<testClassesDirectory>
-										${project.build.directory}/classes</testClassesDirectory>
+										${project.build.directory}/test-classes</testClassesDirectory>
 									<testSourceDirectory>
-										${project.basedir}/src/main/java</testSourceDirectory>
+										${project.basedir}/src/test/java</testSourceDirectory>
 									<excludes>
 										<exclude>**/*PluginTest.java</exclude>
 									</excludes>
+								</configuration>
+							</execution>
+							<execution>
+								<id>integration-test</id>
+								<phase>integration-test</phase>
+								<goals>
+									<goal>test</goal>
+								</goals>
+								<configuration>
+									<skip>true</skip>
 								</configuration>
 							</execution>
 						</executions>
@@ -589,6 +613,58 @@
 						<configuration>
 							<includes>**/*PluginTest.java</includes>
 						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.eclipse.tycho</groupId>
+						<artifactId>tycho-packaging-plugin</artifactId>
+						<version>${tycho-version}</version>
+						<executions>
+							<execution>
+								<id>default-package-plugin</id>
+								<phase>package</phase>
+								<goals>
+									<goal>package-plugin</goal>
+								</goals>
+								<configuration>
+									<additionalFileSets>
+										<fileSet>
+											<directory>
+												${project.build.directory}/test-classes/</directory>
+										</fileSet>
+									</additionalFileSets>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>maven-source-plugin</artifactId>
+						<configuration>
+							<skipSource>true</skipSource>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.eclipse.tycho</groupId>
+						<artifactId>tycho-source-plugin</artifactId>
+						<version>${tycho-version}</version>
+						<executions>
+							<execution>
+								<id>package-sources</id>
+								<phase>prepare-package</phase>
+								<goals>
+									<goal>plugin-source</goal>
+								</goals>
+								<configuration>
+									<additionalFileSets>
+										<fileSet>
+											<directory>
+												${project.basedir}/src/test/java/</directory>
+											<directory>
+												${project.basedir}/target/genraeted-sources/</directory>
+										</fileSet>
+									</additionalFileSets>
+								</configuration>
+							</execution>
+						</executions>
 					</plugin>
 				</plugins>
 			</build>
