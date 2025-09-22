@@ -14,13 +14,10 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		Class<GetASTofSourceTreeService> requiredType = GetASTofSourceTreeService.class;
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
-				Config.class);
-		GetASTofSourceTreeService getASTofSourceTree = context
-				.getBean(requiredType);
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
+		GetASTofSourceTreeService getASTofSourceTree = context.getBean(requiredType);
 		String path = null;
-		if (args.length == 1)
-			path = args[0];
+		if (args.length == 1) path = args[0];
 		else {
 			System.out.println("give me a path name");
 			System.exit(1);
@@ -29,6 +26,5 @@ public class Main {
 		StringBuilder ret = getASTofSourceTree.apply(root);
 		System.out.print(ret);
 		context.close();
-
 	}
 }

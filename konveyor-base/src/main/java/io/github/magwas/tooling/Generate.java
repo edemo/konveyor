@@ -13,15 +13,12 @@ public class Generate {
 		System.out.println("generating " + targetName);
 
 		Class klass = Class.forName(className);
-		Supplier<StringBuilder> instance = (Supplier<StringBuilder>) klass
-				.getConstructor().newInstance();
-		File file = new File("target/generated-sources/"
-				+ targetName.replaceAll("\\.", "/") + ".java");
+		Supplier<StringBuilder> instance =
+				(Supplier<StringBuilder>) klass.getConstructor().newInstance();
+		File file = new File("target/generated-sources/" + targetName.replace(".", "/") + ".java");
 		new File(file.getParent()).mkdirs();
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
 			writer.append(instance.get());
 		}
-
 	}
-
 }

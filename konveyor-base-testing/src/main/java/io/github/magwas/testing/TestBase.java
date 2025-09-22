@@ -20,16 +20,12 @@ public class TestBase {
 	@BeforeEach
 	public void setUp() throws Throwable {
 		stubUp(this);
-
 	}
 
 	@AfterEach
-	public void tearDown() throws Throwable {
-	}
+	public void tearDown() throws Throwable {}
 
-	@SuppressWarnings({
-			"PMD.AvoidAccessibilityAlteration",
-			"PMD.AvoidPrintStackTrace" })
+	@SuppressWarnings({"PMD.AvoidAccessibilityAlteration", "PMD.AvoidPrintStackTrace"})
 	public static void stubUp(final Object test) {
 		try {
 			for (Field objField : test.getClass().getDeclaredFields()) {
@@ -43,17 +39,18 @@ public class TestBase {
 					stubFill(instance);
 				}
 			}
-		} catch (NoSuchMethodException | SecurityException | InstantiationException
-				| IllegalAccessException | InvocationTargetException
+		} catch (NoSuchMethodException
+				| SecurityException
+				| InstantiationException
+				| IllegalAccessException
+				| InvocationTargetException
 				| NullPointerException e) {
 			e.printStackTrace();
 			throw new TestInstantiationException("stubUp " + test, e);
 		}
 	}
 
-	@SuppressWarnings({
-			"PMD.AvoidPrintStackTrace",
-			"PMD.AvoidAccessibilityAlteration" })
+	@SuppressWarnings({"PMD.AvoidPrintStackTrace", "PMD.AvoidAccessibilityAlteration"})
 	public static void stubFill(final Object instance) {
 		Class<? extends Object> type = instance.getClass();
 		for (Field field : type.getDeclaredFields()) {
@@ -66,8 +63,7 @@ public class TestBase {
 					if (null == stub.getAnnotation(IndirectlyTested.class)) {
 						Method method = stub.getDeclaredMethod("stub");
 						if (null == method) {
-							throw new TestInstantiationException(
-									stubName + " does not have stub");
+							throw new TestInstantiationException(stubName + " does not have stub");
 						}
 						method.setAccessible(true);
 						value = method.invoke(null);
@@ -76,13 +72,16 @@ public class TestBase {
 						stubFill(value);
 						value = spy(value);
 					}
-				} catch (ClassNotFoundException | NoSuchMethodException
-						| SecurityException | IllegalAccessException
-						| InvocationTargetException | NullPointerException
-						| InstantiationException | IllegalArgumentException e) {
+				} catch (ClassNotFoundException
+						| NoSuchMethodException
+						| SecurityException
+						| IllegalAccessException
+						| InvocationTargetException
+						| NullPointerException
+						| InstantiationException
+						| IllegalArgumentException e) {
 					e.printStackTrace();
-					throw new TestInstantiationException("problem with stub " + stubName,
-							e);
+					throw new TestInstantiationException("problem with stub " + stubName, e);
 				}
 				field.setAccessible(true);
 				try {
@@ -93,5 +92,4 @@ public class TestBase {
 			}
 		}
 	}
-
 }

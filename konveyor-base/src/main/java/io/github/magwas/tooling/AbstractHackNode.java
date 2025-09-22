@@ -27,5 +27,4 @@ public abstract class AbstractHackNode implements Node {
 	public int getIndexInParent() {
 		return 0;
 	}
-
 }

@@ -31,5 +31,4 @@ public class GetASTofSourceTreeEndToEndTest implements TestData {
 		String actual = builder.toString();
 		assertEquals(AST, actual);
 	}
-
 }

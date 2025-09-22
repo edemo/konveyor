@@ -12,11 +12,8 @@ import net.sourceforge.pmd.lang.ast.Parser;
 @Glue
 @Component
 public class PmdParsingTools {
-	PmdCapableLanguage java = (PmdCapableLanguage) LanguageRegistry.PMD
-			.getLanguageById("java");
+	PmdCapableLanguage java = (PmdCapableLanguage) LanguageRegistry.PMD.getLanguageById("java");
 	LanguageProcessor processor = java.createProcessor(java.newPropertyBundle());
 	Parser parser = processor.services().getParser();
-	LanguageProcessorRegistry lpr = LanguageProcessorRegistry
-			.singleton(processor);
-
+	LanguageProcessorRegistry lpr = LanguageProcessorRegistry.singleton(processor);
 }

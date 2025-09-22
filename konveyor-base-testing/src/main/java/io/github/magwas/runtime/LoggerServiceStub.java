@@ -8,9 +8,11 @@ public class LoggerServiceStub {
 	static LoggerService stub() {
 		LoggerService mock = mock(LoggerService.class);
 		doAnswer(call -> {
-			LogUtil.debug(10, call.getArguments());
-			return null;
-		}).when(mock).debug(any());
+					LogUtil.debug(10, call.getArguments());
+					return null;
+				})
+				.when(mock)
+				.debug(any());
 		return mock;
 	}
 }

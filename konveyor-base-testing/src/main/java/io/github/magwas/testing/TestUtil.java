@@ -16,13 +16,13 @@ public class TestUtil {
 		remaining.addAll(expected);
 		remaining.removeAll(actual);
 		System.out.println("expected - actual:");
-		remaining.forEach(x -> System.out.println(x));
+		remaining.forEach(System.out::println);
 
 		Set<T> actualCopy = new HashSet<T>();
 		actualCopy.addAll(actual);
 		actualCopy.removeAll(expected);
 		System.out.println("actual - expected:");
-		actualCopy.forEach(x -> System.out.println(x));
+		actualCopy.forEach(System.out::println);
 	}
 
 	public static String getFileContents(Path path) {
@@ -36,5 +36,4 @@ public class TestUtil {
 	public static void assertStreamEquals(Set<?> expected, Stream<?> actual) {
 		assertEquals(expected, actual.collect(Collectors.toSet()));
 	}
-
 }

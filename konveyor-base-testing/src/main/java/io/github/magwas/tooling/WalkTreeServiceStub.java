@@ -11,10 +11,12 @@ public class WalkTreeServiceStub implements TestData {
 	static WalkTreeService stub() {
 		WalkTreeService mock = mock(WalkTreeService.class);
 		doAnswer(invocation -> {
-			Consumer<File> consumer = invocation.getArgument(1);
-			consumer.accept(ANNOTATION_FILE);
-			return null;
-		}).when(mock).apply(any(), any());
+					Consumer<File> consumer = invocation.getArgument(1);
+					consumer.accept(ANNOTATION_FILE);
+					return null;
+				})
+				.when(mock)
+				.apply(any(), any());
 
 		return mock;
 	}

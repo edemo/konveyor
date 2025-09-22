@@ -26,15 +26,11 @@ public class LogUtil {
 	}
 
 	public static void debug(int depth, Object... args) {
-		if (debuggedClasses == null)
-			return;
-		StackTraceElement stackTraceElement = Thread.currentThread()
-				.getStackTrace()[depth];
+		if (debuggedClasses == null) return;
+		StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[depth];
 		String name = stackTraceElement.getClassName();
-		if (!debuggedClasses.contains(name))
-			return;
-		List<String> params = List.of(args).stream().map(x -> x.toString())
-				.collect(Collectors.toList());
+		if (!debuggedClasses.contains(name)) return;
+		List<String> params = List.of(args).stream().map(Object::toString).collect(Collectors.toList());
 		String method = stackTraceElement.getMethodName();
 		StringBuilder builder = new StringBuilder();
 		builder.append("DEBUG ");
@@ -53,8 +49,7 @@ public class LogUtil {
 	}
 
 	public static void warning(int depth, Object... args) {
-		StackTraceElement stackTraceElement = Thread.currentThread()
-				.getStackTrace()[depth];
+		StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[depth];
 		doLog(stackTraceElement, Level.WARNING, args);
 	}
 
@@ -63,16 +58,13 @@ public class LogUtil {
 	}
 
 	public static void info(int depth, Object... args) {
-		StackTraceElement stackTraceElement = Thread.currentThread()
-				.getStackTrace()[depth];
+		StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[depth];
 		doLog(stackTraceElement, Level.INFO, args);
 	}
 
-	private static void doLog(StackTraceElement stackTraceElement, Level level,
-			Object... args) {
+	private static void doLog(StackTraceElement stackTraceElement, Level level, Object... args) {
 		String name = stackTraceElement.getClassName();
-		List<String> params = List.of(args).stream().map(x -> x.toString())
-				.collect(Collectors.toList());
+		List<String> params = List.of(args).stream().map(Object::toString).collect(Collectors.toList());
 		String method = stackTraceElement.getMethodName();
 		StringBuilder builder = new StringBuilder();
 		builder.append(stackTraceElement.getLineNumber());

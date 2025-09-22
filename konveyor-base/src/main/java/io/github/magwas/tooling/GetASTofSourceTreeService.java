@@ -17,13 +17,16 @@ import net.sourceforge.pmd.util.treeexport.XmlTreeRenderer;
 public class GetASTofSourceTreeService {
 	@Autowired
 	WalkTreeService walkTree;
+
 	@Autowired
 	GenerateAstService generateAst;
 
 	public StringBuilder apply(Path rootPath) throws IOException {
 		List<SourceFileNode> children = Stream.of(rootPath.toFile())
-				.mapMulti(walkTree::apply).filter(x -> x.getName().endsWith(".java"))
-				.map(x -> x.toPath()).map(generateAst::apply)
+				.mapMulti(walkTree::apply)
+				.filter(x -> x.getName().endsWith(".java"))
+				.map(x -> x.toPath())
+				.map(generateAst::apply)
 				.map(x -> wrapToSourceFileNode(rootPath, x))
 				.collect(Collectors.toList());
 		StringBuilder builder = new StringBuilder();
@@ -32,10 +35,8 @@ public class GetASTofSourceTreeService {
 	}
 
 	private SourceFileNode wrapToSourceFileNode(Path rootPath, RootNode x) {
-		Path absPath = new File(x.getReportLocation().getFileId().getAbsolutePath())
-				.toPath();
+		Path absPath = new File(x.getReportLocation().getFileId().getAbsolutePath()).toPath();
 		Path rel = rootPath.relativize(absPath);
 		return new SourceFileNode(rel.toString(), x);
 	}
-
 }

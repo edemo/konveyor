@@ -18,7 +18,7 @@ public class GetASTofSourceTreeTest extends TestBase implements TestData {
 	@Test
 	@DisplayName("gets the AST of the source tree")
 	void test() throws IOException {
-		assertEquals(ANNOTATION_AST,
-				getASTofSourceTree.apply(ANNOTATION_AST_PATH).toString());
+		assertEquals(
+				ANNOTATION_AST, getASTofSourceTree.apply(ANNOTATION_AST_PATH).toString());
 	}
 }
