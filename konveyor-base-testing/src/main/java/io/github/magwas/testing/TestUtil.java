@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class TestUtil {
-	public static <T> void diffCollections(Set<T> expected, Set<T> actual) {
+	public static <T> void diffCollections(final Set<T> expected, final Set<T> actual) {
 		Set<T> remaining = new HashSet<T>();
 		remaining.addAll(expected);
 		remaining.removeAll(actual);
@@ -25,7 +25,7 @@ public class TestUtil {
 		actualCopy.forEach(System.out::println);
 	}
 
-	public static String getFileContents(Path path) {
+	public static String getFileContents(final Path path) {
 		try {
 			return Files.readString(path);
 		} catch (IOException e) {
@@ -33,7 +33,7 @@ public class TestUtil {
 		}
 	}
 
-	public static void assertStreamEquals(Set<?> expected, Stream<?> actual) {
+	public static void assertStreamEquals(final Set<?> expected, final Stream<?> actual) {
 		assertEquals(expected, actual.collect(Collectors.toSet()));
 	}
 }

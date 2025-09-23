@@ -21,7 +21,7 @@ public class GetASTofSourceTreeService {
 	@Autowired
 	GenerateAstService generateAst;
 
-	public StringBuilder apply(Path rootPath) throws IOException {
+	public StringBuilder apply(final Path rootPath) throws IOException {
 		List<SourceFileNode> children = Stream.of(rootPath.toFile())
 				.mapMulti(walkTree::apply)
 				.filter(x -> x.getName().endsWith(".java"))
@@ -34,7 +34,7 @@ public class GetASTofSourceTreeService {
 		return builder;
 	}
 
-	private SourceFileNode wrapToSourceFileNode(Path rootPath, RootNode x) {
+	private SourceFileNode wrapToSourceFileNode(final Path rootPath, final RootNode x) {
 		Path absPath = new File(x.getReportLocation().getFileId().getAbsolutePath()).toPath();
 		Path rel = rootPath.relativize(absPath);
 		return new SourceFileNode(rel.toString(), x);

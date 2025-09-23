@@ -13,12 +13,12 @@ public class SourceTreeNode extends AbstractHackNode implements RootNode {
 
 	List<SourceFileNode> children = new ArrayList<>();
 
-	public SourceTreeNode(List<SourceFileNode> children2) {
+	public SourceTreeNode(final List<SourceFileNode> children2) {
 		this.children = children2;
 	}
 
 	@Override
-	public Node getChild(int index) {
+	public Node getChild(final int index) {
 		return children.get(index);
 	}
 
@@ -32,7 +32,7 @@ public class SourceTreeNode extends AbstractHackNode implements RootNode {
 		return "SourceTree";
 	}
 
-	public void addChild(SourceFileNode child) {
+	public void addChild(final SourceFileNode child) {
 		children.add(child);
 	}
 

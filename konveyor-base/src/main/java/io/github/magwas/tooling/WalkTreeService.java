@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class WalkTreeService {
-	public void apply(File root, Consumer<File> consumer) {
+	public void apply(final File root, final Consumer<File> consumer) {
 		File[] files = root.listFiles();
 		for (File file : files) {
 			if (file.isDirectory()) apply(file, consumer);
