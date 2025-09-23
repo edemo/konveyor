@@ -1,2 +1,2 @@
 #!/bin/bash
-cp target/upstream.xml target/konveyor.xml .konveyor
+cp target/upstream.xml target/pmd.xml target/konveyor.xml .konveyor

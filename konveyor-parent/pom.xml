@@ -381,6 +381,7 @@
                     <includeTests>true</includeTests>
                     <rulesets>
                         <ruleset>${project.basedir}/.konveyor/konveyor.xml</ruleset>
+                        <ruleset>${project.basedir}/.konveyor/pmd.xml</ruleset>
                         <ruleset>${project.basedir}/.konveyor/upstream.xml</ruleset>
                     </rulesets>
                 </configuration>

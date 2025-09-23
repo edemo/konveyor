@@ -46,4 +46,3 @@ Upstream rules applicable to the Kode Konveyor style
         <rule ref="category/java/multithreading.xml/DoubleCheckedLocking" />
         <rule ref="category/java/performance.xml/BigIntegerInstantiation" />
 </ruleset>
-

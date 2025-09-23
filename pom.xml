@@ -347,6 +347,7 @@
                         <includeTests>true</includeTests>
                         <rulesets>
                             <ruleset>konveyor.xml</ruleset>
+                            <ruleset>pmd.xml</ruleset>
                             <ruleset>upstream.xml</ruleset>
                         </rulesets>
                     </configuration>
