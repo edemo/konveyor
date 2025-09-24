@@ -4,79 +4,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
     <description>WAR project PMD rules of Kode Konveyor</description>
-    <rule ref="category/java/bestpractices.xml">
-        <exclude name="GuardLogStatement" />
-        <exclude name="ImplicitFunctionalInterface" />
-        <exclude name="ConstantsInInterface" />
-    </rule>
-    <rule ref="category/java/codestyle.xml">
-        <exclude name="ClassNamingConventions" />
-        <exclude name="CommentDefaultAccessModifier" />
-        <exclude name="LongVariable" />
-        <exclude name="ShortVariable" />
-        <exclude name="ControlStatementBraces" />
-        <exclude name="MethodNamingConventions" />
-        <exclude name="AtLeastOneConstructor" />
-        <exclude name="LocalVariableCouldBeFinal" />
-        <exclude name="ClassNamingConventions" />
-        <exclude name="FieldNamingConventions" />
-        <exclude name="GenericsNaming" />
-        <exclude name="OnlyOneReturn" />
-        <exclude name="TooManyStaticImports" />
-    </rule>
-    <rule ref="category/java/design.xml">
-        <exclude name="LawOfDemeter" />
-        <exclude name="FinalFieldCouldBeStatic" />
-        <exclude name="LoosePackageCoupling" />
-        <exclude name="UseUtilityClass" />
-        <exclude name="DataClass" />
-        <exclude name="TooManyFields" />
-    </rule>
-    <rule ref="category/java/design.xml/CyclomaticComplexity">
-        <properties>
-            <property name="classReportLevel" value="20" />
-            <property name="methodReportLevel" value="10" />
-        </properties>
-    </rule>
 
-    <rule ref="category/java/documentation.xml/CommentRequired">
-        <properties>
-            <property name="methodWithOverrideCommentRequirement" value="Unwanted" />
-            <property name="accessorCommentRequirement" value="Unwanted" />
-            <property name="classCommentRequirement" value="Unwanted" />
-            <property name="fieldCommentRequirement" value="Unwanted" />
-            <property name="publicMethodCommentRequirement" value="Unwanted" />
-            <property name="protectedMethodCommentRequirement" value="Unwanted" />
-            <property name="enumCommentRequirement" value="Unwanted" />
-            <property name="serialVersionUIDCommentRequired" value="Unwanted" />
-            <property name="serialPersistentFieldsCommentRequired" value="Unwanted" />
-        </properties>
-    </rule>
-
-    <rule ref="category/java/errorprone.xml">
-    </rule>
-    <rule ref="category/java/multithreading.xml" />
-    <rule ref="category/java/performance.xml" />
-    <rule ref="category/java/security.xml" />
-
-    <rule
-            ref="category/java/design.xml/SignatureDeclareThrowsException">
-        <properties>
-            <property name="IgnoreJUnitCompletely" value="true" />
-            <property name="violationSuppressRegex"
-                      value="/src/integration-test/*" />
-        </properties>
-    </rule>
-    <rule ref="category/java/codestyle.xml/LinguisticNaming">
-        <properties>
-            <property name="ignoredAnnotations" value="org.junit.Test" />
-        </properties>
-    </rule>
-    <rule ref="category/java/codestyle.xml/TooManyStaticImports">
-        <properties>
-            <property name="maximumStaticImports" value="10" />
-        </properties>
-    </rule>
     <rule name="GenericsNamesShouldBeDescriptive" language="java"
           message="Generics names should match '[A-Z][a-z0-9]*Type'"
           class="net.sourceforge.pmd.lang.rule.xpath.XPathRule">

@@ -3,7 +3,6 @@
   <analysis enabled="true" />
   <rulesets>
     <ruleset name="Kode Konveyor ruleset" ref="target/classes/konveyor.xml" refcontext="project" />
-    <ruleset name="Kode Konveyor WAR" ref="target/classes/pmd.xml" refcontext="project" />
     <ruleset name="Upstream rules" ref="target/classes/upstream.xml" refcontext="project" />
   </rulesets>
 </eclipse-pmd>
