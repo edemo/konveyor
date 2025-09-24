@@ -32,7 +32,13 @@ public class LogUtil {
 		if (!debuggedClasses.contains(name)) return;
 		List<String> params = Stream.of(args).map(Object::toString).toList();
 		String method = stackTraceElement.getMethodName();
-		String string = "DEBUG " + name + ' ' + method + ' ' + stackTraceElement.getLineNumber() + ':'
+		String string = "DEBUG "
+				+ name
+				+ ' '
+				+ method
+				+ ' '
+				+ stackTraceElement.getLineNumber()
+				+ ':'
 				+ String.join(",", params);
 		System.err.println(string);
 	}
