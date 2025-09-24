@@ -1,49 +1,82 @@
 <ruleset name="Upstream rules">
-<description>
-Upstream rules applicable to the Kode Konveyor style
-</description>
+    <description>
+        Upstream rules applicable to the Kode Konveyor style
+    </description>
 
-        <rule ref="category/java/bestpractices.xml/AvoidUsingHardCodedIP" />
-        <rule ref="category/java/bestpractices.xml/CheckResultSet" />
-        <rule ref="category/java/bestpractices.xml/PrimitiveWrapperInstantiation" />
-        <rule ref="category/java/bestpractices.xml/UnusedFormalParameter" />
-        <rule ref="category/java/bestpractices.xml/UnusedLocalVariable" />
-        <rule ref="category/java/bestpractices.xml/UnusedPrivateField" />
-        <rule ref="category/java/bestpractices.xml/UnusedPrivateMethod" />
-        <rule ref="category/java/codestyle.xml/EmptyControlStatement" />
-        <rule ref="category/java/codestyle.xml/ExtendsObject" />
-        <rule ref="category/java/codestyle.xml/ForLoopShouldBeWhileLoop" />
-        <rule ref="category/java/codestyle.xml/TooManyStaticImports" />
-        <rule ref="category/java/codestyle.xml/UnnecessaryFullyQualifiedName" />
-        <rule ref="category/java/codestyle.xml/UnnecessaryImport" />
-        <rule ref="category/java/codestyle.xml/UnnecessaryModifier" />
-        <rule ref="category/java/codestyle.xml/UnnecessaryReturn" />
-        <rule ref="category/java/codestyle.xml/UnnecessarySemicolon" />
-        <rule ref="category/java/codestyle.xml/UselessParentheses" />
-        <rule ref="category/java/codestyle.xml/UselessQualifiedThis" />
-        <rule ref="category/java/design.xml/CollapsibleIfStatements" />
-        <rule ref="category/java/design.xml/SimplifiedTernary" />
-        <rule ref="category/java/design.xml/UselessOverridingMethod" />
-        <rule ref="category/java/errorprone.xml/AvoidBranchingStatementAsLastInLoop" />
-        <rule ref="category/java/errorprone.xml/AvoidDecimalLiteralsInBigDecimalConstructor" />
-        <rule ref="category/java/errorprone.xml/AvoidMultipleUnaryOperators" />
-        <rule ref="category/java/errorprone.xml/AvoidUsingOctalValues" />
-        <rule ref="category/java/errorprone.xml/BrokenNullCheck" />
-        <rule ref="category/java/errorprone.xml/CheckSkipResult" />
-        <rule ref="category/java/errorprone.xml/ClassCastExceptionWithToArray" />
-        <rule ref="category/java/errorprone.xml/DontUseFloatTypeForLoopIndices" />
-        <rule ref="category/java/errorprone.xml/EmptyCatchBlock" />
-        <rule ref="category/java/errorprone.xml/JumbledIncrementer" />
-        <rule ref="category/java/errorprone.xml/MisplacedNullCheck" />
-        <rule ref="category/java/errorprone.xml/OverrideBothEqualsAndHashcode" />
-        <rule ref="category/java/errorprone.xml/ReturnFromFinallyBlock" />
-        <rule ref="category/java/errorprone.xml/UnconditionalIfStatement" />
-        <rule ref="category/java/errorprone.xml/UnnecessaryConversionTemporary" />
-        <rule ref="category/java/errorprone.xml/UnusedNullCheckInEquals" />
-        <rule ref="category/java/errorprone.xml/UselessOperationOnImmutable" />
-        <rule ref="category/java/multithreading.xml/AvoidThreadGroup" />
-        <rule ref="category/java/multithreading.xml/DontCallThreadRun" />
-        <rule ref="category/java/multithreading.xml/DoubleCheckedLocking" />
-        <rule ref="category/java/performance.xml/BigIntegerInstantiation" />
+    <rule ref="category/java/bestpractices.xml">
+        <exclude name="ConstantsInInterface"/>
+        <exclude name="GuardLogStatement"/>
+        <exclude name="ImplicitFunctionalInterface"/>
+    </rule>
+
+    <rule ref="category/java/codestyle.xml">
+        <exclude name="AtLeastOneConstructor"/>
+        <exclude name="CallSuperInConstructor"/>
+        <exclude name="ClassNamingConventions"/>
+        <exclude name="CommentDefaultAccessModifier"/>
+        <exclude name="ControlStatementBraces"/>
+        <exclude name="FieldNamingConventions"/>
+        <exclude name="GenericsNaming"/>
+        <exclude name="LocalVariableCouldBeFinal"/>
+        <exclude name="LongVariable"/>
+        <exclude name="MethodNamingConventions"/>
+        <exclude name="OnlyOneReturn"/>
+        <exclude name="ShortVariable"/>
+    </rule>
+
+    <rule ref="category/java/codestyle.xml/LinguisticNaming">
+        <properties>
+            <property name="ignoredAnnotations" value="org.junit.Test"/>
+        </properties>
+    </rule>
+
+    <rule ref="category/java/codestyle.xml/TooManyStaticImports">
+        <properties>
+            <property name="maximumStaticImports" value="10"/>
+        </properties>
+    </rule>
+
+    <rule ref="category/java/design.xml">
+        <exclude name="DataClass"/>
+        <exclude name="FinalFieldCouldBeStatic"/>
+        <exclude name="LawOfDemeter"/>
+        <exclude name="LoosePackageCoupling"/>
+        <exclude name="TooManyFields"/>
+        <exclude name="UseUtilityClass"/>
+    </rule>
+
+    <rule ref="category/java/design.xml/CyclomaticComplexity">
+        <properties>
+            <property name="classReportLevel" value="20"/>
+            <property name="methodReportLevel" value="10"/>
+        </properties>
+    </rule>
+
+    <rule ref="category/java/design.xml/SignatureDeclareThrowsException">
+        <properties>
+            <property name="IgnoreJUnitCompletely" value="true"/>
+            <property name="violationSuppressRegex"
+                      value="/src/integration-test/*"/>
+        </properties>
+    </rule>
+
+    <rule ref="category/java/documentation.xml/CommentRequired">
+        <properties>
+            <property name="accessorCommentRequirement" value="Unwanted"/>
+            <property name="classCommentRequirement" value="Unwanted"/>
+            <property name="enumCommentRequirement" value="Unwanted"/>
+            <property name="fieldCommentRequirement" value="Unwanted"/>
+            <property name="methodWithOverrideCommentRequirement" value="Unwanted"/>
+            <property name="protectedMethodCommentRequirement" value="Unwanted"/>
+            <property name="publicMethodCommentRequirement" value="Unwanted"/>
+            <property name="serialPersistentFieldsCommentRequired" value="Unwanted"/>
+            <property name="serialVersionUIDCommentRequired" value="Unwanted"/>
+        </properties>
+    </rule>
+
+    <rule ref="category/java/errorprone.xml"/>
+    <rule ref="category/java/multithreading.xml"/>
+    <rule ref="category/java/performance.xml"/>
+    <rule ref="category/java/security.xml"/>
+
 </ruleset>
-
