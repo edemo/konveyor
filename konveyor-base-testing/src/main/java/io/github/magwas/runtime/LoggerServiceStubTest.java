@@ -11,7 +11,7 @@ import org.mockito.InjectMocks;
 
 import io.github.magwas.testing.TestBase;
 
-public class LoggerServiceStubTest extends TestBase {
+class LoggerServiceStubTest extends TestBase {
 
 	@InjectMocks
 	TestComponent testComponent;

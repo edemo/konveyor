@@ -10,7 +10,7 @@ import org.mockito.InjectMocks;
 
 import io.github.magwas.testing.TestBase;
 
-public class GetASTofSourceTreeTest extends TestBase implements TestData {
+class GetASTofSourceTreeTest extends TestBase implements TestData {
 
 	@InjectMocks
 	GetASTofSourceTreeService getASTofSourceTree;
