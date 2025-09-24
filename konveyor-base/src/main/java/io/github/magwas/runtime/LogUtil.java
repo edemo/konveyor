@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LogUtil {
 	static Set<String> debuggedClasses = new HashSet<>();
@@ -30,18 +30,17 @@ public class LogUtil {
 		StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[depth];
 		String name = stackTraceElement.getClassName();
 		if (!debuggedClasses.contains(name)) return;
-		List<String> params = List.of(args).stream().map(Object::toString).collect(Collectors.toList());
+		List<String> params = Stream.of(args).map(Object::toString).toList();
 		String method = stackTraceElement.getMethodName();
-		StringBuilder builder = new StringBuilder();
-		builder.append("DEBUG ");
-		builder.append(name);
-		builder.append(" ");
-		builder.append(method);
-		builder.append(" ");
-		builder.append(stackTraceElement.getLineNumber());
-		builder.append(":");
-		builder.append(String.join(",", params));
-		System.err.println(builder.toString());
+		String string = "DEBUG "
+				+ name
+				+ ' '
+				+ method
+				+ ' '
+				+ stackTraceElement.getLineNumber()
+				+ ':'
+				+ String.join(",", params);
+		System.err.println(string);
 	}
 
 	public static void warning(final Object... args) {
@@ -64,12 +63,9 @@ public class LogUtil {
 
 	private static void doLog(final StackTraceElement stackTraceElement, final Level level, final Object... args) {
 		String name = stackTraceElement.getClassName();
-		List<String> params = List.of(args).stream().map(Object::toString).collect(Collectors.toList());
+		List<String> params = Stream.of(args).map(Object::toString).toList();
 		String method = stackTraceElement.getMethodName();
-		StringBuilder builder = new StringBuilder();
-		builder.append(stackTraceElement.getLineNumber());
-		builder.append(":");
-		builder.append(String.join(",", params));
-		logger.logp(level, name, method, builder.toString());
+		String string = stackTraceElement.getLineNumber() + ":" + String.join(",", params);
+		logger.logp(level, name, method, string);
 	}
 }

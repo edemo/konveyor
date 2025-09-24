@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +24,10 @@ public class GetASTofSourceTreeService {
 		List<SourceFileNode> children = Stream.of(rootPath.toFile())
 				.mapMulti(walkTree::apply)
 				.filter(x -> x.getName().endsWith(".java"))
-				.map(x -> x.toPath())
+				.map(File::toPath)
 				.map(generateAst::apply)
 				.map(x -> wrapToSourceFileNode(rootPath, x))
-				.collect(Collectors.toList());
+				.toList();
 		StringBuilder builder = new StringBuilder();
 		new XmlTreeRenderer().renderSubtree(new SourceTreeNode(children), builder);
 		return builder;

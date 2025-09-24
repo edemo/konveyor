@@ -20,7 +20,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @Tag("end-to-end")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = Config.class)
-public class LoggerServiceTest {
+class LoggerServiceTest {
 
 	@Autowired
 	LoggerService logger;

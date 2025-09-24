@@ -35,7 +35,6 @@ public class GenerateAstService {
 			throw new IOError(e);
 		}
 		Parser.ParserTask task = new Parser.ParserTask(textDocument, SemanticErrorReporter.noop(), pmdParsingTools.lpr);
-		RootNode root = pmdParsingTools.parser.parse(task);
-		return root;
+		return pmdParsingTools.parser.parse(task);
 	}
 }

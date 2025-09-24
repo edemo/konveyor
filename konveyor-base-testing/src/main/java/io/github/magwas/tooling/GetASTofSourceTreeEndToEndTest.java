@@ -3,7 +3,6 @@ package io.github.magwas.tooling;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
-import java.nio.file.Path;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -18,7 +17,7 @@ import io.github.magwas.runtime.Config;
 @Tag("end-to-end")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = Config.class)
-public class GetASTofSourceTreeEndToEndTest implements TestData {
+class GetASTofSourceTreeEndToEndTest implements TestData {
 
 	@Autowired
 	GetASTofSourceTreeService getASTofSourceTree;
@@ -26,9 +25,7 @@ public class GetASTofSourceTreeEndToEndTest implements TestData {
 	@Test
 	@DisplayName("extract AST from a source tree")
 	void test2() throws IOException {
-		Path rootPath = RESOURCE_PATH;
-		StringBuilder builder = getASTofSourceTree.apply(rootPath);
-		String actual = builder.toString();
+		String actual = getASTofSourceTree.apply(RESOURCE_PATH).toString();
 		assertEquals(AST, actual);
 	}
 }

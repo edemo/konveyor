@@ -12,13 +12,13 @@ import java.util.stream.Stream;
 
 public class TestUtil {
 	public static <T> void diffCollections(final Set<T> expected, final Set<T> actual) {
-		Set<T> remaining = new HashSet<T>();
+		Set<T> remaining = new HashSet<>();
 		remaining.addAll(expected);
 		remaining.removeAll(actual);
 		System.out.println("expected - actual:");
 		remaining.forEach(System.out::println);
 
-		Set<T> actualCopy = new HashSet<T>();
+		Set<T> actualCopy = new HashSet<>();
 		actualCopy.addAll(actual);
 		actualCopy.removeAll(expected);
 		System.out.println("actual - expected:");

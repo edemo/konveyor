@@ -52,7 +52,7 @@ public class TestBase {
 
 	@SuppressWarnings({"PMD.AvoidPrintStackTrace", "PMD.AvoidAccessibilityAlteration"})
 	public static void stubFill(final Object instance) {
-		Class<? extends Object> type = instance.getClass();
+		Class<?> type = instance.getClass();
 		for (Field field : type.getDeclaredFields()) {
 			if (field.isAnnotationPresent(Autowired.class)) {
 				String stubName = field.getType().getName() + "Stub";
@@ -62,9 +62,6 @@ public class TestBase {
 					stub = Class.forName(stubName);
 					if (null == stub.getAnnotation(IndirectlyTested.class)) {
 						Method method = stub.getDeclaredMethod("stub");
-						if (null == method) {
-							throw new TestInstantiationException(stubName + " does not have stub");
-						}
 						method.setAccessible(true);
 						value = method.invoke(null);
 					} else {
