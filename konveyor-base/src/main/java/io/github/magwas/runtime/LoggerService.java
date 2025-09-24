@@ -8,15 +8,15 @@ import io.github.magwas.kodekonveyorannotations.Glue;
 @Component
 public class LoggerService {
 
-	public void debug(Object... args) {
+	public void debug(final Object... args) {
 		LogUtil.debug(3, args);
 	}
 
-	public void warning(Object... args) {
+	public void warning(final Object... args) {
 		LogUtil.warning(3, args);
 	}
 
-	public void info(Object... args) {
+	public void info(final Object... args) {
 		LogUtil.info(3, args);
 	}
 }

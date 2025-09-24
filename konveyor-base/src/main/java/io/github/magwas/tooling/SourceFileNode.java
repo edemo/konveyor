@@ -9,7 +9,7 @@ public class SourceFileNode extends AbstractHackNode implements Node {
 	Node child;
 	String path;
 
-	SourceFileNode(String path, Node child) {
+	SourceFileNode(final String path, final Node child) {
 		this.path = path;
 		this.child = child;
 	}
@@ -24,7 +24,7 @@ public class SourceFileNode extends AbstractHackNode implements Node {
 	}
 
 	@Override
-	public Node getChild(int index) {
+	public Node getChild(final int index) {
 		return child;
 	}
 
