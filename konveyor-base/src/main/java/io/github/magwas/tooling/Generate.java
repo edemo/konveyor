@@ -7,7 +7,7 @@ import java.util.function.Supplier;
 
 public class Generate {
 
-	public static void main(String... args) throws Exception {
+	public static void main(final String... args) throws Exception {
 		String className = args[0];
 		String targetName = className.replaceFirst("Generator$", "");
 		System.out.println("generating " + targetName);

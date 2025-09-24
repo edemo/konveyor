@@ -12,7 +12,7 @@ import io.github.magwas.runtime.Config;
 @Glue
 public class Main {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(final String[] args) throws IOException {
 		Class<GetASTofSourceTreeService> requiredType = GetASTofSourceTreeService.class;
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		GetASTofSourceTreeService getASTofSourceTree = context.getBean(requiredType);

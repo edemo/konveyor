@@ -21,12 +21,12 @@ public class GenerateAstService {
 	@SuppressWarnings("PMD.AutowiredFields")
 	PmdParsingTools pmdParsingTools;
 
-	public void apply(Path path, Appendable appendable) throws IOException {
+	public void apply(final Path path, final Appendable appendable) throws IOException {
 		RootNode root = apply(path);
 		new XmlTreeRenderer().renderSubtree(root, appendable);
 	}
 
-	public RootNode apply(Path path) {
+	public RootNode apply(final Path path) {
 		TextFile textfile = TextFile.forPath(path, Charset.defaultCharset(), pmdParsingTools.java.getDefaultVersion());
 		TextDocument textDocument;
 		try {

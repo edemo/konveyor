@@ -7,7 +7,8 @@ import java.util.stream.Stream;
 
 public class GeneratorUtil {
 
-	public static void testDataBoilerPlate(StringBuilder builder, String preamble, String... extendeds) {
+	public static void testDataBoilerPlate(
+			final StringBuilder builder, final String preamble, final String... extendeds) {
 		String fullClassName = Thread.currentThread().getStackTrace()[2].getClassName();
 		String klassName = fullClassName.replaceFirst(".*\\.", "").replace("Generator", "");
 		String packageName = fullClassName.replaceFirst("\\.[^.]*$", "");
@@ -23,20 +24,22 @@ public class GeneratorUtil {
 		builder.append(" {\n");
 	}
 
-	public static void mapToCode(String input, Function<? super String, String> mapper, StringBuilder builder) {
+	public static void mapToCode(
+			final String input, final Function<? super String, String> mapper, final StringBuilder builder) {
 		linesOf(input).map(mapper).forEach(builder::append);
 	}
 
-	public static void mapToCode(Stream<String> input, Function<? super String, String> mapper, StringBuilder builder) {
+	public static void mapToCode(
+			final Stream<String> input, final Function<? super String, String> mapper, final StringBuilder builder) {
 		input.map(mapper).forEach(builder::append);
 	}
 
-	public static Stream<String> linesOf(String input) {
+	public static Stream<String> linesOf(final String input) {
 		return Arrays.stream(input.split("\n"));
 	}
 
-	public static Function<String, String> stringConstant(String postfix) {
-		return (String line) -> {
+	public static Function<String, String> stringConstant(final String postfix) {
+		return (final String line) -> {
 			String[] parts = line.split(",", 2);
 			return MessageFormat.format(
 					"""
