@@ -390,6 +390,10 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+            </plugin>
         </plugins>
     </reporting>
     <profiles>
@@ -402,118 +406,7 @@
                 </property>
             </activation>
             <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.eclipse.tycho</groupId>
-                        <artifactId>tycho-compiler-plugin</artifactId>
-                        <version>${version.tycho}</version>
-                        <executions>
-                            <execution>
-                                <id>test-compile</id>
-                                <goals>
-                                    <goal>testCompile</goal>
-                                </goals>
-                                <phase>test-compile</phase>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <dependencies>
-                            <dependency>
-                                <groupId>org.apache.maven.surefire</groupId>
-                                <artifactId>surefire-junit-platform</artifactId>
-                                <version>3.0.0</version>
-                            </dependency>
-                        </dependencies>
-                        <executions>
-                            <execution>
-                                <id>default-test</id>
-                                <goals>
-                                    <goal>test</goal>
-                                </goals>
-                                <phase>test</phase>
-                                <configuration>
-                                    <failIfNoTests>true</failIfNoTests>
-                                    <testClassesDirectory>${project.build.directory}/test-classes</testClassesDirectory>
-                                    <testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory>
-                                    <excludes>
-                                        <exclude>**/*PluginTest.java</exclude>
-                                    </excludes>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>integration-test</id>
-                                <goals>
-                                    <goal>test</goal>
-                                </goals>
-                                <phase>integration-test</phase>
-                                <configuration>
-                                    <skip>true</skip>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.eclipse.tycho</groupId>
-                        <artifactId>tycho-surefire-plugin</artifactId>
-                        <version>${version.tycho}</version>
-                        <configuration>
-                            <includes>**/*PluginTest.java</includes>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.eclipse.tycho</groupId>
-                        <artifactId>tycho-packaging-plugin</artifactId>
-                        <version>${version.tycho}</version>
-                        <executions>
-                            <execution>
-                                <id>default-package-plugin</id>
-                                <goals>
-                                    <goal>package-plugin</goal>
-                                </goals>
-                                <phase>package</phase>
-                                <configuration>
-                                    <additionalFileSets>
-                                        <fileSet>
-                                            <directory>${project.build.directory}/test-classes/</directory>
-                                        </fileSet>
-                                    </additionalFileSets>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <configuration>
-                            <skipSource>true</skipSource>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.eclipse.tycho</groupId>
-                        <artifactId>tycho-source-plugin</artifactId>
-                        <version>${version.tycho}</version>
-                        <executions>
-                            <execution>
-                                <id>package-sources</id>
-                                <goals>
-                                    <goal>plugin-source</goal>
-                                </goals>
-                                <phase>prepare-package</phase>
-                                <configuration>
-                                    <additionalFileSets>
-                                        <fileSet>
-                                            <directory>${project.basedir}/src/test/java/</directory>
-                                            <directory>${project.basedir}/target/generated-sources/</directory>
-                                        </fileSet>
-                                    </additionalFileSets>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
+                <plugins/>
             </build>
         </profile>
     </profiles>
