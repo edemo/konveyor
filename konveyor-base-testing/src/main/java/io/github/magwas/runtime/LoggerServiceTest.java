@@ -52,7 +52,7 @@ class LoggerServiceTest {
 			"warning logs using the logger, using the caller's class and method name, and prepending the message with the line number")
 	void test1() {
 		logger.warning("testlog");
-		verify(loggerMock).logp(Level.WARNING, "io.github.magwas.runtime.LoggerServiceTest", "test1", "55:testlog");
+		verify(loggerMock).logp(Level.WARNING, "io.github.magwas.runtime.LoggerServiceTest", "test1", "54:testlog");
 	}
 
 	@Test
