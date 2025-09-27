@@ -39,7 +39,7 @@ public class GeneratorUtil {
 	}
 
 	public static Function<String, String> stringConstant(final String postfix) {
-		return (final String line) -> {
+		return line -> {
 			String[] parts = line.split(",", 2);
 			return MessageFormat.format(
 					"""
