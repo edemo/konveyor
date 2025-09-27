@@ -1,7 +1,7 @@
 #!/bin/bash
 set -xe
-for i in $(find src/main/java -name '*Generator.java'|sed 'sAsrc/main/java/AA;s/.java$//;sA/A.Ag')
+for i in $(find src/generators-java -name '*Generator.java'|sed 'sAsrc/generators-java/AA;s/.java$//;sA/A.Ag')
 do
 	echo $i
-	java -cp target/classes:target/dependency/konveyor-base-tooling.jar io.github.magwas.tooling.Generate $i
+	java -cp target/classes:target/dependency/konveyor-base-tooling.jar:$(echo ../*/target/*.jar|sed 's/ /:/g') io.github.magwas.tooling.Generate $i
 done

@@ -16,9 +16,8 @@ public class Generate {
 		String targetName = className.replaceFirst("Generator$", "");
 		System.out.println("generating " + targetName);
 
-		Class klass = Class.forName(className);
-		Supplier<StringBuilder> instance =
-				(Supplier<StringBuilder>) klass.getConstructor().newInstance();
+		Class<Supplier<StringBuilder>> klass = (Class<Supplier<StringBuilder>>) Class.forName(className);
+		Supplier<StringBuilder> instance = klass.getConstructor().newInstance();
 		File file = new File("target/generated-sources/" + targetName.replace(".", "/") + ".java");
 		new File(file.getParent()).mkdirs();
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
