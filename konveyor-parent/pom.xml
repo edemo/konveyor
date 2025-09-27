@@ -398,7 +398,7 @@
     </reporting>
     <profiles>
         <profile>
-            <id>maven-test-in-eclipse-test-plugin</id>
+            <id>generator-in-eclipse-test-plugin</id>
             <activation>
                 <property>
                     <name>packaging</name>
@@ -406,7 +406,25 @@
                 </property>
             </activation>
             <build>
-                <plugins/>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>compile-generators</id>
+                                <goals>
+                                    <goal>compile</goal>
+                                </goals>
+                                <phase>generate-sources</phase>
+                                <configuration>
+                                    <compileSourceRoots>
+                                        <compileSourceRoot>${project.basedir}/src/generators-java</compileSourceRoot>
+                                    </compileSourceRoots>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
             </build>
         </profile>
     </profiles>
