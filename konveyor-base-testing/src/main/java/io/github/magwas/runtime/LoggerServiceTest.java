@@ -44,6 +44,7 @@ class LoggerServiceTest {
 		logger.debug("testlog");
 		verify(errMock).println("DEBUG io.github.magwas.runtime.LoggerServiceTest test 44:testlog");
 		System.setErr(olderr);
+		LogUtil.clearDebuggedClasses();
 	}
 
 	@Test

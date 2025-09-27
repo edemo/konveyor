@@ -18,6 +18,7 @@ class LogUtilTest {
 	void test() {
 		LogUtil.addDebuggedClass(getClass());
 		assertEquals(Set.of(this.getClass().getName()), LogUtil.debuggedClasses);
+		LogUtil.clearDebuggedClasses();
 	}
 
 	@Test
@@ -27,5 +28,6 @@ class LogUtilTest {
 		LogUtil.logger = mockLogger;
 		LogUtil.addDebuggedClass(getClass());
 		verify(mockLogger).setLevel(Level.FINEST);
+		LogUtil.clearDebuggedClasses();
 	}
 }
