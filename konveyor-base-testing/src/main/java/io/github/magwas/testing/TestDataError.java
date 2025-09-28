@@ -7,6 +7,4 @@ public class TestDataError extends Error {
 	public TestDataError(Exception e) {
 		super(e);
 	}
-
-
 }
