@@ -2,19 +2,30 @@ package io.github.magwas.tooling;
 
 import java.io.File;
 import java.nio.file.Path;
-import java.util.List;
+import java.util.Set;
+import java.util.stream.Stream;
 
 import io.github.magwas.testing.TestUtil;
 
 public interface TestData {
+	String TEST_RESOURCE_CONTENTS = "test resource contents";
+	String TEST_RESOURCE_NAME = "testresource";
+	String NONEXISTING_RESOURCE_NAME = "nonexisting";
 	Path RESOURCE_PATH = Path.of(System.getProperty("user.dir"), "src/main/resources");
-	List<String> RESOURCE_FILES = List.of("test.java", "test.ast", "some_directory/some_file.txt");
-	Path JAVA_PATH = Path.of(RESOURCE_PATH.toString(), "test.java");
-	Path AST_PATH = Path.of(RESOURCE_PATH.toString(), "test.ast");
 	File ANNOTATION_FILE = Path.of(
 					System.getProperty("user.dir"), "src/main/java/io/github/magwas/testing/IndirectlyTested.java")
 			.toFile();
 	Path ANNOTATION_AST_PATH = Path.of(RESOURCE_PATH.toString(), "IndirectlyTested.ast");
-	String AST = TestUtil.getFileContents(AST_PATH);
-	String ANNOTATION_AST = TestUtil.getFileContents(ANNOTATION_AST_PATH);
+	String AST = TestUtil.loadResourceAsString("test.ast");
+	String ANNOTATION_AST = TestUtil.loadResourceAsString("IndirectlyTested.ast");
+	Stream<Integer> SHORT_SET = Stream.of(1, 3);
+	Set<Integer> SHORT_SET_ANOTHER_WAY = Set.of(2, 3);
+	Set<Integer> TEST_SET = Set.of(1, 2, 3);
+	Stream<Integer> TEST_STREAM = Stream.of(1, 3, 2);
+	String DIFF_COLLECTIONS_OUT = """
+			expected - actual:
+			2
+			actual - expected:
+			1
+			""";
 }
