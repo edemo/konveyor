@@ -3,6 +3,7 @@ package io.github.magwas.testing;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashSet;
@@ -29,11 +30,20 @@ public class TestUtil {
 		try {
 			return Files.readString(path);
 		} catch (IOException e) {
-			return null;
+			throw new TestDataError(e);
 		}
 	}
 
 	public static void assertStreamEquals(final Set<?> expected, final Stream<?> actual) {
 		assertEquals(expected, actual.collect(Collectors.toSet()));
+	}
+
+	public static String loadResourceAsString(final String definitionName) {
+		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+		try (InputStream inputStream = classloader.getResourceAsStream(definitionName)) {
+			return new String(inputStream.readAllBytes());
+		} catch (IOException e) {
+			throw new TestDataError(e);
+		}
 	}
 }
