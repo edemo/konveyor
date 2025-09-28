@@ -30,7 +30,7 @@ public class TestUtil {
 		try {
 			return Files.readString(path);
 		} catch (IOException e) {
-			throw new Error(e);
+			throw new TestDataError(e);
 		}
 	}
 
@@ -43,7 +43,7 @@ public class TestUtil {
 		try (InputStream inputStream = classloader.getResourceAsStream(definitionName)) {
 			return new String(inputStream.readAllBytes());
 		} catch (IOException e) {
-			throw new Error(e);
+			throw new TestDataError(e);
 		}
 	}
 }
