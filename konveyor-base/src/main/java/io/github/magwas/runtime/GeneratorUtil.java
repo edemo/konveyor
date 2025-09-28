@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-public class GeneratorUtil {
+public class GeneratorUtil implements RuntimeConstants {
 
 	public static void testDataBoilerPlate(
 			final StringBuilder builder, final String preamble, final String... extendeds) {
@@ -46,5 +46,45 @@ public class GeneratorUtil {
 							String {0}_{1} = "{2}";
 					""", parts[0].trim(), postfix, parts[1]);
 		};
+	}
+
+	public static StringBuilder stubBoilerPlate(final String preamble, final String... implementeds) {
+		StringBuilder builder = new StringBuilder(STUB_STRINGBUILDER_INITIAL_CAPACITY);
+		String fullClassName = Thread.currentThread().getStackTrace()[2].getClassName();
+		String klassName = fullClassName.replaceFirst(".*\\.", "").replace("Generator", "");
+		String origClassname = klassName.replaceFirst("Stub", "");
+		String packageName = fullClassName.replaceFirst("\\.[^.]*$", "");
+		builder.append("package ")
+				.append(packageName)
+				.append(
+						"""
+				;
+				import static org.mockito.Mockito.mock;
+				import static org.mockito.Mockito.when;
+
+				""")
+				.append(preamble)
+				.append("\nclass ")
+				.append(klassName);
+		if (implementeds.length != 0) {
+			builder.append(" implements ").append(String.join(", ", implementeds));
+		}
+		builder.append(" {\n")
+				.append(MessageFormat.format(
+						"""
+				public static {0} stub() '{'
+					{0} mock = mock({0}.class);
+
+				""", origClassname));
+		return builder;
+	}
+
+	public static StringBuilder stubTail(StringBuilder builder) {
+		builder.append("""
+						return mock;
+					}
+				}
+				""");
+		return builder;
 	}
 }
