@@ -8,15 +8,11 @@ import java.util.stream.Stream;
 public class GeneratorUtil implements RuntimeConstants {
 
 	public static StringBuilder testDataBoilerPlate(final String preamble, final String... extendeds) {
-		String extendType = " extends ";
-		String pattern = TEST_DATA_BOILERPLATE_PATTERN;
-		return generateBoilerPlate(preamble, extendType, pattern, extendeds);
+		return generateBoilerPlate(preamble, EXTENDS_CLAUSE_NAME, TEST_DATA_BOILERPLATE_PATTERN, extendeds);
 	}
 
 	public static StringBuilder stubBoilerPlate(final String preamble, final String... implementeds) {
-		String extendType = " implements ";
-		String pattern = STUB_BOILERPLATE_PATTERN;
-		return generateBoilerPlate(preamble, extendType, pattern, implementeds);
+		return generateBoilerPlate(preamble, IMPLEMENTS_CLAUSE_NAME, STUB_BOILERPLATE_PATTERN, implementeds);
 	}
 
 	public static StringBuilder generateBoilerPlate(
@@ -24,12 +20,13 @@ public class GeneratorUtil implements RuntimeConstants {
 		StringBuilder builder = new StringBuilder(GENERATOR_STRINGBUILDER_INITIAL_CAPACITY);
 		String fullClassName = Thread.currentThread().getStackTrace()[3].getClassName();
 		String className = fullClassName
-				.replaceFirst(ANYTHING_UP_TO_AND_INCLUDING_LAST_DOT_REGEXP, "")
-				.replace(GENERATOR_SUFFIX, "");
-		String packageName = fullClassName.replaceFirst(ANYTHING_FROM_THE_LAST_DOT_REGEXP, "");
-		String stubbedClassname = className.replaceFirst("Stub", "");
-		String extendsClause = "";
-		if (implementeds.length != 0) extendsClause = extendType + String.join(", ", implementeds);
+				.replaceFirst(ANYTHING_UP_TO_AND_INCLUDING_LAST_DOT_REGEXP, EMPTY_STRING)
+				.replace(GENERATOR_SUFFIX, EMPTY_STRING);
+		String packageName = fullClassName.replaceFirst(ANYTHING_FROM_THE_LAST_DOT_REGEXP, EMPTY_STRING);
+		String stubbedClassname = className.replaceFirst(STUB_UNIT_NAME_POSTFIX, EMPTY_STRING);
+		String extendsClause = EMPTY_STRING;
+		if (implementeds.length != 0) extendsClause = extendType + String.join(COMMA_SPACE, implementeds);
+
 		builder.append(
 				MessageFormat.format(pattern, packageName, preamble, className, extendsClause, stubbedClassname));
 		return builder;
@@ -48,16 +45,13 @@ public class GeneratorUtil implements RuntimeConstants {
 	}
 
 	public static Stream<String> linesOf(final String input) {
-		return Arrays.stream(input.split("\n"));
+		return Arrays.stream(input.split(NEWLINE));
 	}
 
 	public static Function<String, String> stringConstant(final String postfix) {
 		return line -> {
-			String[] parts = line.split(",", 2);
-			return MessageFormat.format(
-					"""
-							String {0}_{1} = "{2}";
-					""", parts[0].trim(), postfix, parts[1]);
+			String[] parts = line.split(COMMA, 2);
+			return MessageFormat.format(STRING_CONSTANT_PATTERN, parts[0].trim(), postfix, parts[1]);
 		};
 	}
 }
