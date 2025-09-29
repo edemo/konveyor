@@ -7,31 +7,44 @@ import java.util.stream.Stream;
 
 public class GeneratorUtil implements RuntimeConstants {
 
-	public static void testDataBoilerPlate(
-			final StringBuilder builder, final String preamble, final String... extendeds) {
-		String fullClassName = Thread.currentThread().getStackTrace()[2].getClassName();
-		String klassName = fullClassName.replaceFirst(".*\\.", "").replace("Generator", "");
-		String packageName = fullClassName.replaceFirst("\\.[^.]*$", "");
-		builder.append("package ")
-				.append(packageName)
-				.append(";\n")
-				.append(preamble)
-				.append("\npublic interface ")
-				.append(klassName);
-		if (extendeds.length != 0) {
-			builder.append(" extends ").append(String.join(", ", extendeds));
-		}
-		builder.append(" {\n");
+	public static StringBuilder testDataBoilerPlate(final String preamble, final String... extendeds) {
+		String extendType = " extends ";
+		String pattern = TEST_DATA_BOILERPLATE_PATTERN;
+		return generateBoilerPlate(preamble, extendType, pattern, extendeds);
 	}
 
-	public static void mapToCode(
+	public static StringBuilder stubBoilerPlate(final String preamble, final String... implementeds) {
+		String extendType = " implements ";
+		String pattern = STUB_BOILERPLATE_PATTERN;
+		return generateBoilerPlate(preamble, extendType, pattern, implementeds);
+	}
+
+	public static StringBuilder generateBoilerPlate(
+			final String preamble, String extendType, String pattern, final String... implementeds) {
+		StringBuilder builder = new StringBuilder(GENERATOR_STRINGBUILDER_INITIAL_CAPACITY);
+		String fullClassName = Thread.currentThread().getStackTrace()[3].getClassName();
+		String className = fullClassName
+				.replaceFirst(ANYTHING_UP_TO_AND_INCLUDING_LAST_DOT_REGEXP, "")
+				.replace(GENERATOR_SUFFIX, "");
+		String packageName = fullClassName.replaceFirst(ANYTHING_FROM_THE_LAST_DOT_REGEXP, "");
+		String stubbedClassname = className.replaceFirst("Stub", "");
+		String extendsClause = "";
+		if (implementeds.length != 0) extendsClause = extendType + String.join(", ", implementeds);
+		builder.append(
+				MessageFormat.format(pattern, packageName, preamble, className, extendsClause, stubbedClassname));
+		return builder;
+	}
+
+	public static StringBuilder mapToCode(
 			final String input, final Function<? super String, String> mapper, final StringBuilder builder) {
 		linesOf(input).map(mapper).forEach(builder::append);
+		return builder;
 	}
 
-	public static void mapToCode(
+	public static StringBuilder mapToCode(
 			final Stream<String> input, final Function<? super String, String> mapper, final StringBuilder builder) {
 		input.map(mapper).forEach(builder::append);
+		return builder;
 	}
 
 	public static Stream<String> linesOf(final String input) {
@@ -46,45 +59,5 @@ public class GeneratorUtil implements RuntimeConstants {
 							String {0}_{1} = "{2}";
 					""", parts[0].trim(), postfix, parts[1]);
 		};
-	}
-
-	public static StringBuilder stubBoilerPlate(final String preamble, final String... implementeds) {
-		StringBuilder builder = new StringBuilder(STUB_STRINGBUILDER_INITIAL_CAPACITY);
-		String fullClassName = Thread.currentThread().getStackTrace()[2].getClassName();
-		String klassName = fullClassName.replaceFirst(".*\\.", "").replace("Generator", "");
-		String origClassname = klassName.replaceFirst("Stub", "");
-		String packageName = fullClassName.replaceFirst("\\.[^.]*$", "");
-		builder.append("package ")
-				.append(packageName)
-				.append(
-						"""
-				;
-				import static org.mockito.Mockito.mock;
-				import static org.mockito.Mockito.when;
-
-				""")
-				.append(preamble)
-				.append("\nclass ")
-				.append(klassName);
-		if (implementeds.length != 0) {
-			builder.append(" implements ").append(String.join(", ", implementeds));
-		}
-		builder.append(" {\n")
-				.append(MessageFormat.format(
-						"""
-				public static {0} stub() '{'
-					{0} mock = mock({0}.class);
-
-				""", origClassname));
-		return builder;
-	}
-
-	public static StringBuilder stubTail(StringBuilder builder) {
-		builder.append("""
-						return mock;
-					}
-				}
-				""");
-		return builder;
 	}
 }
