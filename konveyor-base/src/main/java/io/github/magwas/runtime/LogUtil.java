@@ -8,9 +8,9 @@ import java.util.logging.Logger;
 import java.util.stream.Stream;
 
 public class LogUtil {
-	static Set<String> debuggedClasses = new HashSet<>();
+	private static Set<String> debuggedClasses = new HashSet<>();
 
-	static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+	private static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
 	public static void addDebuggedClass(final Class<?> debuggedClass) {
 		debuggedClasses.add(debuggedClass.getName());
@@ -27,7 +27,7 @@ public class LogUtil {
 
 	public static void debug(final int depth, final Object... args) {
 		if (debuggedClasses == null) return;
-		StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[depth];
+		StackTraceElement stackTraceElement = MiscUtil.getStackElementAtHeight(depth);
 		String name = stackTraceElement.getClassName();
 		if (!debuggedClasses.contains(name)) return;
 		List<String> params = Stream.of(args).map(Object::toString).toList();
@@ -40,7 +40,7 @@ public class LogUtil {
 				+ stackTraceElement.getLineNumber()
 				+ ':'
 				+ String.join(",", params);
-		System.err.println(string);
+		MiscUtil.syserr(string);
 	}
 
 	public static void warning(final Object... args) {
@@ -48,7 +48,7 @@ public class LogUtil {
 	}
 
 	public static void warning(final int depth, final Object... args) {
-		StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[depth];
+		StackTraceElement stackTraceElement = MiscUtil.getStackElementAtHeight(depth);
 		doLog(stackTraceElement, Level.WARNING, args);
 	}
 
@@ -57,7 +57,7 @@ public class LogUtil {
 	}
 
 	public static void info(final int depth, final Object... args) {
-		StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[depth];
+		StackTraceElement stackTraceElement = MiscUtil.getStackElementAtHeight(depth);
 		doLog(stackTraceElement, Level.INFO, args);
 	}
 

@@ -5,6 +5,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.io.PrintStream;
+import java.lang.reflect.Field;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,23 +29,27 @@ class LoggerServiceTest {
 	Logger loggerMock;
 
 	@BeforeEach
-	private void setUp() {
+	@SuppressWarnings("PMD.AvoidAccessibilityAlteration")
+	void setUp() throws NoSuchFieldException, IllegalAccessException {
 		loggerMock = mock(Logger.class);
 		when(loggerMock.getLevel()).thenReturn(Level.FINEST);
-		LogUtil.logger = loggerMock;
+		Field field = LogUtil.class.getDeclaredField("logger");
+		field.setAccessible(true);
+		field.set(LogUtil.class, loggerMock);
 	}
 
 	@Test
 	@DisplayName("debug logs to stderr, in the form of 'DEBUG <classname> <methodname> <linenumber>:<message>")
 	void test() {
-		PrintStream errMock = mock(PrintStream.class);
-		PrintStream olderr = System.err;
-		System.setErr(errMock);
-		LogUtil.addDebuggedClass(getClass());
-		logger.debug("testlog");
-		verify(errMock).println("DEBUG io.github.magwas.runtime.LoggerServiceTest test 44:testlog");
-		System.setErr(olderr);
-		LogUtil.clearDebuggedClasses();
+		try (PrintStream errMock = mock(PrintStream.class);
+				PrintStream olderr = System.err; ) {
+			System.setErr(errMock);
+			LogUtil.addDebuggedClass(getClass());
+			logger.debug("testlog");
+			verify(errMock).println("DEBUG io.github.magwas.runtime.LoggerServiceTest test 48:testlog");
+			System.setErr(olderr);
+			LogUtil.clearDebuggedClasses();
+		}
 	}
 
 	@Test
@@ -52,7 +57,7 @@ class LoggerServiceTest {
 			"warning logs using the logger, using the caller's class and method name, and prepending the message with the line number")
 	void test1() {
 		logger.warning("testlog");
-		verify(loggerMock).logp(Level.WARNING, "io.github.magwas.runtime.LoggerServiceTest", "test1", "54:testlog");
+		verify(loggerMock).logp(Level.WARNING, "io.github.magwas.runtime.LoggerServiceTest", "test1", "59:testlog");
 	}
 
 	@Test
@@ -60,6 +65,6 @@ class LoggerServiceTest {
 			"info logs using the logger, using the caller's class and method name, and prepending the message with the line number")
 	void test2() {
 		logger.info("testlog");
-		verify(loggerMock).logp(Level.INFO, "io.github.magwas.runtime.LoggerServiceTest", "test2", "62:testlog");
+		verify(loggerMock).logp(Level.INFO, "io.github.magwas.runtime.LoggerServiceTest", "test2", "67:testlog");
 	}
 }

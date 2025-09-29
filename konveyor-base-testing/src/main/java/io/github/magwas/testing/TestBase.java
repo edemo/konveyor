@@ -25,6 +25,7 @@ public class TestBase {
 	@AfterEach
 	public void tearDown() throws Throwable {}
 
+	@SuppressWarnings("PMD.AvoidAccessibilityAlteration")
 	public static void stubUp(final Object test) {
 		try {
 			for (Field objField : test.getClass().getDeclaredFields()) {
@@ -42,13 +43,12 @@ public class TestBase {
 				| SecurityException
 				| InstantiationException
 				| IllegalAccessException
-				| InvocationTargetException
-				| NullPointerException e) {
-			e.printStackTrace();
+				| InvocationTargetException e) {
 			throw new TestInstantiationException("stubUp " + test, e);
 		}
 	}
 
+	@SuppressWarnings("PMD.AvoidAccessibilityAlteration")
 	public static void stubFill(final Object instance) {
 		Class<?> type = instance.getClass();
 		for (Field field : type.getDeclaredFields()) {
@@ -72,10 +72,8 @@ public class TestBase {
 						| SecurityException
 						| IllegalAccessException
 						| InvocationTargetException
-						| NullPointerException
 						| InstantiationException
 						| IllegalArgumentException e) {
-					e.printStackTrace();
 					throw new TestInstantiationException("problem with stub " + stubName, e);
 				}
 				field.setAccessible(true);

@@ -1,7 +1,7 @@
 #!/bin/bash
 set -xe
 mkdir -p target/generated-site/markdown target/generated-site/resources
-java -cp $(.konveyor/tools/mkClassPath.sh) io.github.magwas.tooling.Main . >target/AST.xml
+java -cp $(.konveyor/tools/mkClassPath.sh) io.github.magwas.tooling.GenerateAst . >target/AST.xml
 .konveyor/tools/makeSourceDocbook.sh . > target/generated-site/resources/apidoc.docbook
 pandoc -s -o target/generated-site/markdown/apidoc.md -f docbook target/generated-site/resources/apidoc.docbook
 pandoc -s --toc -o target/generated-site/resources/apidoc.pdf -f docbook target/generated-site/resources/apidoc.docbook

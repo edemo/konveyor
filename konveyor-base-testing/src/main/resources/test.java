@@ -1,4 +1,5 @@
+package name;
 @Glue
-class foo {
-	int bar;
+class TheClass {
+	int theField;
 }

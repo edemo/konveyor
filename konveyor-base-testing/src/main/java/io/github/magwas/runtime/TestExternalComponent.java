@@ -4,19 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TestComponent {
+public class TestExternalComponent {
 	@Autowired
 	public LoggerService logger;
 
-	public void testDebug() {
+	public void doDebug() {
 		logger.debug("debug");
 	}
 
-	public void testWarning() {
+	public void doWarning() {
 		logger.warning("warning");
 	}
 
-	public void testInfo() {
+	public void doInfo() {
 		logger.info("info");
 	}
 }

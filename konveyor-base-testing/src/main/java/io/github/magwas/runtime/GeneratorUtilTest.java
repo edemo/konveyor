@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class GeneratorUtilTests implements RuntimeTestData {
+class GeneratorUtilTest implements RuntimeTestData {
 
 	@Test
 	@DisplayName(

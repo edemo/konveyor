@@ -11,18 +11,20 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import io.github.magwas.runtime.MiscUtil;
+
 public class TestUtil {
 	public static <T> void diffCollections(final Set<T> expected, final Set<T> actual) {
 		Set<T> remaining = new HashSet<>();
 		remaining.addAll(expected);
 		remaining.removeAll(actual);
-		System.out.println("expected - actual:");
+		MiscUtil.sysout("expected - actual:");
 		remaining.forEach(System.out::println);
 
 		Set<T> actualCopy = new HashSet<>();
 		actualCopy.addAll(actual);
 		actualCopy.removeAll(expected);
-		System.out.println("actual - expected:");
+		MiscUtil.sysout("actual - expected:");
 		actualCopy.forEach(System.out::println);
 	}
 
@@ -30,7 +32,7 @@ public class TestUtil {
 		try {
 			return Files.readString(path);
 		} catch (IOException e) {
-			throw new TestDataError(e);
+			throw new TestDataException(e);
 		}
 	}
 
@@ -43,7 +45,7 @@ public class TestUtil {
 		try (InputStream inputStream = classloader.getResourceAsStream(definitionName)) {
 			return new String(inputStream.readAllBytes());
 		} catch (IOException e) {
-			throw new TestDataError(e);
+			throw new TestDataException(e);
 		}
 	}
 }

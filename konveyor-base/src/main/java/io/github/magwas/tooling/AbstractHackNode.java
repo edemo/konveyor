@@ -7,6 +7,7 @@ import net.sourceforge.pmd.util.DataMap;
 import net.sourceforge.pmd.util.DataMap.DataKey;
 
 @Glue
+@SuppressWarnings("PMD.EmptyMethodInAbstractClassShouldBeAbstract")
 public abstract class AbstractHackNode implements Node {
 	@Override
 	public TextRegion getTextRegion() {

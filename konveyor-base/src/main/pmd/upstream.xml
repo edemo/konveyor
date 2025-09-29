@@ -1,83 +1,101 @@
 <ruleset name="Upstream rules">
-    <description>
-        Upstream rules applicable to the Kode Konveyor style
-    </description>
+	<description>
+		Upstream rules applicable to the Kode Konveyor style
+	</description>
 
-    <rule ref="category/java/bestpractices.xml">
-        <exclude name="ConstantsInInterface"/>
-        <exclude name="GuardLogStatement"/>
-        <exclude name="ImplicitFunctionalInterface"/>
-        <exclude name="UnitTestAssertionsShouldIncludeMessage"/>
-    </rule>
+	<rule ref="category/java/bestpractices.xml">
+		<exclude name="ConstantsInInterface" />
+		<exclude name="GuardLogStatement" />
+		<exclude name="ImplicitFunctionalInterface" />
+		<exclude name="UnitTestAssertionsShouldIncludeMessage" />
+	</rule>
 
-    <rule ref="category/java/codestyle.xml">
-        <exclude name="AtLeastOneConstructor"/>
-        <exclude name="CallSuperInConstructor"/>
-        <exclude name="ClassNamingConventions"/>
-        <exclude name="CommentDefaultAccessModifier"/>
-        <exclude name="ControlStatementBraces"/>
-        <exclude name="FieldNamingConventions"/>
-        <exclude name="GenericsNaming"/>
-        <exclude name="LocalVariableCouldBeFinal"/>
-        <exclude name="LongVariable"/>
-        <exclude name="MethodNamingConventions"/>
-        <exclude name="OnlyOneReturn"/>
-        <exclude name="ShortVariable"/>
-    </rule>
+	<rule ref="category/java/codestyle.xml">
+		<exclude name="AtLeastOneConstructor" />
+		<exclude name="CallSuperInConstructor" />
+		<exclude name="ClassNamingConventions" />
+		<exclude name="CommentDefaultAccessModifier" />
+		<exclude name="ControlStatementBraces" />
+		<exclude name="FieldNamingConventions" />
+		<exclude name="GenericsNaming" />
+		<exclude name="LocalVariableCouldBeFinal" />
+		<exclude name="LongVariable" />
+		<exclude name="MethodNamingConventions" />
+		<exclude name="OnlyOneReturn" />
+		<exclude name="ShortVariable" />
+	</rule>
 
-    <rule ref="category/java/codestyle.xml/LinguisticNaming">
-        <properties>
-            <property name="ignoredAnnotations" value="org.junit.Test"/>
-        </properties>
-    </rule>
+	<rule ref="category/java/codestyle.xml/LinguisticNaming">
+		<properties>
+			<property name="ignoredAnnotations" value="org.junit.Test" />
+		</properties>
+	</rule>
 
-    <rule ref="category/java/codestyle.xml/TooManyStaticImports">
-        <properties>
-            <property name="maximumStaticImports" value="10"/>
-        </properties>
-    </rule>
+	<rule ref="category/java/codestyle.xml/TooManyStaticImports">
+		<properties>
+			<property name="maximumStaticImports" value="10" />
+		</properties>
+	</rule>
 
-    <rule ref="category/java/design.xml">
-        <exclude name="DataClass"/>
-        <exclude name="FinalFieldCouldBeStatic"/>
-        <exclude name="LawOfDemeter"/>
-        <exclude name="LoosePackageCoupling"/>
-        <exclude name="TooManyFields"/>
-        <exclude name="UseUtilityClass"/>
-    </rule>
+	<rule ref="category/java/design.xml">
+		<exclude name="DataClass" />
+		<exclude name="FinalFieldCouldBeStatic" />
+		<exclude name="LawOfDemeter" />
+		<exclude name="LoosePackageCoupling" />
+		<exclude name="TooManyFields" />
+		<exclude name="UseUtilityClass" />
+	</rule>
 
-    <rule ref="category/java/design.xml/CyclomaticComplexity">
-        <properties>
-            <property name="classReportLevel" value="20"/>
-            <property name="methodReportLevel" value="10"/>
-        </properties>
-    </rule>
+	<rule ref="category/java/design.xml/CyclomaticComplexity">
+		<properties>
+			<property name="classReportLevel" value="20" />
+			<property name="methodReportLevel" value="10" />
+		</properties>
+	</rule>
 
-    <rule ref="category/java/design.xml/SignatureDeclareThrowsException">
-        <properties>
-            <property name="IgnoreJUnitCompletely" value="true"/>
-            <property name="violationSuppressRegex"
-                      value="/src/integration-test/*"/>
-        </properties>
-    </rule>
+	<rule
+		ref="category/java/design.xml/SignatureDeclareThrowsException">
+		<properties>
+			<property name="IgnoreJUnitCompletely" value="true" />
+			<property name="violationSuppressRegex"
+				value="/src/integration-test/*" />
+		</properties>
+	</rule>
 
-    <rule ref="category/java/documentation.xml/CommentRequired">
-        <properties>
-            <property name="accessorCommentRequirement" value="Unwanted"/>
-            <property name="classCommentRequirement" value="Unwanted"/>
-            <property name="enumCommentRequirement" value="Unwanted"/>
-            <property name="fieldCommentRequirement" value="Unwanted"/>
-            <property name="methodWithOverrideCommentRequirement" value="Unwanted"/>
-            <property name="protectedMethodCommentRequirement" value="Unwanted"/>
-            <property name="publicMethodCommentRequirement" value="Unwanted"/>
-            <property name="serialPersistentFieldsCommentRequired" value="Unwanted"/>
-            <property name="serialVersionUIDCommentRequired" value="Unwanted"/>
-        </properties>
-    </rule>
+	<rule ref="category/java/documentation.xml/CommentRequired">
+		<properties>
+			<property name="accessorCommentRequirement" value="Unwanted" />
+			<property name="classCommentRequirement" value="Unwanted" />
+			<property name="enumCommentRequirement" value="Unwanted" />
+			<property name="fieldCommentRequirement" value="Unwanted" />
+			<property name="methodWithOverrideCommentRequirement"
+				value="Unwanted" />
+			<property name="protectedMethodCommentRequirement"
+				value="Unwanted" />
+			<property name="publicMethodCommentRequirement"
+				value="Unwanted" />
+			<property name="serialPersistentFieldsCommentRequired"
+				value="Unwanted" />
+			<property name="serialVersionUIDCommentRequired"
+				value="Unwanted" />
+		</properties>
+	</rule>
 
-    <rule ref="category/java/errorprone.xml"/>
-    <rule ref="category/java/multithreading.xml"/>
-    <rule ref="category/java/performance.xml"/>
-    <rule ref="category/java/security.xml"/>
+	<rule ref="category/java/errorprone.xml" />
+	<rule
+		ref="category/java/errorprone.xml/AvoidLiteralsInIfCondition">
+		<properties>
+			<property name="ignoreMagicNumbers" value="0,1,-1" />
+		</properties>
+	</rule>
+	<rule ref="category/java/errorprone.xml/TestClassWithoutTestCases">
+		<properties>
+			<property name="testClassPattern"
+				value="^(?:.*\.)?.*Test$" />
+		</properties>
+	</rule>
+	<rule ref="category/java/multithreading.xml" />
+	<rule ref="category/java/performance.xml" />
+	<rule ref="category/java/security.xml" />
 
 </ruleset>
