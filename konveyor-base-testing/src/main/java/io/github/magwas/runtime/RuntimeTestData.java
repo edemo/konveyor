@@ -6,7 +6,7 @@ public interface RuntimeTestData {
 			package io.github.magwas.runtime;
 			import Foo;
 			
-			public interface UtilTests extends Bar, Baz {
+			public interface UtilTest extends Bar, Baz {
 			""";
 	String PREAMBLE = """
 			import Foo;
@@ -16,7 +16,7 @@ public interface RuntimeTestData {
 			package io.github.magwas.runtime;
 			import Foo;
 			
-			public interface UtilTests {
+			public interface UtilTest {
 			""";
 	String STUB_BOILERPLATE =
 			"""
@@ -26,9 +26,9 @@ public interface RuntimeTestData {
 			
 			import Foo;
 			
-			class UtilTests {
-			public static UtilTests stub() {
-				UtilTests mock = mock(UtilTests.class);
+			class UtilTest {
+			public static UtilTest stub() {
+				UtilTest mock = mock(UtilTest.class);
 							
 			""";
 	String EXTENDED_STUB_BOILERPLATE =
@@ -39,9 +39,9 @@ public interface RuntimeTestData {
 			
 			import Foo;
 			
-			class UtilTests implements Bar, Baz {
-			public static UtilTests stub() {
-				UtilTests mock = mock(UtilTests.class);
+			class UtilTest implements Bar, Baz {
+			public static UtilTest stub() {
+				UtilTest mock = mock(UtilTest.class);
 							
 			""";
 	String EXTENDED_1 = "Bar";

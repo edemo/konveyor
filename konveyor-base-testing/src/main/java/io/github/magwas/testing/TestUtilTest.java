@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.file.Path;
 import java.util.Set;
@@ -14,7 +15,7 @@ import org.opentest4j.AssertionFailedError;
 
 import io.github.magwas.tooling.TestData;
 
-public class TestUtilTests implements TestData {
+class TestUtilTest implements TestData {
 
 	@Test
 	@DisplayName("loadResuorceAsString loads the resource as a string")
@@ -35,9 +36,9 @@ public class TestUtilTests implements TestData {
 	}
 
 	@Test
-	@DisplayName("getFileContents throws Error for nonexisting file")
+	@DisplayName("getFileContents throws TestDataException for nonexisting file")
 	void test3() {
-		assertThrows(Error.class, () -> TestUtil.getFileContents(Path.of(NONEXISTING_RESOURCE_NAME)));
+		assertThrows(TestDataException.class, () -> TestUtil.getFileContents(Path.of(NONEXISTING_RESOURCE_NAME)));
 	}
 
 	@Test
@@ -54,12 +55,13 @@ public class TestUtilTests implements TestData {
 
 	@Test
 	@DisplayName("diffCollections prints the expected and actual collection contents to stdout")
-	void test6() {
-		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-		PrintStream originalOut = System.out;
-		System.setOut(new PrintStream(outContent));
-		TestUtil.diffCollections(SHORT_SET_ANOTHER_WAY, Set.of(1, 3));
-		assertEquals(DIFF_COLLECTIONS_OUT, outContent.toString());
-		System.setOut(originalOut);
+	void test6() throws IOException {
+		try (ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+				PrintStream originalOut = System.out; ) {
+			System.setOut(new PrintStream(outContent));
+			TestUtil.diffCollections(SHORT_SET_ANOTHER_WAY, Set.of(1, 3));
+			assertEquals(DIFF_COLLECTIONS_OUT, outContent.toString());
+			System.setOut(originalOut);
+		}
 	}
 }

@@ -18,7 +18,7 @@ import net.sourceforge.pmd.util.treeexport.XmlTreeRenderer;
 @Service
 public class GenerateAstService {
 	@Autowired
-	PmdParsingTools pmdParsingTools;
+	PmdParsingExternalComponent pmdParsing;
 
 	public void apply(final Path path, final Appendable appendable) throws IOException {
 		RootNode root = apply(path);
@@ -26,11 +26,10 @@ public class GenerateAstService {
 	}
 
 	public RootNode apply(final Path path) {
-		try (TextFile textfile =
-						TextFile.forPath(path, Charset.defaultCharset(), pmdParsingTools.java.getDefaultVersion());
+		try (TextFile textfile = TextFile.forPath(path, Charset.defaultCharset(), pmdParsing.java.getDefaultVersion());
 				TextDocument document = TextDocument.create(textfile)) {
-			Parser.ParserTask task = new Parser.ParserTask(document, SemanticErrorReporter.noop(), pmdParsingTools.lpr);
-			return pmdParsingTools.parser.parse(task);
+			Parser.ParserTask task = new Parser.ParserTask(document, SemanticErrorReporter.noop(), pmdParsing.lpr);
+			return pmdParsing.parser.parse(task);
 
 		} catch (IOException e) {
 			throw new IOError(e);

@@ -172,7 +172,7 @@
                             <attach>true</attach>
                             <archive>
                                 <manifest>
-                                    <mainClass>io.github.magwas.tooling.Main</mainClass>
+                                    <mainClass>io.github.magwas.tooling.GenerateAst</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorSourceDirectory>${project.basedir}/descriptors</descriptorSourceDirectory>

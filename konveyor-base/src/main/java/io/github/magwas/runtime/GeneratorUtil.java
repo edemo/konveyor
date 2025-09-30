@@ -16,9 +16,9 @@ public class GeneratorUtil implements RuntimeConstants {
 	}
 
 	public static StringBuilder generateBoilerPlate(
-			final String preamble, String extendType, String pattern, final String... implementeds) {
+			final String preamble, final String extendType, final String pattern, final String... implementeds) {
 		StringBuilder builder = new StringBuilder(GENERATOR_STRINGBUILDER_INITIAL_CAPACITY);
-		String fullClassName = Thread.currentThread().getStackTrace()[3].getClassName();
+		String fullClassName = MiscUtil.getStackElementAtHeight(3).getClassName();
 		String className = fullClassName
 				.replaceFirst(ANYTHING_UP_TO_AND_INCLUDING_LAST_DOT_REGEXP, EMPTY_STRING)
 				.replace(GENERATOR_SUFFIX, EMPTY_STRING);
