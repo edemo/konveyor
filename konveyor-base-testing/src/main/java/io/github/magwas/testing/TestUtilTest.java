@@ -24,9 +24,9 @@ class TestUtilTest implements TestData {
 	}
 
 	@Test
-	@DisplayName("loadResuorceAsString throws NullPointerException if the resource does not exist")
+	@DisplayName("loadResuorceAsString throws TestDataException if the resource does not exist")
 	void test2() {
-		assertThrows(NullPointerException.class, () -> TestUtil.loadResourceAsString(NONEXISTING_RESOURCE_NAME));
+		assertThrows(TestDataException.class, () -> TestUtil.loadResourceAsString(NONEXISTING_RESOURCE_NAME));
 	}
 
 	@Test

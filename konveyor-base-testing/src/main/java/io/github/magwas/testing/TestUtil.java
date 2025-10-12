@@ -43,6 +43,7 @@ public class TestUtil {
 	public static String loadResourceAsString(final String definitionName) {
 		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
 		try (InputStream inputStream = classloader.getResourceAsStream(definitionName)) {
+			if (null == inputStream) throw new TestDataException("could not load " + definitionName);
 			return new String(inputStream.readAllBytes());
 		} catch (IOException e) {
 			throw new TestDataException(e);
