@@ -27,13 +27,13 @@
         <module>konveyor-base-testing</module>
     </modules>
     <scm>
-        <connection>scm:git:https://github.com/magwas/pmdrules.git</connection>
-        <developerConnection>scm:git:https://github.com/magwas/pmdrules.git</developerConnection>
-        <url>https://github.com/magwas/pmdrules.git</url>
+        <connection>scm:git:https://github.com/edemo/konveyor.git</connection>
+        <developerConnection>scm:git:https://github.com/edemo/konveyor.git</developerConnection>
+        <url>https://github.com/edemo/konveyor.git</url>
     </scm>
     <issueManagement>
         <system>github</system>
-        <url>https://github.com/magwas/pmdrules.git</url>
+        <url>https://github.com/edemo/konveyor.git</url>
     </issueManagement>
     <distributionManagement>
         <site>

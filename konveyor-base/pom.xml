@@ -26,7 +26,7 @@
         </developer>
     </developers>
     <scm>
-        <url>https://github.com/magwas/pmdrules.git</url>
+        <url>https://github.com/edemo/konveyor.git</url>
     </scm>
     <dependencies>
         <dependency>
