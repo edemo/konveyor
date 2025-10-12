@@ -477,9 +477,6 @@
                     <groupId>org.eclipse.tycho</groupId>
                     <artifactId>tycho-compiler-plugin</artifactId>
                     <version>${version.tycho}</version>
-                    <configuration>
-                        <compilerArgument>-err:all</compilerArgument>
-                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.eclipse.tycho</groupId>
