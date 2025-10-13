@@ -1,8 +1,0 @@
-/target
-.git-versioned-pom.xml
-*.swp
-apidoc.tex
-index.html
-pandoc.css
-x7.html
-src/site/markdown/
