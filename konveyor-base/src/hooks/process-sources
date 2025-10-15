@@ -1,8 +1,0 @@
-#!/bin/bash
-set -xe
-if [ -x hooks/$(basename $0) ]
-then
-	exec hooks/$(basename $0)
-else
-	exec .konveyor/tools/generateSources.sh
-fi

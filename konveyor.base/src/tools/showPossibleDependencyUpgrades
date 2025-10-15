@@ -1,0 +1,5 @@
+#!/bin/bash
+echo with major versions:
+mvn versions:display-dependency-updates |grep -- "->" |sort |uniq
+echo minor versions only:
+mvn versions:display-dependency-updates -DallowMajorUpdates=false |grep -- "->" |sort |uniq

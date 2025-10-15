@@ -2,11 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.magwas</groupId>
-    <artifactId>konveyor-parent-base</artifactId>
+    <artifactId>konveyor</artifactId>
     <version>0.0.1</version>
     <packaging>pom</packaging>
     <name>${project.artifactId}-${project.version}</name>
-    <description>Parent pom base (without dependency to konveyor-base) for Kode Konveyor toolchain</description>
+    <description>Parent pom base (without dependency to konveyor.base) for Kode Konveyor toolchain</description>
     <url>https://repo.kodekonveyor.com/${project.artifactId}</url>
     <licenses>
         <license>
@@ -22,9 +22,8 @@
         </developer>
     </developers>
     <modules>
-        <module>konveyor-base</module>
-        <module>konveyor-parent</module>
-        <module>konveyor-base-testing</module>
+        <module>konveyor.base</module>
+        <module>konveyor.parent</module>
     </modules>
     <scm>
         <connection>scm:git:https://github.com/edemo/konveyor.git</connection>
@@ -54,27 +53,24 @@
         <project.build.sourceEncoding>${project.encoding}</project.build.sourceEncoding>
         <project.encoding>UTF-8</project.encoding>
         <project.reporting.outputEncoding>${project.encoding}</project.reporting.outputEncoding>
-        <surefire.skip>false</surefire.skip>
-        <tycho.localArtifacts>ignore</tycho.localArtifacts>
-        <version.bouncycastle>1.80</version.bouncycastle>
-        <version.httpclient>5.5</version.httpclient>
-        <version.jackson>2.19.1</version.jackson>
+        <version.bouncycastle>1.82</version.bouncycastle>
+        <version.httpclient>5.5.1</version.httpclient>
+        <version.jackson>2.20.1</version.jackson>
         <version.jakarta-annotation>2.1.1</version.jakarta-annotation>
-        <version.jakarta-xml>4.0.2</version.jakarta-xml>
+        <version.jakarta-xml>4.0.4</version.jakarta-xml>
         <version.javax-annotation>1.3.2</version.javax-annotation>
-        <version.jaxb>4.0.5</version.jaxb>
+        <version.jaxb>4.0.6</version.jaxb>
         <version.jspecify>1.0.0</version.jspecify>
-        <version.junit>5.12.1</version.junit>
-        <version.junit-platform>1.12.1</version.junit-platform>
+        <version.junit>5.14.0</version.junit>
+        <version.junit-platform>1.14.0</version.junit-platform>
         <version.konveyor>${project.version}</version.konveyor>
-        <version.lombok>1.18.36</version.lombok>
-        <version.mockito>5.18.0</version.mockito>
+        <version.lombok>1.18.42</version.lombok>
+        <version.mockito>5.20.0</version.mockito>
         <version.pmd>7.17.0</version.pmd>
         <version.pmd-plugin>3.27.0</version.pmd-plugin>
         <version.spring>6.2.11</version.spring>
-        <version.spring-boot>3.5.3</version.spring-boot>
-        <version.spring-data>3.5.2</version.spring-data>
-        <version.tycho>4.0.12</version.tycho>
+        <version.spring-boot>3.5.6</version.spring-boot>
+        <version.spring-data>3.5.4</version.spring-data>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -127,21 +123,25 @@
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter-api</artifactId>
                 <version>${version.junit}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter-engine</artifactId>
                 <version>${version.junit}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.junit.platform</groupId>
                 <artifactId>junit-platform-launcher</artifactId>
                 <version>${version.junit-platform}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
                 <version>${version.mockito}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -163,6 +163,7 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-test</artifactId>
                 <version>${version.spring}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -178,6 +179,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-test</artifactId>
                 <version>${version.spring-boot}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -237,6 +239,14 @@
     <build>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.5.4</version>
+                    <configuration>
+                        <failIfNoTests>true</failIfNoTests>
+                    </configuration>
+                </plugin>
                 <plugin>
                     <groupId>com.diffplug.spotless</groupId>
                     <artifactId>spotless-maven-plugin</artifactId>
@@ -304,7 +314,18 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-dependency-plugin</artifactId>
-                    <version>3.8.1</version>
+                    <version>3.9.0</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>copy-dependencies</goal>
+                            </goals>
+                            <phase>initialize</phase>
+                            <configuration>
+                                <stripVersion>true</stripVersion>
+                            </configuration>
+                        </execution>
+                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -336,6 +357,16 @@
                                 <classesDirectory>${project.build.directory}/javadoc</classesDirectory>
                             </configuration>
                         </execution>
+                        <execution>
+                            <id>testing</id>
+                            <goals>
+                                <goal>test-jar</goal>
+                            </goals>
+                            <phase>package</phase>
+                            <configuration>
+                                <classifier>testing</classifier>
+                            </configuration>
+                        </execution>
                     </executions>
                 </plugin>
                 <plugin>
@@ -354,7 +385,7 @@
                     <dependencies>
                         <dependency>
                             <groupId>io.github.magwas</groupId>
-                            <artifactId>konveyor-base</artifactId>
+                            <artifactId>konveyor.base</artifactId>
                             <version>${version.konveyor}</version>
                             <classifier>tooling</classifier>
                         </dependency>
@@ -399,14 +430,6 @@
                             <phase>package</phase>
                         </execution>
                     </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.5.3</version>
-                    <configuration>
-                        <skip>${surefire.skip}</skip>
-                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -468,29 +491,6 @@
                     </executions>
                 </plugin>
                 <plugin>
-                    <groupId>org.eclipse.tycho</groupId>
-                    <artifactId>tycho-maven-plugin</artifactId>
-                    <version>${version.tycho}</version>
-                    <extensions>true</extensions>
-                </plugin>
-                <plugin>
-                    <groupId>org.eclipse.tycho</groupId>
-                    <artifactId>tycho-compiler-plugin</artifactId>
-                    <version>${version.tycho}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.eclipse.tycho</groupId>
-                    <artifactId>tycho-packaging-plugin</artifactId>
-                    <version>${version.tycho}</version>
-                    <configuration>
-                        <archive>
-                            <manifestEntries>
-                                <Bundle-RequiredExecutionEnvironment>${jdk.version.full}</Bundle-RequiredExecutionEnvironment>
-                            </manifestEntries>
-                        </archive>
-                    </configuration>
-                </plugin>
-                <plugin>
                     <groupId>org.sonatype.central</groupId>
                     <artifactId>central-publishing-maven-plugin</artifactId>
                     <version>0.8.0</version>
@@ -524,6 +524,69 @@
                             </pluginExecutions>
                         </lifecycleMappingMetadata>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.14.1</version>
+                    <configuration>
+                        <compilerArgs>
+                            <arg>-Xlint:all</arg>
+                            <arg>-Werror</arg>
+                        </compilerArgs>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>default-compile</id>
+                            <goals>
+                                <goal>compile</goal>
+                            </goals>
+                            <phase>compile</phase>
+                            <configuration>
+                                <compileSourceRoots>
+                                    <compileSourceRoot>${project.basedir}/src/main/java</compileSourceRoot>
+                                    <compileSourceRoot>${project.basedir}/target/generated-sources/main</compileSourceRoot>
+                                </compileSourceRoots>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>default-testCompile</id>
+                            <goals>
+                                <goal>testCompile</goal>
+                            </goals>
+                            <phase>test-compile</phase>
+                            <configuration>
+                                <compileSourceRoots>
+                                    <compileSourceRoot>${project.basedir}/src/test/java</compileSourceRoot>
+                                    <compileSourceRoot>${project.basedir}/target/generated-sources/test</compileSourceRoot>
+                                </compileSourceRoots>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>compile-main-generators</id>
+                            <goals>
+                                <goal>compile</goal>
+                            </goals>
+                            <phase>generate-sources</phase>
+                            <configuration>
+                                <compileSourceRoots>
+                                    <compileSourceRoot>${project.basedir}/src/main/generators-java</compileSourceRoot>
+                                </compileSourceRoots>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>compile-test-generators</id>
+                            <goals>
+                                <goal>testCompile</goal>
+                            </goals>
+                            <phase>generate-test-sources</phase>
+                            <configuration>
+                                <compileSourceRoots>
+                                    <compileSourceRoot>${project.basedir}/src/test/generators-java</compileSourceRoot>
+                                </compileSourceRoots>
+                            </configuration>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>
