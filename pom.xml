@@ -55,6 +55,7 @@
         <project.reporting.outputEncoding>${project.encoding}</project.reporting.outputEncoding>
         <version.antlr4>4.13.2</version.antlr4>
         <version.bouncycastle>1.82</version.bouncycastle>
+        <version.enforcer>3.6.2</version.enforcer>
         <version.httpclient>5.5.1</version.httpclient>
         <version.jackson>2.20.1</version.jackson>
         <version.jakarta-annotation>2.1.1</version.jakarta-annotation>
@@ -72,7 +73,6 @@
         <version.spring>6.2.11</version.spring>
         <version.spring-boot>3.5.6</version.spring-boot>
         <version.spring-data>3.5.4</version.spring-data>
-        <version.enforcer>3.6.2</version.enforcer>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -97,15 +97,14 @@
                 <version>${version.javax-annotation}</version>
             </dependency>
             <dependency>
-                        <groupId>org.antlr</groupId>
-                        <artifactId>antlr4-runtime</artifactId>
-                        <version>${version.antlr4}</version>
-            </dependency>
-            <dependency>
                 <groupId>net.sourceforge.pmd</groupId>
                 <artifactId>pmd-java</artifactId>
                 <version>${version.pmd}</version>
                 <exclusions>
+                    <exclusion>
+                        <groupId>org.antlr</groupId>
+                        <artifactId>antlr4-runtime</artifactId>
+                    </exclusion>
                     <exclusion>
                         <groupId>org.apache.httpcomponents.core5</groupId>
                         <artifactId>httpcore5</artifactId>
@@ -114,11 +113,12 @@
                         <groupId>org.slf4j</groupId>
                         <artifactId>slf4j-api</artifactId>
                     </exclusion>
-                    <exclusion>
-                        <groupId>org.antlr</groupId>
-                        <artifactId>antlr4-runtime</artifactId>
-                    </exclusion>
                 </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.antlr</groupId>
+                <artifactId>antlr4-runtime</artifactId>
+                <version>${version.antlr4}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.httpcomponents.client5</groupId>
@@ -310,6 +310,14 @@
                             </cleanthat>
                         </java>
                     </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>apply</goal>
+                            </goals>
+                            <phase>process-sources</phase>
+                        </execution>
+                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>com.github.ekryd.sortpom</groupId>
@@ -326,6 +334,14 @@
                         <verifyFail>stop</verifyFail>
                         <verifyFailOn>strict</verifyFailOn>
                     </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>sort</goal>
+                            </goals>
+                            <phase>validate</phase>
+                        </execution>
+                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -658,40 +674,6 @@
     </build>
     <profiles>
         <profile>
-            <id>format</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.github.ekryd.sortpom</groupId>
-                        <artifactId>sortpom-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>sort</goal>
-                                </goals>
-                                <phase>validate</phase>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>com.diffplug.spotless</groupId>
-                        <artifactId>spotless-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>apply</goal>
-                                </goals>
-                                <phase>process-sources</phase>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
             <id>verify-format</id>
             <build>
                 <plugins>
@@ -723,45 +705,45 @@
         <profile>
             <id>enforce-top</id>
             <activation>
-    <file>
-        <exists>.git</exists>
-    </file>
-</activation>
+                <file>
+                    <exists>.git</exists>
+                </file>
+            </activation>
             <build>
                 <plugins>
                     <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>${version.enforcer}</version>
-                <executions>
-                    <execution>
-                        <id>enforce-versions</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <configuration>
-                            <rules>
-                                <requireMavenVersion>
-                                    <version>3.9.9</version>
-                                </requireMavenVersion>
-                                <requireJavaVersion>
-                                    <version>21</version>
-                                </requireJavaVersion>
-                                <reactorModuleConvergence/>
-                                <requireFilesExist>
-                                    <files>
-                                        <file>LICENSE</file>
-                                        <file>.github/workflows/maven_deploy.yml</file>
-                                        <file>.github/workflows/maven.yml</file>
-                                    </files>
-                                </requireFilesExist>
-                            </rules>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-</plugins>
-</build>
-</profile>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-enforcer-plugin</artifactId>
+                        <version>${version.enforcer}</version>
+                        <executions>
+                            <execution>
+                                <id>enforce-versions</id>
+                                <goals>
+                                    <goal>enforce</goal>
+                                </goals>
+                                <configuration>
+                                    <rules>
+                                        <requireMavenVersion>
+                                            <version>3.9.9</version>
+                                        </requireMavenVersion>
+                                        <requireJavaVersion>
+                                            <version>21</version>
+                                        </requireJavaVersion>
+                                        <reactorModuleConvergence/>
+                                        <requireFilesExist>
+                                            <files>
+                                                <file>LICENSE</file>
+                                                <file>.github/workflows/maven_deploy.yml</file>
+                                                <file>.github/workflows/maven.yml</file>
+                                            </files>
+                                        </requireFilesExist>
+                                    </rules>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 </project>
