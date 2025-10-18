@@ -11,7 +11,7 @@ public class GeneratorUtil implements RuntimeConstants {
 		return generateBoilerPlate(preamble, EXTENDS_CLAUSE_NAME, TEST_DATA_BOILERPLATE_PATTERN, extendeds);
 	}
 
-	public static StringBuilder testDataTail(StringBuilder builder) {
+	public static StringBuilder testDataTail(final StringBuilder builder) {
 		return builder.append("}\n");
 	}
 
@@ -19,7 +19,7 @@ public class GeneratorUtil implements RuntimeConstants {
 		return generateBoilerPlate(preamble, IMPLEMENTS_CLAUSE_NAME, STUB_BOILERPLATE_PATTERN, implementeds);
 	}
 
-	public static StringBuilder stubTail(StringBuilder builder) {
+	public static StringBuilder stubTail(final StringBuilder builder) {
 		return builder.append("""
 							return mock;
 				}

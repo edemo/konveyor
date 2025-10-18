@@ -40,6 +40,7 @@ public class TestUtil {
 		assertEquals(expected, actual.collect(Collectors.toSet()));
 	}
 
+	@SuppressWarnings("PMD.ExceptionAsFlowControl")
 	public static String loadResourceAsString(final String definitionName) {
 		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
 		try (InputStream inputStream = classloader.getResourceAsStream(definitionName)) {
