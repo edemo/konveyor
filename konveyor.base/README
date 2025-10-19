@@ -37,7 +37,7 @@ in your main project:
 	<description>
 		 The description of your project
 	</description>
-	<url>https://repo.kodekonveyor.com/${project.artifactId}/${project.version}</url>
+	<url>https://repo.kdea.hu/${project.artifactId}/${project.version}</url>
 	<scm>
 		<url>the public git url of your project</url>
 	</scm>

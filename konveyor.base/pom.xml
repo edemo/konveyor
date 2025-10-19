@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <name>${project.artifactId}-${project.version}</name>
     <description>Base packages and tooling for konveyor coding style.</description>
-    <url>https://repo.kodekonveyor.com/${project.artifactId}/${project.version}</url>
+    <url>https://repo.kdea.hu/${project.artifactId}/${project.version}</url>
     <licenses>
         <license>
             <name>GPL affero</name>
