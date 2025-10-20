@@ -7,7 +7,7 @@
     <packaging>pom</packaging>
     <name>${project.artifactId}-${project.version}</name>
     <description>Parent pom base (without dependency to konveyor.base) for Kode Konveyor toolchain</description>
-    <url>https://repo.kodekonveyor.com/${project.artifactId}</url>
+    <url>https://repo.kdea.hu/${project.artifactId}</url>
     <licenses>
         <license>
             <name>GPL affero</name>
@@ -38,7 +38,7 @@
         <site>
             <id>website</id>
             <name>Project site</name>
-            <url>https://repo.kodekonveyor.com/${project.artifactId}</url>
+            <url>https://repo.kdea.hu/${project.artifactId}</url>
         </site>
     </distributionManagement>
     <properties>
