@@ -1,9 +1,0 @@
-#!/bin/bash
-set -xe
-chmod a+x .konveyor/hooks/*
-chmod a+x .konveyor/tools/*
-if [ -x hooks/$(basename $0) ]
-then
-        exec hooks/$(basename $0)
-fi
-
