@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<SourceTree BeginColumn='' BeginLine='' EndColumn='' EndLine='' Image=''>
+    <SourceFile BeginColumn='' BeginLine='' EndColumn='' EndLine='' Image='' Path=''>
+        <CompilationUnit BeginColumn='1' BeginLine='1' Compact='false' EndColumn='40' EndLine='6' Image='' PackageName='io.github.magwas.konveyor.tooling.tests'>
+            <PackageDeclaration BeginColumn='9' BeginLine='1' EndColumn='48' EndLine='1' Image='' Name='io.github.magwas.konveyor.tooling.tests'>
+                <ModifierList BeginColumn='1' BeginLine='1' EffectiveModifiers='[]' EndColumn='1' EndLine='1' ExplicitModifiers='[]' Image='' />
+            </PackageDeclaration>
+            <ImportDeclaration BeginColumn='1' BeginLine='3' EndColumn='59' EndLine='3' Image='' ImportOnDemand='false' ImportedName='io.github.magwas.konveyor.testing.IndirectlyTested' ImportedSimpleName='IndirectlyTested' ModuleImport='false' PackageName='io.github.magwas.konveyor.testing' Static='false' />
+            <ClassDeclaration Abstract='false' Annotation='false' Anonymous='false' BeginColumn='8' BeginLine='6' BinaryName='io.github.magwas.konveyor.tooling.tests.GenerateAstServiceStub' CanonicalName='io.github.magwas.konveyor.tooling.tests.GenerateAstServiceStub' EffectiveVisibility='public' EndColumn='13' EndLine='6' Enum='false' Final='false' Image='' Interface='false' Local='false' Nested='false' PackageName='io.github.magwas.konveyor.tooling.tests' Record='false' RegularClass='true' RegularInterface='false' SimpleName='GenerateAstServiceStub' Static='false' TopLevel='true' UnnamedToplevelClass='false' Visibility='public'>
+                <ModifierList BeginColumn='1' BeginLine='5' EffectiveModifiers='[public]' EndColumn='7' EndLine='6' ExplicitModifiers='[public]' Image=''>
+                    <Annotation BeginColumn='1' BeginLine='5' EndColumn='18' EndLine='5' Image='' SimpleName='IndirectlyTested'>
+                        <ClassType BeginColumn='2' BeginLine='5' EndColumn='18' EndLine='5' FullyQualified='false' Image='' PackageQualifier='' SimpleName='IndirectlyTested' />
+                    </Annotation>
+                </ModifierList>
+                <ClassBody BeginColumn='37' BeginLine='6' Empty='true' EndColumn='39' EndLine='6' Image='' Size='0' />
+            </ClassDeclaration>
+        </CompilationUnit>
+    </SourceFile>
+</SourceTree>

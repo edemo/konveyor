@@ -13,9 +13,14 @@
     <dependencies>
         <dependency>
             <groupId>io.github.magwas</groupId>
-            <artifactId>konveyor.base</artifactId>
+            <artifactId>konveyor.runtime</artifactId>
             <version>${version.konveyor}</version>
-            <classifier>annotations</classifier>
+        </dependency>
+        <dependency>
+            <groupId>io.github.magwas</groupId>
+            <artifactId>konveyor.testing</artifactId>
+            <version>${version.konveyor}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <build>
@@ -34,9 +39,8 @@
                             <artifactItems>
                                 <artifactItem>
                                     <groupId>io.github.magwas</groupId>
-                                    <artifactId>konveyor.base</artifactId>
+                                    <artifactId>konveyor.tooling</artifactId>
                                     <version>${version.konveyor}</version>
-                                    <classifier>tooling</classifier>
                                     <type>jar</type>
                                     <overWrite>false</overWrite>
                                 </artifactItem>
@@ -55,9 +59,8 @@
                             <artifactItems>
                                 <artifactItem>
                                     <groupId>io.github.magwas</groupId>
-                                    <artifactId>konveyor.base</artifactId>
+                                    <artifactId>konveyor.tooling</artifactId>
                                     <version>${version.konveyor}</version>
-                                    <classifier>tooling</classifier>
                                     <type>jar</type>
                                     <overWrite>false</overWrite>
                                 </artifactItem>
