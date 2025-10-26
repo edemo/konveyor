@@ -50,9 +50,7 @@ public class TestUtil {
 
 	@SuppressWarnings("unchecked")
 	public static <T> T dependency(Object instance, Class<T> klass) throws IllegalAccessException {
-		System.out.println("dependency " + instance + ", " + klass);
 		for (Field field : instance.getClass().getDeclaredFields()) {
-			System.out.println("field:" + field + " type=" + field.getType());
 			if (field.getType().equals(klass)) {
 				field.setAccessible(true);
 				return (T) field.get(instance);
