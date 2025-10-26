@@ -8,4 +8,5 @@ open module konveyor.tooling {
 	requires transitive org.apache.commons.lang3;
 	requires transitive java.logging;
 	requires transitive konveyor.runtime;
+	requires pmd.java;
 }
