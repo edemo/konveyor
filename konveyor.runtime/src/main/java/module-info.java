@@ -5,4 +5,5 @@ open module konveyor.runtime {
 	requires transitive spring.context;
 	requires transitive spring.beans;
 	requires transitive java.logging;
+	requires transitive java.annotation;
 }

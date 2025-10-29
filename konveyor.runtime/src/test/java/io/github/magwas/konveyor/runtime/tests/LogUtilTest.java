@@ -6,13 +6,13 @@ import static org.mockito.Mockito.verify;
 
 import java.lang.reflect.Field;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import io.github.magwas.konveyor.runtime.DebugState;
 import io.github.magwas.konveyor.runtime.LogUtil;
+import io.github.magwas.konveyor.runtime.LoggerService;
 
 class LogUtilTest {
 
@@ -21,11 +21,11 @@ class LogUtilTest {
 	@SuppressWarnings("PMD.AvoidAccessibilityAlteration")
 	void test() throws NoSuchFieldException, IllegalAccessException {
 		LogUtil.addDebuggedClass(getClass());
-		Field field = LogUtil.class.getDeclaredField("debuggedClasses");
+		LoggerService loggerService = LogUtil.getLoggerService();
+		Field field = LoggerService.class.getDeclaredField("debugState");
 		field.setAccessible(true);
-		@SuppressWarnings("unchecked")
-		Set<String> klasses = (Set<String>) field.get(LogUtil.class);
-		assertEquals(Set.of(this.getClass().getName()), klasses);
+		DebugState debugState = (DebugState) field.get(loggerService);
+		assertEquals(Set.of(this.getClass().getName()), debugState.debuggedClasses);
 		LogUtil.clearDebuggedClasses();
 	}
 
@@ -33,12 +33,14 @@ class LogUtilTest {
 	@DisplayName("addDebuggedClass sets the log level to FINEST")
 	@SuppressWarnings("PMD.AvoidAccessibilityAlteration")
 	void test1() throws NoSuchFieldException, IllegalAccessException {
-		Logger mockLogger = mock(Logger.class);
-		Field field = LogUtil.class.getDeclaredField("logger");
-		field.setAccessible(true);
-		field.set(LogUtil.class, mockLogger);
+		var mockDependencies = mock(io.github.magwas.konveyor.runtime.Dependencies.class);
+		mockDependencies.logger = mock(java.util.logging.Logger.class);
+		LoggerService loggerService = LogUtil.getLoggerService();
+		Field dependenciesField = LoggerService.class.getDeclaredField("dependencies");
+		dependenciesField.setAccessible(true);
+		dependenciesField.set(loggerService, mockDependencies);
 		LogUtil.addDebuggedClass(getClass());
-		verify(mockLogger).setLevel(Level.FINEST);
+		verify(mockDependencies.logger).setLevel(java.util.logging.Level.FINEST);
 		LogUtil.clearDebuggedClasses();
 	}
 }

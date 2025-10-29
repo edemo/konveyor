@@ -11,6 +11,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.TestInstantiationException;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class TestBase {
@@ -20,7 +21,8 @@ public class TestBase {
 	@BeforeEach
 	public void setUp() throws Throwable {
 		environmentState = null;
-		stubUp(this);
+		Object tested = stubUp(this);
+		mockUp(this, tested);
 	}
 
 	@AfterEach
@@ -31,7 +33,7 @@ public class TestBase {
 	}
 
 	@SuppressWarnings("PMD.AvoidAccessibilityAlteration")
-	public static void stubUp(final Object test) {
+	public static Object stubUp(final Object test) {
 		try {
 			for (Field objField : test.getClass().getDeclaredFields()) {
 				if (objField.isAnnotationPresent(InjectMocks.class)) {
@@ -42,8 +44,10 @@ public class TestBase {
 					objField.setAccessible(true);
 					objField.set(test, instance);
 					stubFill(instance);
+					return instance;
 				}
 			}
+			throw new TestInstantiationException("no @InjectMocks in test");
 		} catch (NoSuchMethodException
 				| SecurityException
 				| InstantiationException
@@ -66,7 +70,11 @@ public class TestBase {
 					if (null == stub.getAnnotation(IndirectlyTested.class)) {
 						Method method = stub.getDeclaredMethod("stub");
 						method.setAccessible(true);
-						value = method.invoke(null);
+						try {
+							value = method.invoke(null);
+						} catch (NullPointerException e) {
+							throw new TestInstantiationException("stub is not static in " + stubName);
+						}
 					} else {
 						value = field.getType().getConstructor().newInstance();
 						stubFill(value);
@@ -89,5 +97,33 @@ public class TestBase {
 				}
 			}
 		}
+	}
+
+	@SuppressWarnings("PMD.AvoidAccessibilityAlteration")
+	public static void mockUp(final Object test, final Object tested) {
+		try {
+			Field[] dependencies = tested.getClass().getDeclaredFields();
+			for (Field objField : test.getClass().getDeclaredFields()) {
+				if (objField.isAnnotationPresent(Mock.class)) {
+					Class<?> type = objField.getType();
+					Field mockField = getFieldByClass(tested, type, dependencies);
+					mockField.setAccessible(true);
+					Object mock = mockField.get(tested);
+					objField.setAccessible(true);
+					objField.set(test, mock);
+				}
+			}
+		} catch (SecurityException | IllegalAccessException e) {
+			throw new TestInstantiationException("stubUp " + test, e);
+		}
+	}
+
+	private static Field getFieldByClass(Object tested, Class<?> type, Field[] dependencies) {
+		for (Field field : dependencies) {
+			if (field.getType().equals(type)) {
+				return field;
+			}
+		}
+		throw new IllegalArgumentException("no field of type " + type + " in " + tested);
 	}
 }
