@@ -14,13 +14,21 @@ import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class TestBase {
+
+	public static String environmentState;
+
 	@BeforeEach
 	public void setUp() throws Throwable {
+		environmentState = null;
 		stubUp(this);
 	}
 
 	@AfterEach
 	public void tearDown() throws Throwable {}
+
+	public void given(String newState) {
+		environmentState = newState;
+	}
 
 	@SuppressWarnings("PMD.AvoidAccessibilityAlteration")
 	public static void stubUp(final Object test) {
