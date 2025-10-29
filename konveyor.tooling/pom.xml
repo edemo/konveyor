@@ -160,9 +160,9 @@
                                     <mainClass>io.github.magwas.konveyor.tooling.GenerateAST</mainClass>
                                 </manifest>
                             </archive>
-                            <descriptorRefs>
-                                <descriptorRef>jar-with-dependencies</descriptorRef>
-                            </descriptorRefs>
+                            <descriptors>
+                                <descriptor>assembly/custom-jar.xml</descriptor>
+                            </descriptors>
                             <finalName>${project.artifactId}-${project.version}</finalName>
                             <appendAssemblyId>false</appendAssemblyId>
                             <attach>true</attach>
