@@ -13,7 +13,7 @@ import io.github.magwas.konveyor.runtime.LoggerService;
 
 public class LoggerServiceStub {
 	public static LoggerService stub() throws NoSuchFieldException, IllegalAccessException {
-		LoggerService loggerService = new LoggerService();
+		var loggerService = new LoggerService();
 		loggerService.debugState = new DebugState();
 		Field loggerDepField = LoggerService.class.getDeclaredField("loggerDependency");
 		LoggerDependency loggerDepMock = mock(LoggerDependency.class);

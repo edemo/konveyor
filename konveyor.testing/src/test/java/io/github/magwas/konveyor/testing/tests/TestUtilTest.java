@@ -56,7 +56,7 @@ class TestUtilTest implements TestData {
 	@DisplayName("diffCollections prints the expected and actual collection contents to stdout")
 	void test6() {
 		PrintStream originalOut = System.out;
-		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+		var outContent = new ByteArrayOutputStream();
 
 		try {
 			System.setOut(new PrintStream(outContent, true)); // auto-flush

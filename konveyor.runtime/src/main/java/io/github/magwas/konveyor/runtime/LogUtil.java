@@ -12,7 +12,7 @@ public class LogUtil {
 
 	public static LoggerService getLoggerService() {
 		if (null == loggerService)
-			try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Config.class)) {
+			try (var context = new AnnotationConfigApplicationContext(Config.class)) {
 				loggerService = context.getBean(LoggerService.class);
 			}
 		return loggerService;

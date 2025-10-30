@@ -15,9 +15,9 @@ public class GenerateAST {
 
 	public static void main(final String[] args) throws IOException {
 		Class<GetASTofSourceTreeService> requiredType = GetASTofSourceTreeService.class;
-		try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Config.class)) {
+		try (var context = new AnnotationConfigApplicationContext(Config.class)) {
 			GetASTofSourceTreeService getASTofSourceTree = context.getBean(requiredType);
-			ConsoleDependency consoleDependency = new ConsoleDependency();
+			var consoleDependency = new ConsoleDependency();
 			String path = null;
 			if (args.length == 1) path = args[0];
 			else {

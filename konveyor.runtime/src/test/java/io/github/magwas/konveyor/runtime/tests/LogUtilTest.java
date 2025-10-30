@@ -25,7 +25,7 @@ class LogUtilTest {
 		LoggerService loggerService = LogUtil.getLoggerService();
 		Field field = LoggerService.class.getDeclaredField("debugState");
 		field.setAccessible(true);
-		DebugState debugState = (DebugState) field.get(loggerService);
+		var debugState = (DebugState) field.get(loggerService);
 		assertEquals(Set.of(this.getClass().getName()), debugState.debuggedClasses);
 		LogUtil.clearDebuggedClasses();
 	}

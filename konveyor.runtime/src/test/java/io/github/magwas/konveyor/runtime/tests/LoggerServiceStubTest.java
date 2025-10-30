@@ -28,7 +28,7 @@ class LoggerServiceStubTest extends TestBase {
 	void test() throws IllegalAccessException, NoSuchFieldException {
 		Field dependenciesField = LoggerService.class.getDeclaredField("consoleDependency");
 		dependenciesField.setAccessible(true);
-		ConsoleDependency dependencies = (ConsoleDependency) dependenciesField.get(logger);
+		var dependencies = (ConsoleDependency) dependenciesField.get(logger);
 		assertEquals(System.err, dependencies.syserr);
 		dependencies.syserr = mock(PrintStream.class);
 		logger.addDebuggedClass(TestExternalComponent.class);

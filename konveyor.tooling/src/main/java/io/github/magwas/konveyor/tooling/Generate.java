@@ -20,14 +20,14 @@ public class Generate {
 		String className = args[0];
 		String category = args[1];
 		String targetName = className.replaceFirst("Generator$", "");
-		ConsoleDependency consoleDependency = new ConsoleDependency();
+		var consoleDependency = new ConsoleDependency();
 		consoleDependency.syserr.println("generating " + targetName);
 
 		Class<Supplier<StringBuilder>> klass = getGeneratorByName(className);
 		Supplier<StringBuilder> instance = klass.getConstructor().newInstance();
-		File file = new File("target/generated-sources/" + category + "/" + targetName.replace(".", "/") + ".java");
+		var file = new File("target/generated-sources/" + category + "/" + targetName.replace(".", "/") + ".java");
 		new File(file.getParent()).mkdirs();
-		try (BufferedWriter writer = new BufferedWriter(Files.newBufferedWriter(Paths.get(file.toURI())))) {
+		try (var writer = new BufferedWriter(Files.newBufferedWriter(Paths.get(file.toURI())))) {
 			writer.append(instance.get());
 		}
 	}
