@@ -7,11 +7,13 @@ public class MiscUtil {
 	}
 
 	@SuppressWarnings("PMD.SystemPrintln")
+	@Deprecated
 	public static void syserr(final String message) {
 		System.err.println(message);
 	}
 
 	@SuppressWarnings("PMD.SystemPrintln")
+	@Deprecated
 	public static void sysout(final String message) {
 		System.out.println(message);
 	}

@@ -1,15 +1,18 @@
 package io.github.magwas.konveyor.runtime.tests;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 
 import java.io.PrintStream;
+import java.lang.reflect.Field;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 
-import io.github.magwas.konveyor.runtime.LogUtil;
+import io.github.magwas.konveyor.runtime.ConsoleDependency;
+import io.github.magwas.konveyor.runtime.LoggerService;
 import io.github.magwas.konveyor.testing.TestBase;
 
 class LoggerServiceStubTest extends TestBase {
@@ -17,19 +20,23 @@ class LoggerServiceStubTest extends TestBase {
 	@InjectMocks
 	TestExternalComponent testComponent;
 
+	@Mock
+	public LoggerService logger;
+
 	@Test
 	@DisplayName("debug prints to stderr")
-	void test() {
-		try (PrintStream fakeErr = mock(PrintStream.class);
-				PrintStream oldErr = System.err; ) {
-			System.setErr(fakeErr);
-			LogUtil.addDebuggedClass(TestExternalComponent.class);
-			testComponent.doDebug();
-			verify(fakeErr)
-					.println("DEBUG io.github.magwas.konveyor.runtime.tests.TestExternalComponent doDebug 14:debug");
-			LogUtil.clearDebuggedClasses();
-			System.setErr(oldErr);
-		}
+	void test() throws IllegalAccessException, NoSuchFieldException {
+		Field dependenciesField = LoggerService.class.getDeclaredField("consoleDependency");
+		dependenciesField.setAccessible(true);
+		ConsoleDependency dependencies = (ConsoleDependency) dependenciesField.get(logger);
+		assertEquals(System.err, dependencies.syserr);
+		dependencies.syserr = mock(PrintStream.class);
+		logger.addDebuggedClass(TestExternalComponent.class);
+		testComponent.doDebug();
+		verify(dependencies.syserr)
+				.println("DEBUG io.github.magwas.konveyor.runtime.tests.TestExternalComponent doDebug 18:debug");
+		logger.clearDebuggedClasses();
+		dependencies.syserr = System.err;
 	}
 
 	@Test
