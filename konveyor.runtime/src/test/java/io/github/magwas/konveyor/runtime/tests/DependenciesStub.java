@@ -12,6 +12,7 @@ public class DependenciesStub {
 		Dependencies mock = mock(Dependencies.class);
 		mock.logger = mock(Logger.class);
 		mock.syserr = mock(PrintStream.class);
+		mock.sysout = mock(PrintStream.class);
 		return mock;
 	}
 }

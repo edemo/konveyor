@@ -34,7 +34,7 @@ class LoggerServiceStubTest extends TestBase {
 		logger.addDebuggedClass(TestExternalComponent.class);
 		testComponent.doDebug();
 		verify(dependencies.syserr)
-				.println("DEBUG io.github.magwas.konveyor.runtime.tests.TestExternalComponent doDebug 14:debug");
+				.println("DEBUG io.github.magwas.konveyor.runtime.tests.TestExternalComponent doDebug 18:debug");
 		logger.clearDebuggedClasses();
 		dependencies.syserr = System.err;
 	}
