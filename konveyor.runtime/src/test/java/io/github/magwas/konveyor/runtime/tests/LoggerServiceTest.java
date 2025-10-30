@@ -13,10 +13,7 @@ import org.mockito.Mock;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import io.github.magwas.konveyor.runtime.Config;
-import io.github.magwas.konveyor.runtime.DebugState;
-import io.github.magwas.konveyor.runtime.Dependencies;
-import io.github.magwas.konveyor.runtime.LoggerService;
+import io.github.magwas.konveyor.runtime.*;
 import io.github.magwas.konveyor.testing.TestBase;
 
 @Tag("end-to-end")
@@ -28,17 +25,20 @@ class LoggerServiceTest extends TestBase {
 	LoggerService logger;
 
 	@Mock
-	private Dependencies dependencies;
+	LoggerDependency loggerDependency;
 
 	@Mock
-	private DebugState debugState;
+	ConsoleDependency consoleDependency;
+
+	@Mock
+	DebugState debugState;
 
 	@Test
 	@DisplayName("debug logs to stderr, in the form of 'DEBUG <classname> <methodname> <linenumber>:<message>")
 	void test() {
 		debugState.debuggedClasses.add(getClass().getName());
 		logger.debug("testlog");
-		verify(dependencies.syserr)
+		verify(consoleDependency.syserr)
 				.println("DEBUG io.github.magwas.konveyor.runtime.tests.LoggerServiceTest test 40:testlog");
 		debugState.debuggedClasses.clear();
 	}
@@ -48,7 +48,7 @@ class LoggerServiceTest extends TestBase {
 			"warning logs using the logger, using the caller's class and method name, and prepending the message with the line number")
 	void test1() {
 		logger.warning("testlog");
-		verify(dependencies.logger)
+		verify(loggerDependency.logger)
 				.logp(
 						Level.WARNING,
 						"io.github.magwas.konveyor.runtime.tests.LoggerServiceTest",
@@ -61,7 +61,7 @@ class LoggerServiceTest extends TestBase {
 			"info logs using the logger, using the caller's class and method name, and prepending the message with the line number")
 	void test2() {
 		logger.info("testlog");
-		verify(dependencies.logger)
+		verify(loggerDependency.logger)
 				.logp(Level.INFO, "io.github.magwas.konveyor.runtime.tests.LoggerServiceTest", "test2", "63:testlog");
 	}
 }

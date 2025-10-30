@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.util.function.Supplier;
 
 import io.github.magwas.konveyor.annotations.Glue;
+import io.github.magwas.konveyor.runtime.ConsoleDependency;
 
 @Glue
 public class Generate {
@@ -19,7 +20,8 @@ public class Generate {
 		String className = args[0];
 		String category = args[1];
 		String targetName = className.replaceFirst("Generator$", "");
-		System.err.println("generating " + targetName);
+		ConsoleDependency consoleDependency = new ConsoleDependency();
+		consoleDependency.syserr.println("generating " + targetName);
 
 		Class<Supplier<StringBuilder>> klass = getGeneratorByName(className);
 		Supplier<StringBuilder> instance = klass.getConstructor().newInstance();

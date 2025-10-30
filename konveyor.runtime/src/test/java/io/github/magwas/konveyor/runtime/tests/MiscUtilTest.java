@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-import io.github.magwas.konveyor.runtime.Dependencies;
+import io.github.magwas.konveyor.runtime.ConsoleDependency;
 import io.github.magwas.konveyor.testing.TestBase;
 
 public class MiscUtilTest extends TestBase implements RuntimeTestData {
@@ -15,19 +15,19 @@ public class MiscUtilTest extends TestBase implements RuntimeTestData {
 	TestExternalComponent testExternalComponent;
 
 	@Mock
-	Dependencies dependencies;
+	ConsoleDependency consoleDependency;
 
 	@DisplayName("use Dependencies.sysout.println() instead MiscUtil.sysout()")
 	@Test
-	void test() throws Throwable {
+	void test() {
 		testExternalComponent.doPrint();
-		verify(dependencies.sysout).println(PREAMBLE);
+		verify(consoleDependency.sysout).println(PREAMBLE);
 	}
 
 	@DisplayName("use Dependencies.syserr.println() instead MiscUtil.syserr()")
 	@Test
-	void test1() throws Throwable {
+	void test1() {
 		testExternalComponent.doPrintStderr();
-		verify(dependencies.syserr).println(PREAMBLE);
+		verify(consoleDependency.syserr).println(PREAMBLE);
 	}
 }

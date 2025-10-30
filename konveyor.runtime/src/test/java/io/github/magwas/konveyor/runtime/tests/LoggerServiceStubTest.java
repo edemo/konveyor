@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-import io.github.magwas.konveyor.runtime.Dependencies;
+import io.github.magwas.konveyor.runtime.ConsoleDependency;
 import io.github.magwas.konveyor.runtime.LoggerService;
 import io.github.magwas.konveyor.testing.TestBase;
 
@@ -26,9 +26,9 @@ class LoggerServiceStubTest extends TestBase {
 	@Test
 	@DisplayName("debug prints to stderr")
 	void test() throws IllegalAccessException, NoSuchFieldException {
-		Field dependenciesField = LoggerService.class.getDeclaredField("dependencies");
+		Field dependenciesField = LoggerService.class.getDeclaredField("consoleDependency");
 		dependenciesField.setAccessible(true);
-		Dependencies dependencies = (Dependencies) dependenciesField.get(logger);
+		ConsoleDependency dependencies = (ConsoleDependency) dependenciesField.get(logger);
 		assertEquals(System.err, dependencies.syserr);
 		dependencies.syserr = mock(PrintStream.class);
 		logger.addDebuggedClass(TestExternalComponent.class);

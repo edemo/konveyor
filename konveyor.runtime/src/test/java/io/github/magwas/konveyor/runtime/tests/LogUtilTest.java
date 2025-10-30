@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import io.github.magwas.konveyor.runtime.DebugState;
 import io.github.magwas.konveyor.runtime.LogUtil;
+import io.github.magwas.konveyor.runtime.LoggerDependency;
 import io.github.magwas.konveyor.runtime.LoggerService;
 
 class LogUtilTest {
@@ -33,10 +34,10 @@ class LogUtilTest {
 	@DisplayName("addDebuggedClass sets the log level to FINEST")
 	@SuppressWarnings("PMD.AvoidAccessibilityAlteration")
 	void test1() throws NoSuchFieldException, IllegalAccessException {
-		var mockDependencies = mock(io.github.magwas.konveyor.runtime.Dependencies.class);
+		LoggerDependency mockDependencies = mock(LoggerDependency.class);
 		mockDependencies.logger = mock(java.util.logging.Logger.class);
 		LoggerService loggerService = LogUtil.getLoggerService();
-		Field dependenciesField = LoggerService.class.getDeclaredField("dependencies");
+		Field dependenciesField = LoggerService.class.getDeclaredField("loggerDependency");
 		dependenciesField.setAccessible(true);
 		dependenciesField.set(loggerService, mockDependencies);
 		LogUtil.addDebuggedClass(getClass());

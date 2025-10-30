@@ -8,6 +8,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import io.github.magwas.konveyor.annotations.Glue;
 import io.github.magwas.konveyor.runtime.Config;
+import io.github.magwas.konveyor.runtime.ConsoleDependency;
 
 @Glue
 public class GenerateAST {
@@ -16,15 +17,16 @@ public class GenerateAST {
 		Class<GetASTofSourceTreeService> requiredType = GetASTofSourceTreeService.class;
 		try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Config.class)) {
 			GetASTofSourceTreeService getASTofSourceTree = context.getBean(requiredType);
+			ConsoleDependency consoleDependency = new ConsoleDependency();
 			String path = null;
 			if (args.length == 1) path = args[0];
 			else {
-				System.err.println("give me a path name");
+				consoleDependency.syserr.println("give me a path name");
 				System.exit(1);
 			}
 			Path root = new File(new File(path).getAbsolutePath()).toPath();
 			StringBuilder ret = getASTofSourceTree.apply(root);
-			System.out.println(ret.toString());
+			consoleDependency.sysout.println(ret.toString());
 		}
 	}
 }

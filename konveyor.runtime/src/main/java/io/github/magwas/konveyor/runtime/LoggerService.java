@@ -14,11 +14,14 @@ public class LoggerService {
 	public DebugState debugState;
 
 	@Autowired
-	Dependencies dependencies;
+	LoggerDependency loggerDependency;
+
+	@Autowired
+	ConsoleDependency consoleDependency;
 
 	public void addDebuggedClass(final Class<?> debuggedClass) {
 		debugState.debuggedClasses.add(debuggedClass.getName());
-		dependencies.logger.setLevel(Level.FINEST);
+		loggerDependency.logger.setLevel(Level.FINEST);
 	}
 
 	public void clearDebuggedClasses() {
@@ -44,7 +47,7 @@ public class LoggerService {
 				+ stackTraceElement.getLineNumber()
 				+ ':'
 				+ String.join(",", params);
-		dependencies.syserr.println(string);
+		consoleDependency.syserr.println(string);
 	}
 
 	public void warning(final Object... args) {
@@ -70,6 +73,6 @@ public class LoggerService {
 		List<String> params = Stream.of(args).map(Object::toString).toList();
 		String method = stackTraceElement.getMethodName();
 		String string = stackTraceElement.getLineNumber() + ":" + String.join(",", params);
-		dependencies.logger.logp(level, name, method, string);
+		loggerDependency.logger.logp(level, name, method, string);
 	}
 }

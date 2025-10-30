@@ -3,7 +3,7 @@ package io.github.magwas.konveyor.runtime.tests;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import io.github.magwas.konveyor.runtime.Dependencies;
+import io.github.magwas.konveyor.runtime.ConsoleDependency;
 import io.github.magwas.konveyor.runtime.LoggerService;
 
 @Component
@@ -12,7 +12,7 @@ public class TestExternalComponent implements RuntimeTestData {
 	LoggerService logger;
 
 	@Autowired
-	Dependencies dependencies;
+	ConsoleDependency consoleDependency;
 
 	public void doDebug() {
 		logger.debug("debug");
@@ -27,10 +27,10 @@ public class TestExternalComponent implements RuntimeTestData {
 	}
 
 	public void doPrint() {
-		dependencies.sysout.println(PREAMBLE);
+		consoleDependency.sysout.println(PREAMBLE);
 	}
 
 	public void doPrintStderr() {
-		dependencies.syserr.println(PREAMBLE);
+		consoleDependency.syserr.println(PREAMBLE);
 	}
 }

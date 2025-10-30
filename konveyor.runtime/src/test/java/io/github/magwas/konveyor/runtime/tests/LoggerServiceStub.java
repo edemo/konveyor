@@ -6,20 +6,25 @@ import static org.mockito.Mockito.*;
 import java.lang.reflect.Field;
 import java.util.logging.Logger;
 
+import io.github.magwas.konveyor.runtime.ConsoleDependency;
 import io.github.magwas.konveyor.runtime.DebugState;
-import io.github.magwas.konveyor.runtime.Dependencies;
+import io.github.magwas.konveyor.runtime.LoggerDependency;
 import io.github.magwas.konveyor.runtime.LoggerService;
 
 public class LoggerServiceStub {
 	public static LoggerService stub() throws NoSuchFieldException, IllegalAccessException {
 		LoggerService loggerService = new LoggerService();
 		loggerService.debugState = new DebugState();
-		Field depsField = LoggerService.class.getDeclaredField("dependencies");
-		Dependencies depsMock = mock(Dependencies.class);
-		depsMock.syserr = System.err;
-		depsMock.logger = mock(Logger.class);
-		depsField.setAccessible(true);
-		depsField.set(loggerService, depsMock);
+		Field loggerDepField = LoggerService.class.getDeclaredField("loggerDependency");
+		LoggerDependency loggerDepMock = mock(LoggerDependency.class);
+		loggerDepMock.logger = mock(Logger.class);
+		loggerDepField.setAccessible(true);
+		loggerDepField.set(loggerService, loggerDepMock);
+		Field consoleDepField = LoggerService.class.getDeclaredField("consoleDependency");
+		ConsoleDependency consoleDepMock = mock(ConsoleDependency.class);
+		consoleDepMock.syserr = System.err;
+		consoleDepField.setAccessible(true);
+		consoleDepField.set(loggerService, consoleDepMock);
 		LoggerService spied = spy(loggerService);
 		doAnswer(invocation -> {
 					loggerService.debug(10, invocation.getArguments());
