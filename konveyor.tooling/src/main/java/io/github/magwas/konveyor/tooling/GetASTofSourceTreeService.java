@@ -28,7 +28,7 @@ public class GetASTofSourceTreeService {
 				.map(generateAst::apply)
 				.map(x -> wrapToSourceFileNode(rootPath, x))
 				.toList();
-		StringBuilder builder = new StringBuilder();
+		var builder = new StringBuilder();
 		new XmlTreeRenderer().renderSubtree(new SourceTreeNode(children), builder);
 		return builder;
 	}

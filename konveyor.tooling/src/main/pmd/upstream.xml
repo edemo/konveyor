@@ -37,6 +37,13 @@
 		</properties>
 	</rule>
 
+    <rule ref="category/java/codestyle.xml/UseExplicitTypes">
+        <properties>
+            <property name="allowCasts" value="true" />
+            <property name="allowCtors" value="true" />
+        </properties>
+    </rule>
+
 	<rule ref="category/java/design.xml">
 		<exclude name="DataClass" />
 		<exclude name="FinalFieldCouldBeStatic" />

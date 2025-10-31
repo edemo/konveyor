@@ -455,6 +455,11 @@
                             <artifactId>konveyor.tooling</artifactId>
                             <version>${version.konveyor}</version>
                         </dependency>
+                        <dependency>
+                            <groupId>net.sourceforge.pmd</groupId>
+                            <artifactId>pmd-java</artifactId>
+                            <version>${version.pmd}</version>
+                        </dependency>
                     </dependencies>
                     <executions>
                         <execution>

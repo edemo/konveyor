@@ -28,7 +28,7 @@ public class GenerateAstService {
 	public RootNode apply(final Path path) {
 		try (TextFile textfile = TextFile.forPath(path, Charset.defaultCharset(), pmdParsing.java.getDefaultVersion());
 				TextDocument document = TextDocument.create(textfile)) {
-			Parser.ParserTask task = new Parser.ParserTask(document, SemanticErrorReporter.noop(), pmdParsing.lpr);
+			var task = new Parser.ParserTask(document, SemanticErrorReporter.noop(), pmdParsing.lpr);
 			return pmdParsing.parser.parse(task);
 
 		} catch (IOException e) {
